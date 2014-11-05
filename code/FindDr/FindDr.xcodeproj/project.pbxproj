@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A55566F61A0AB4BE00B9CDAF /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = A55566F51A0AB4BE00B9CDAF /* background.png */; };
+		A55566FC1A0AB7AB00B9CDAF /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55566FB1A0AB7AB00B9CDAF /* LoginViewController.swift */; };
+		A55567041A0ABC7500B9CDAF /* lupa.png in Resources */ = {isa = PBXBuildFile; fileRef = A55567031A0ABC7500B9CDAF /* lupa.png */; };
+		A55567071A0AC45700B9CDAF /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55567061A0AC45700B9CDAF /* UIColorExtension.swift */; };
+		A555670C1A0ACBD100B9CDAF /* doc.png in Resources */ = {isa = PBXBuildFile; fileRef = A555670A1A0ACBD100B9CDAF /* doc.png */; };
+		A555670D1A0ACBD100B9CDAF /* pacient.png in Resources */ = {isa = PBXBuildFile; fileRef = A555670B1A0ACBD100B9CDAF /* pacient.png */; };
 		A58F73891A0966F800226385 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A58F73881A0966F800226385 /* main.m */; };
 		A58F738C1A0966F800226385 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A58F738B1A0966F800226385 /* AppDelegate.m */; };
 		A58F738F1A0966F800226385 /* FindDr.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A58F738D1A0966F800226385 /* FindDr.xcdatamodeld */; };
@@ -45,6 +51,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A55566F51A0AB4BE00B9CDAF /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
+		A55566F81A0AB75B00B9CDAF /* FindDr-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FindDr-Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
+		A55566FB1A0AB7AB00B9CDAF /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginViewController.swift; path = FindDr/LoginViewController.swift; sourceTree = "<group>"; };
+		A55567031A0ABC7500B9CDAF /* lupa.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lupa.png; sourceTree = "<group>"; };
+		A55567061A0AC45700B9CDAF /* UIColorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIColorExtension.swift; path = FindDr/UIColorExtension.swift; sourceTree = "<group>"; };
+		A555670A1A0ACBD100B9CDAF /* doc.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = doc.png; sourceTree = "<group>"; };
+		A555670B1A0ACBD100B9CDAF /* pacient.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pacient.png; sourceTree = "<group>"; };
 		A58F73831A0966F800226385 /* FindDr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FindDr.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A58F73871A0966F800226385 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A58F73881A0966F800226385 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -110,9 +123,39 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A55566F41A0AB4A800B9CDAF /* images */ = {
+			isa = PBXGroup;
+			children = (
+				A55567031A0ABC7500B9CDAF /* lupa.png */,
+				A555670A1A0ACBD100B9CDAF /* doc.png */,
+				A555670B1A0ACBD100B9CDAF /* pacient.png */,
+				A55566F51A0AB4BE00B9CDAF /* background.png */,
+			);
+			name = images;
+			sourceTree = "<group>";
+		};
+		A55566F71A0AB74500B9CDAF /* login */ = {
+			isa = PBXGroup;
+			children = (
+				A55566FB1A0AB7AB00B9CDAF /* LoginViewController.swift */,
+			);
+			name = login;
+			sourceTree = "<group>";
+		};
+		A55567051A0AC44A00B9CDAF /* utils */ = {
+			isa = PBXGroup;
+			children = (
+				A55567061A0AC45700B9CDAF /* UIColorExtension.swift */,
+			);
+			name = utils;
+			sourceTree = "<group>";
+		};
 		A58F737A1A0966F800226385 = {
 			isa = PBXGroup;
 			children = (
+				A55567051A0AC44A00B9CDAF /* utils */,
+				A55566F71A0AB74500B9CDAF /* login */,
+				A55566F41A0AB4A800B9CDAF /* images */,
 				A58F73851A0966F800226385 /* FindDr */,
 				A58F73A21A0966F800226385 /* FindDrTests */,
 				A58F73841A0966F800226385 /* Products */,
@@ -139,6 +182,7 @@
 				A58F73961A0966F800226385 /* Images.xcassets */,
 				A58F73981A0966F800226385 /* LaunchScreen.xib */,
 				A58F738D1A0966F800226385 /* FindDr.xcdatamodeld */,
+				A55566F81A0AB75B00B9CDAF /* FindDr-Bridging-Header.h */,
 				A58F73861A0966F800226385 /* Supporting Files */,
 			);
 			path = FindDr;
@@ -264,7 +308,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A555670C1A0ACBD100B9CDAF /* doc.png in Resources */,
 				A58F73951A0966F800226385 /* Main.storyboard in Resources */,
+				A55567041A0ABC7500B9CDAF /* lupa.png in Resources */,
+				A55566F61A0AB4BE00B9CDAF /* background.png in Resources */,
+				A555670D1A0ACBD100B9CDAF /* pacient.png in Resources */,
 				A58F739A1A0966F800226385 /* LaunchScreen.xib in Resources */,
 				A58F73971A0966F800226385 /* Images.xcassets in Resources */,
 			);
@@ -287,7 +335,9 @@
 				A58F738C1A0966F800226385 /* AppDelegate.m in Sources */,
 				A58F73891A0966F800226385 /* main.m in Sources */,
 				A58F73921A0966F800226385 /* ViewController.m in Sources */,
+				A55566FC1A0AB7AB00B9CDAF /* LoginViewController.swift in Sources */,
 				A58F738F1A0966F800226385 /* FindDr.xcdatamodeld in Sources */,
+				A55567071A0AC45700B9CDAF /* UIColorExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -410,6 +460,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/FindDrTests",
@@ -417,6 +468,8 @@
 				INFOPLIST_FILE = FindDr/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "FindDr-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -425,6 +478,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/FindDrTests",
@@ -432,6 +486,7 @@
 				INFOPLIST_FILE = FindDr/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "FindDr-Bridging-Header.h";
 			};
 			name = Release;
 		};
