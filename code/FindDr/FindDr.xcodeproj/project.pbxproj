@@ -9,10 +9,12 @@
 /* Begin PBXBuildFile section */
 		A55566FC1A0AB7AB00B9CDAF /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55566FB1A0AB7AB00B9CDAF /* LoginViewController.swift */; };
 		A55567041A0ABC7500B9CDAF /* lupa.png in Resources */ = {isa = PBXBuildFile; fileRef = A55567031A0ABC7500B9CDAF /* lupa.png */; };
-		A55567071A0AC45700B9CDAF /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55567061A0AC45700B9CDAF /* UIColorExtension.swift */; };
 		A555670C1A0ACBD100B9CDAF /* doc.png in Resources */ = {isa = PBXBuildFile; fileRef = A555670A1A0ACBD100B9CDAF /* doc.png */; };
 		A555670D1A0ACBD100B9CDAF /* pacient.png in Resources */ = {isa = PBXBuildFile; fileRef = A555670B1A0ACBD100B9CDAF /* pacient.png */; };
 		A55567151A0AD27400B9CDAF /* background3.png in Resources */ = {isa = PBXBuildFile; fileRef = A55567131A0AD27400B9CDAF /* background3.png */; };
+		A555671B1A0AE04D00B9CDAF /* RecoverPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A555671A1A0AE04D00B9CDAF /* RecoverPasswordViewController.swift */; };
+		A55567251A0AE93D00B9CDAF /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55567241A0AE93D00B9CDAF /* TextField.swift */; };
+		A55567271A0AE9BF00B9CDAF /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55567261A0AE9BF00B9CDAF /* UIColorExtension.swift */; };
 		A58F73891A0966F800226385 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A58F73881A0966F800226385 /* main.m */; };
 		A58F738C1A0966F800226385 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A58F738B1A0966F800226385 /* AppDelegate.m */; };
 		A58F738F1A0966F800226385 /* FindDr.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A58F738D1A0966F800226385 /* FindDr.xcdatamodeld */; };
@@ -54,10 +56,12 @@
 		A55566F81A0AB75B00B9CDAF /* FindDr-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FindDr-Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
 		A55566FB1A0AB7AB00B9CDAF /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginViewController.swift; path = FindDr/LoginViewController.swift; sourceTree = "<group>"; };
 		A55567031A0ABC7500B9CDAF /* lupa.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lupa.png; sourceTree = "<group>"; };
-		A55567061A0AC45700B9CDAF /* UIColorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIColorExtension.swift; path = FindDr/UIColorExtension.swift; sourceTree = "<group>"; };
 		A555670A1A0ACBD100B9CDAF /* doc.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = doc.png; sourceTree = "<group>"; };
 		A555670B1A0ACBD100B9CDAF /* pacient.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pacient.png; sourceTree = "<group>"; };
 		A55567131A0AD27400B9CDAF /* background3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background3.png; sourceTree = "<group>"; };
+		A555671A1A0AE04D00B9CDAF /* RecoverPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecoverPasswordViewController.swift; path = FindDr/RecoverPasswordViewController.swift; sourceTree = "<group>"; };
+		A55567241A0AE93D00B9CDAF /* TextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
+		A55567261A0AE9BF00B9CDAF /* UIColorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		A58F73831A0966F800226385 /* FindDr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FindDr.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A58F73871A0966F800226385 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A58F73881A0966F800226385 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -138,6 +142,7 @@
 			isa = PBXGroup;
 			children = (
 				A55566FB1A0AB7AB00B9CDAF /* LoginViewController.swift */,
+				A555671A1A0AE04D00B9CDAF /* RecoverPasswordViewController.swift */,
 			);
 			name = login;
 			sourceTree = "<group>";
@@ -145,7 +150,8 @@
 		A55567051A0AC44A00B9CDAF /* utils */ = {
 			isa = PBXGroup;
 			children = (
-				A55567061A0AC45700B9CDAF /* UIColorExtension.swift */,
+				A55567241A0AE93D00B9CDAF /* TextField.swift */,
+				A55567261A0AE9BF00B9CDAF /* UIColorExtension.swift */,
 			);
 			name = utils;
 			sourceTree = "<group>";
@@ -334,10 +340,12 @@
 			files = (
 				A58F738C1A0966F800226385 /* AppDelegate.m in Sources */,
 				A58F73891A0966F800226385 /* main.m in Sources */,
+				A55567251A0AE93D00B9CDAF /* TextField.swift in Sources */,
+				A55567271A0AE9BF00B9CDAF /* UIColorExtension.swift in Sources */,
 				A58F73921A0966F800226385 /* ViewController.m in Sources */,
 				A55566FC1A0AB7AB00B9CDAF /* LoginViewController.swift in Sources */,
+				A555671B1A0AE04D00B9CDAF /* RecoverPasswordViewController.swift in Sources */,
 				A58F738F1A0966F800226385 /* FindDr.xcdatamodeld in Sources */,
-				A55567071A0AC45700B9CDAF /* UIColorExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
