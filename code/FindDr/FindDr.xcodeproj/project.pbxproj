@@ -15,7 +15,6 @@
 		A555671B1A0AE04D00B9CDAF /* RecoverPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A555671A1A0AE04D00B9CDAF /* RecoverPasswordViewController.swift */; };
 		A55567251A0AE93D00B9CDAF /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55567241A0AE93D00B9CDAF /* TextField.swift */; };
 		A55567271A0AE9BF00B9CDAF /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55567261A0AE9BF00B9CDAF /* UIColorExtension.swift */; };
-		A58F73891A0966F800226385 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A58F73881A0966F800226385 /* main.m */; };
 		A58F738C1A0966F800226385 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A58F738B1A0966F800226385 /* AppDelegate.m */; };
 		A58F738F1A0966F800226385 /* FindDr.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A58F738D1A0966F800226385 /* FindDr.xcdatamodeld */; };
 		A58F73921A0966F800226385 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A58F73911A0966F800226385 /* ViewController.m */; };
@@ -49,6 +48,18 @@
 		C375C6091A096C710075CEE4 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C375C6081A096C710075CEE4 /* SystemConfiguration.framework */; };
 		C375C60D1A0999FB0075CEE4 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = C375C60C1A0999FB0075CEE4 /* User.m */; };
 		C375C6101A099A290075CEE4 /* Clinic.m in Sources */ = {isa = PBXBuildFile; fileRef = C375C60F1A099A290075CEE4 /* Clinic.m */; };
+		E42ECE691A099A0A005E320E /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E42ECE681A099A0A005E320E /* SignUpViewController.m */; };
+		E42ECE6C1A09A381005E320E /* ShowClinicsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E42ECE6B1A09A381005E320E /* ShowClinicsViewController.m */; };
+		E44873B81A0B00640036CAFF /* clinic.png in Resources */ = {isa = PBXBuildFile; fileRef = E44873B71A0B00640036CAFF /* clinic.png */; };
+		E44873BA1A0B00700036CAFF /* user.png in Resources */ = {isa = PBXBuildFile; fileRef = E44873B91A0B00700036CAFF /* user.png */; };
+		E4BBD3401A0AAB9500E8DDF7 /* ClinicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4BBD33F1A0AAB9500E8DDF7 /* ClinicViewController.m */; };
+		E4BBD3431A0AAF2C00E8DDF7 /* MapViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4BBD3421A0AAF2C00E8DDF7 /* MapViewViewController.m */; };
+		E4C2CEB41A0BDCEF00120F70 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4BBD3441A0AB0EE00E8DDF7 /* MapKit.framework */; };
+		E4C2CEB61A0BDD5300120F70 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A58F73881A0966F800226385 /* main.m */; };
+		E4C2CEC01A0BEE8700120F70 /* TPKeyboardAvoidingCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C2CEB91A0BEE8700120F70 /* TPKeyboardAvoidingCollectionView.m */; };
+		E4C2CEC11A0BEE8700120F70 /* TPKeyboardAvoidingScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C2CEBB1A0BEE8700120F70 /* TPKeyboardAvoidingScrollView.m */; };
+		E4C2CEC21A0BEE8700120F70 /* TPKeyboardAvoidingTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C2CEBD1A0BEE8700120F70 /* TPKeyboardAvoidingTableView.m */; };
+		E4C2CEC31A0BEE8700120F70 /* UIScrollView+TPKeyboardAvoidingAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C2CEBF1A0BEE8700120F70 /* UIScrollView+TPKeyboardAvoidingAdditions.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -117,6 +128,25 @@
 		C375C60C1A0999FB0075CEE4 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		C375C60E1A099A290075CEE4 /* Clinic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Clinic.h; sourceTree = "<group>"; };
 		C375C60F1A099A290075CEE4 /* Clinic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Clinic.m; sourceTree = "<group>"; };
+		E42ECE671A099A0A005E320E /* SignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpViewController.h; sourceTree = "<group>"; };
+		E42ECE681A099A0A005E320E /* SignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpViewController.m; sourceTree = "<group>"; };
+		E42ECE6A1A09A381005E320E /* ShowClinicsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowClinicsViewController.h; sourceTree = "<group>"; };
+		E42ECE6B1A09A381005E320E /* ShowClinicsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowClinicsViewController.m; sourceTree = "<group>"; };
+		E44873B71A0B00640036CAFF /* clinic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = clinic.png; sourceTree = "<group>"; };
+		E44873B91A0B00700036CAFF /* user.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = user.png; sourceTree = "<group>"; };
+		E4BBD33E1A0AAB9500E8DDF7 /* ClinicViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClinicViewController.h; sourceTree = "<group>"; };
+		E4BBD33F1A0AAB9500E8DDF7 /* ClinicViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClinicViewController.m; sourceTree = "<group>"; };
+		E4BBD3411A0AAF2C00E8DDF7 /* MapViewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewViewController.h; sourceTree = "<group>"; };
+		E4BBD3421A0AAF2C00E8DDF7 /* MapViewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewViewController.m; sourceTree = "<group>"; };
+		E4BBD3441A0AB0EE00E8DDF7 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		E4C2CEB81A0BEE8700120F70 /* TPKeyboardAvoidingCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPKeyboardAvoidingCollectionView.h; sourceTree = "<group>"; };
+		E4C2CEB91A0BEE8700120F70 /* TPKeyboardAvoidingCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPKeyboardAvoidingCollectionView.m; sourceTree = "<group>"; };
+		E4C2CEBA1A0BEE8700120F70 /* TPKeyboardAvoidingScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPKeyboardAvoidingScrollView.h; sourceTree = "<group>"; };
+		E4C2CEBB1A0BEE8700120F70 /* TPKeyboardAvoidingScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPKeyboardAvoidingScrollView.m; sourceTree = "<group>"; };
+		E4C2CEBC1A0BEE8700120F70 /* TPKeyboardAvoidingTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPKeyboardAvoidingTableView.h; sourceTree = "<group>"; };
+		E4C2CEBD1A0BEE8700120F70 /* TPKeyboardAvoidingTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPKeyboardAvoidingTableView.m; sourceTree = "<group>"; };
+		E4C2CEBE1A0BEE8700120F70 /* UIScrollView+TPKeyboardAvoidingAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+TPKeyboardAvoidingAdditions.h"; sourceTree = "<group>"; };
+		E4C2CEBF1A0BEE8700120F70 /* UIScrollView+TPKeyboardAvoidingAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+TPKeyboardAvoidingAdditions.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,6 +154,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E4C2CEB41A0BDCEF00120F70 /* MapKit.framework in Frameworks */,
 				C375C6091A096C710075CEE4 /* SystemConfiguration.framework in Frameworks */,
 				C375C6071A096C5E0075CEE4 /* Social.framework in Frameworks */,
 				C375C6051A096C560075CEE4 /* Security.framework in Frameworks */,
@@ -157,6 +188,8 @@
 		A55566F41A0AB4A800B9CDAF /* images */ = {
 			isa = PBXGroup;
 			children = (
+				E44873B91A0B00700036CAFF /* user.png */,
+				E44873B71A0B00640036CAFF /* clinic.png */,
 				A55567031A0ABC7500B9CDAF /* lupa.png */,
 				A555670A1A0ACBD100B9CDAF /* doc.png */,
 				A55567131A0AD27400B9CDAF /* background3.png */,
@@ -213,6 +246,15 @@
 				A58F73901A0966F800226385 /* ViewController.h */,
 				A58F73911A0966F800226385 /* ViewController.m */,
 				A58F73931A0966F800226385 /* Main.storyboard */,
+				E4BBD3411A0AAF2C00E8DDF7 /* MapViewViewController.h */,
+				E4BBD3421A0AAF2C00E8DDF7 /* MapViewViewController.m */,
+				E4BBD33E1A0AAB9500E8DDF7 /* ClinicViewController.h */,
+				E4BBD33F1A0AAB9500E8DDF7 /* ClinicViewController.m */,
+				E42ECE6A1A09A381005E320E /* ShowClinicsViewController.h */,
+				E42ECE6B1A09A381005E320E /* ShowClinicsViewController.m */,
+				E42ECE671A099A0A005E320E /* SignUpViewController.h */,
+				E42ECE681A099A0A005E320E /* SignUpViewController.m */,
+				E4C2CEB71A0BEE8700120F70 /* TPKeyboardAvoiding */,
 				A58F73961A0966F800226385 /* Images.xcassets */,
 				A58F73981A0966F800226385 /* LaunchScreen.xib */,
 				A58F738D1A0966F800226385 /* FindDr.xcdatamodeld */,
@@ -243,6 +285,7 @@
 		A58F73A31A0966F800226385 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				E4BBD3441A0AB0EE00E8DDF7 /* MapKit.framework */,
 				C375C6081A096C710075CEE4 /* SystemConfiguration.framework */,
 				C375C6061A096C5E0075CEE4 /* Social.framework */,
 				C375C6041A096C560075CEE4 /* Security.framework */,
@@ -285,6 +328,21 @@
 				C322B5D21A0AB85D00822599 /* Time.m */,
 			);
 			name = "Data Model";
+			sourceTree = "<group>";
+		};
+		E4C2CEB71A0BEE8700120F70 /* TPKeyboardAvoiding */ = {
+			isa = PBXGroup;
+			children = (
+				E4C2CEB81A0BEE8700120F70 /* TPKeyboardAvoidingCollectionView.h */,
+				E4C2CEB91A0BEE8700120F70 /* TPKeyboardAvoidingCollectionView.m */,
+				E4C2CEBA1A0BEE8700120F70 /* TPKeyboardAvoidingScrollView.h */,
+				E4C2CEBB1A0BEE8700120F70 /* TPKeyboardAvoidingScrollView.m */,
+				E4C2CEBC1A0BEE8700120F70 /* TPKeyboardAvoidingTableView.h */,
+				E4C2CEBD1A0BEE8700120F70 /* TPKeyboardAvoidingTableView.m */,
+				E4C2CEBE1A0BEE8700120F70 /* UIScrollView+TPKeyboardAvoidingAdditions.h */,
+				E4C2CEBF1A0BEE8700120F70 /* UIScrollView+TPKeyboardAvoidingAdditions.m */,
+			);
+			path = TPKeyboardAvoiding;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -369,11 +427,13 @@
 			files = (
 				A555670C1A0ACBD100B9CDAF /* doc.png in Resources */,
 				A55567151A0AD27400B9CDAF /* background3.png in Resources */,
+				E44873BA1A0B00700036CAFF /* user.png in Resources */,
 				A58F73951A0966F800226385 /* Main.storyboard in Resources */,
 				A55567041A0ABC7500B9CDAF /* lupa.png in Resources */,
 				A555670D1A0ACBD100B9CDAF /* pacient.png in Resources */,
 				A58F739A1A0966F800226385 /* LaunchScreen.xib in Resources */,
 				A58F73971A0966F800226385 /* Images.xcassets in Resources */,
+				E44873B81A0B00640036CAFF /* clinic.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -395,10 +455,16 @@
 				C375C60D1A0999FB0075CEE4 /* User.m in Sources */,
 				A58F738C1A0966F800226385 /* AppDelegate.m in Sources */,
 				C31122271A0A7B39001A3FF7 /* Schedule.m in Sources */,
+				E4C2CEC31A0BEE8700120F70 /* UIScrollView+TPKeyboardAvoidingAdditions.m in Sources */,
+				E4C2CEC01A0BEE8700120F70 /* TPKeyboardAvoidingCollectionView.m in Sources */,
 				C31122301A0A7C6A001A3FF7 /* Appointment.m in Sources */,
-				A58F73891A0966F800226385 /* main.m in Sources */,
 				A55567251A0AE93D00B9CDAF /* TextField.swift in Sources */,
 				A55567271A0AE9BF00B9CDAF /* UIColorExtension.swift in Sources */,
+				E42ECE691A099A0A005E320E /* SignUpViewController.m in Sources */,
+				E4C2CEC21A0BEE8700120F70 /* TPKeyboardAvoidingTableView.m in Sources */,
+				E4BBD3431A0AAF2C00E8DDF7 /* MapViewViewController.m in Sources */,
+				E42ECE6C1A09A381005E320E /* ShowClinicsViewController.m in Sources */,
+				E4BBD3401A0AAB9500E8DDF7 /* ClinicViewController.m in Sources */,
 				A58F73921A0966F800226385 /* ViewController.m in Sources */,
 				A55566FC1A0AB7AB00B9CDAF /* LoginViewController.swift in Sources */,
 				A555671B1A0AE04D00B9CDAF /* RecoverPasswordViewController.swift in Sources */,
@@ -407,6 +473,8 @@
 				C311222A1A0A7B92001A3FF7 /* Ranking.m in Sources */,
 				C31122331A0A7C97001A3FF7 /* Speciality.m in Sources */,
 				C311222D1A0A7BA3001A3FF7 /* Comment.m in Sources */,
+				E4C2CEB61A0BDD5300120F70 /* main.m in Sources */,
+				E4C2CEC11A0BEE8700120F70 /* TPKeyboardAvoidingScrollView.m in Sources */,
 				C375C6101A099A290075CEE4 /* Clinic.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
