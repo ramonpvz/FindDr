@@ -183,7 +183,7 @@ Terms of Use and Privacy Policy</string>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                 <variation key="widthClass=compact" fixedFrame="YES">
                                                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
-                                                    <rect key="frame" x="0.0" y="0.0" width="0.0" height="0.0"/>
+                                                    <rect key="frame" x="50" y="483" width="300" height="50"/>
                                                 </variation>
                                             </textView>
                                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Dpq-vj-7YC">
@@ -210,7 +210,7 @@ Terms of Use and Privacy Policy</string>
                                                     </tableViewCell>
                                                 </prototypes>
                                                 <variation key="widthClass=compact" fixedFrame="YES">
-                                                    <rect key="frame" x="0.0" y="0.0" width="0.0" height="0.0"/>
+                                                    <rect key="frame" x="0.0" y="371" width="400" height="100"/>
                                                 </variation>
                                                 <connections>
                                                     <outlet property="dataSource" destination="zJx-sL-pyI" id="3GQ-ND-Jeb"/>
