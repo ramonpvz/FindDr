@@ -7,17 +7,17 @@
 //
 
 class TextField {
-func customize(myView : UIView) {
+    class func customize(myView : UIView) {
         let textFields = myView.subviews.filter({(field : AnyObject) -> Bool in
             return field .isKindOfClass(UITextField)
         })
         for textField in textFields {
-            customize(textField as UITextField)
+            changeProperties(textField as UITextField)
         }
     }
 
 
-    func customize(textField : UITextField) {
+    class func changeProperties(textField : UITextField) {
             (textField as UITextField).layer.borderColor = UIColor(rgba: "#FFFFFF").CGColor
             (textField as UITextField).layer.borderWidth  = 1
             (textField as UITextField).layer.cornerRadius  = 10

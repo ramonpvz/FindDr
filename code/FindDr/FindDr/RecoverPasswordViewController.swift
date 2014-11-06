@@ -15,8 +15,8 @@ class RecoverPasswordViewController : UIViewController {
     //MARK - Overriden properties
     override func viewDidLoad() {
         super.viewDidLoad()
-        //TextField.customize(view)
-        //let x = view.subviews;
+        TextField.customize(view)
+
 
 
     }

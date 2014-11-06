@@ -16,7 +16,7 @@ class LoginViewController : UIViewController {
     //MARK - Overriden properties
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        TextField.customize(view)
 
 
     }

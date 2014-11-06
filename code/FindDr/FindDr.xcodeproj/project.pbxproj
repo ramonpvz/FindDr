@@ -536,6 +536,7 @@
 					"$(PROJECT_DIR)/FindDrTests",
 				);
 				INFOPLIST_FILE = FindDr/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "FindDr-Bridging-Header.h";
@@ -554,6 +555,7 @@
 					"$(PROJECT_DIR)/FindDrTests",
 				);
 				INFOPLIST_FILE = FindDr/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "FindDr-Bridging-Header.h";
