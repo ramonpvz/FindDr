@@ -10,7 +10,7 @@
 
 @implementation Speciality
 
-@dynamic doctor;
+@dynamic name;
 @dynamic description;
 
 + (void) load

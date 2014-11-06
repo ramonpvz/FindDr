@@ -15,7 +15,6 @@
 @dynamic description;
 @dynamic appDate;
 @dynamic status;
-@dynamic patient;
 
 + (void) load
 {

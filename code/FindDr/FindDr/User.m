@@ -21,6 +21,7 @@
 @dynamic gender;
 @dynamic birthday;
 @dynamic phone;
+@dynamic specialities;
 
 + (void) load
 {

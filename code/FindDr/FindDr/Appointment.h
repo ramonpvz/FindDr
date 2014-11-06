@@ -17,6 +17,5 @@
 @property NSString *description;
 @property NSDate *appDate;
 @property NSString *status;
-@property User *patient;
 
 @end

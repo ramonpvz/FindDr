@@ -11,7 +11,7 @@
 
 @interface Speciality : PFObject <PFSubclassing>
 
-@property User *doctor;
+@property NSString *name;
 @property NSString *description;
 
 @end

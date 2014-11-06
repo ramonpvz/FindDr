@@ -21,5 +21,6 @@
 @property NSString *gender;
 @property NSDate *birthday;
 @property NSString *phone;
+@property NSArray *specialities;
 
 @end
