@@ -42,21 +42,29 @@
                                                     <outletCollection property="gestureRecognizers" destination="zCe-YE-lSp" appends="YES" id="gPb-ZJ-d2t"/>
                                                 </connections>
                                             </imageView>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="FvQ-ms-bN6">
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="FvQ-ms-bN6" customClass="TextFieldValidator">
                                                 <rect key="frame" x="0.0" y="-30" width="97" height="30"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress"/>
                                                 <variation key="widthClass=compact" fixedFrame="YES">
                                                     <rect key="frame" x="124" y="37" width="260" height="30"/>
                                                 </variation>
+                                                <connections>
+                                                    <outlet property="delegate" destination="zJx-sL-pyI" id="Yny-o5-sga"/>
+                                                    <outlet property="presentInView" destination="5kv-s5-Sfm" id="XUm-z2-tdd"/>
+                                                </connections>
                                             </textField>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="s7L-9B-ofG">
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="s7L-9B-ofG" customClass="TextFieldValidator">
                                                 <rect key="frame" x="0.0" y="-30" width="97" height="30"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" secureTextEntry="YES"/>
                                                 <variation key="widthClass=compact" fixedFrame="YES">
                                                     <rect key="frame" x="124" y="77" width="260" height="30"/>
                                                 </variation>
+                                                <connections>
+                                                    <outlet property="delegate" destination="zJx-sL-pyI" id="BwR-E8-aKM"/>
+                                                    <outlet property="presentInView" destination="5kv-s5-Sfm" id="56A-95-QVs"/>
+                                                </connections>
                                             </textField>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="doc.png" translatesAutoresizingMaskIntoConstraints="NO" id="F9o-rj-D3d">
                                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
@@ -79,13 +87,17 @@
                                                     <action selector="switchUserTapped:" destination="zJx-sL-pyI" eventType="valueChanged" id="4md-e3-9dg"/>
                                                 </connections>
                                             </switch>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="License" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="ZlJ-bu-UvZ">
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="License" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="ZlJ-bu-UvZ" customClass="TextFieldValidator">
                                                 <rect key="frame" x="0.0" y="-30" width="97" height="30"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad"/>
                                                 <variation key="widthClass=compact" fixedFrame="YES">
                                                     <rect key="frame" x="244" y="115" width="140" height="30"/>
                                                 </variation>
+                                                <connections>
+                                                    <outlet property="delegate" destination="zJx-sL-pyI" id="fEb-lM-gdq"/>
+                                                    <outlet property="presentInView" destination="5kv-s5-Sfm" id="4q0-CN-xrd"/>
+                                                </connections>
                                             </textField>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Profile" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4l9-7Q-IaP">
                                                 <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
@@ -96,7 +108,7 @@
                                                     <rect key="frame" x="16" y="157" width="49" height="20.5"/>
                                                 </variation>
                                             </label>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Title" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eIh-ps-xbZ">
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Title" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eIh-ps-xbZ" customClass="TextFieldValidator">
                                                 <rect key="frame" x="0.0" y="-30" width="97" height="30"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
@@ -104,10 +116,11 @@
                                                     <rect key="frame" x="16" y="181" width="97" height="30"/>
                                                 </variation>
                                                 <connections>
-                                                    <action selector="titleTapped:" destination="zJx-sL-pyI" eventType="touchUpInside" id="3J9-hh-O4E"/>
+                                                    <outlet property="delegate" destination="zJx-sL-pyI" id="Jz6-of-46E"/>
+                                                    <outlet property="presentInView" destination="5kv-s5-Sfm" id="Fml-zO-AGH"/>
                                                 </connections>
                                             </textField>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Gender" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ewJ-7k-eCk">
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Gender" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ewJ-7k-eCk" customClass="TextFieldValidator">
                                                 <rect key="frame" x="0.0" y="-30" width="97" height="30"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
@@ -115,10 +128,11 @@
                                                     <rect key="frame" x="152" y="181" width="97" height="30"/>
                                                 </variation>
                                                 <connections>
-                                                    <action selector="genderTapped:" destination="zJx-sL-pyI" eventType="touchUpInside" id="B84-Lz-Au7"/>
+                                                    <outlet property="delegate" destination="zJx-sL-pyI" id="q4m-XS-PPD"/>
+                                                    <outlet property="presentInView" destination="5kv-s5-Sfm" id="GHk-ts-NTW"/>
                                                 </connections>
                                             </textField>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Birthday" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yHr-57-Deq">
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Birthday" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yHr-57-Deq" customClass="TextFieldValidator">
                                                 <rect key="frame" x="0.0" y="-30" width="97" height="30"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numbersAndPunctuation"/>
@@ -126,32 +140,57 @@
                                                     <rect key="frame" x="287" y="181" width="97" height="30"/>
                                                 </variation>
                                                 <connections>
-                                                    <action selector="birthdayTapped:" destination="zJx-sL-pyI" eventType="touchUpInside" id="sUu-8j-8w1"/>
+                                                    <outlet property="delegate" destination="zJx-sL-pyI" id="3PH-aH-Ce3"/>
+                                                    <outlet property="presentInView" destination="5kv-s5-Sfm" id="6D0-Ne-gQ7"/>
                                                 </connections>
                                             </textField>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="First Name" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Tfj-Kl-bUe">
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="First Name" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Tfj-Kl-bUe" customClass="TextFieldValidator">
                                                 <rect key="frame" x="0.0" y="-30" width="97" height="30"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                                 <variation key="widthClass=compact" fixedFrame="YES">
                                                     <rect key="frame" x="16" y="219" width="368" height="30"/>
                                                 </variation>
+                                                <connections>
+                                                    <outlet property="delegate" destination="zJx-sL-pyI" id="kLO-kI-LpO"/>
+                                                    <outlet property="presentInView" destination="5kv-s5-Sfm" id="cF6-EP-ne9"/>
+                                                </connections>
                                             </textField>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Last Name" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Snz-ce-UFj">
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Last Name" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Snz-ce-UFj" customClass="TextFieldValidator">
                                                 <rect key="frame" x="0.0" y="-30" width="97" height="30"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                                 <variation key="widthClass=compact" fixedFrame="YES">
-                                                    <rect key="frame" x="16" y="257" width="368" height="30"/>
+                                                    <rect key="frame" x="16" y="257" width="187" height="30"/>
                                                 </variation>
+                                                <connections>
+                                                    <outlet property="delegate" destination="zJx-sL-pyI" id="bYi-Ul-NPw"/>
+                                                    <outlet property="presentInView" destination="5kv-s5-Sfm" id="7Hk-Ea-gaz"/>
+                                                </connections>
                                             </textField>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Phone Number" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="4wZ-0G-wEY">
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Second Last Name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="L0B-5h-IWB" customClass="TextFieldValidator">
+                                                <rect key="frame" x="0.0" y="-30" width="97" height="30"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                                <variation key="widthClass=compact" fixedFrame="YES">
+                                                    <rect key="frame" x="211" y="257" width="173" height="30"/>
+                                                </variation>
+                                                <connections>
+                                                    <outlet property="delegate" destination="zJx-sL-pyI" id="krr-qf-be7"/>
+                                                    <outlet property="presentInView" destination="5kv-s5-Sfm" id="VI5-SY-M0M"/>
+                                                </connections>
+                                            </textField>
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Phone Number" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="4wZ-0G-wEY" customClass="TextFieldValidator">
                                                 <rect key="frame" x="0.0" y="-30" width="97" height="30"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="phonePad"/>
                                                 <variation key="widthClass=compact" fixedFrame="YES">
                                                     <rect key="frame" x="16" y="295" width="368" height="30"/>
                                                 </variation>
+                                                <connections>
+                                                    <outlet property="delegate" destination="zJx-sL-pyI" id="W4G-u5-68e"/>
+                                                    <outlet property="presentInView" destination="5kv-s5-Sfm" id="2nY-D4-Jee"/>
+                                                </connections>
                                             </textField>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Specialties" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kb5-bc-qov">
                                                 <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
@@ -183,7 +222,7 @@ Terms of Use and Privacy Policy</string>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                 <variation key="widthClass=compact" fixedFrame="YES">
                                                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
-                                                    <rect key="frame" x="50" y="483" width="300" height="50"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="0.0" height="0.0"/>
                                                 </variation>
                                             </textView>
                                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Dpq-vj-7YC">
@@ -210,7 +249,7 @@ Terms of Use and Privacy Policy</string>
                                                     </tableViewCell>
                                                 </prototypes>
                                                 <variation key="widthClass=compact" fixedFrame="YES">
-                                                    <rect key="frame" x="0.0" y="371" width="400" height="100"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="0.0" height="0.0"/>
                                                 </variation>
                                                 <connections>
                                                     <outlet property="dataSource" destination="zJx-sL-pyI" id="3GQ-ND-Jeb"/>
@@ -235,6 +274,7 @@ Terms of Use and Privacy Policy</string>
                                                 <exclude reference="yHr-57-Deq"/>
                                                 <exclude reference="Tfj-Kl-bUe"/>
                                                 <exclude reference="Snz-ce-UFj"/>
+                                                <exclude reference="L0B-5h-IWB"/>
                                                 <exclude reference="4wZ-0G-wEY"/>
                                                 <exclude reference="Kb5-bc-qov"/>
                                                 <exclude reference="xwv-Ln-51z"/>
@@ -259,6 +299,7 @@ Terms of Use and Privacy Policy</string>
                                                 <include reference="yHr-57-Deq"/>
                                                 <include reference="Tfj-Kl-bUe"/>
                                                 <include reference="Snz-ce-UFj"/>
+                                                <include reference="L0B-5h-IWB"/>
                                                 <include reference="4wZ-0G-wEY"/>
                                                 <include reference="Kb5-bc-qov"/>
                                                 <include reference="xwv-Ln-51z"/>
@@ -321,19 +362,20 @@ Terms of Use and Privacy Policy</string>
                     </navigationItem>
                     <connections>
                         <outlet property="addSpecialtyButton" destination="xwv-Ln-51z" id="Ta0-rb-fdn"/>
-                        <outlet property="birthdayText" destination="yHr-57-Deq" id="zqK-AE-OjP"/>
-                        <outlet property="emailText" destination="FvQ-ms-bN6" id="6af-fa-Fnm"/>
-                        <outlet property="firstNameText" destination="Tfj-Kl-bUe" id="Flw-Ie-Gep"/>
-                        <outlet property="genderText" destination="ewJ-7k-eCk" id="E1M-ho-mWf"/>
-                        <outlet property="lastNameText" destination="Snz-ce-UFj" id="ufp-ka-6vo"/>
-                        <outlet property="licenseText" destination="ZlJ-bu-UvZ" id="Vbr-Mr-Opv"/>
+                        <outlet property="birthdayText" destination="yHr-57-Deq" id="Pik-sa-QFR"/>
+                        <outlet property="emailText" destination="FvQ-ms-bN6" id="m8O-Tr-Mp2"/>
+                        <outlet property="firstNameText" destination="Tfj-Kl-bUe" id="amY-Qe-63R"/>
+                        <outlet property="genderText" destination="ewJ-7k-eCk" id="yeC-dq-FtC"/>
+                        <outlet property="lastNameText" destination="Snz-ce-UFj" id="Zr9-zV-fwS"/>
+                        <outlet property="licenseText" destination="ZlJ-bu-UvZ" id="ZgL-44-AU3"/>
                         <outlet property="nextButton" destination="UTw-RE-sLl" id="aZx-u2-MRK"/>
-                        <outlet property="passwordText" destination="s7L-9B-ofG" id="w6A-LM-NZX"/>
-                        <outlet property="phoneNumberText" destination="4wZ-0G-wEY" id="K1f-V5-DwS"/>
+                        <outlet property="passwordText" destination="s7L-9B-ofG" id="Kvq-D4-oOT"/>
+                        <outlet property="phoneNumberText" destination="4wZ-0G-wEY" id="vQj-Lq-EgR"/>
+                        <outlet property="secondLastNameText" destination="L0B-5h-IWB" id="BeQ-DN-jrh"/>
                         <outlet property="specialtiesLabel" destination="Kb5-bc-qov" id="pOr-iR-Eno"/>
                         <outlet property="specialtiesTable" destination="Dpq-vj-7YC" id="JMd-dn-kCl"/>
                         <outlet property="switchUser" destination="Dup-TX-QGC" id="U8Y-Wk-iXg"/>
-                        <outlet property="titleText" destination="eIh-ps-xbZ" id="o8s-sk-DQx"/>
+                        <outlet property="titleText" destination="eIh-ps-xbZ" id="Z8k-Op-TGK"/>
                         <outlet property="userImage" destination="dfH-yS-uBN" id="5uo-05-ogM"/>
                         <segue destination="PJO-OB-m9N" kind="show" identifier="showClinics" id="lPO-Cy-xaE"/>
                     </connections>
@@ -515,13 +557,17 @@ Terms of Use and Privacy Policy</string>
                                                     <rect key="frame" x="8" y="7" width="43" height="20.5"/>
                                                 </variation>
                                             </label>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="SRs-RG-3Gn">
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="SRs-RG-3Gn" customClass="TextFieldValidator">
                                                 <rect key="frame" x="0.0" y="-30" width="97" height="30"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits" autocorrectionType="no"/>
+                                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
                                                 <variation key="widthClass=compact" fixedFrame="YES">
                                                     <rect key="frame" x="116" y="36" width="276" height="30"/>
                                                 </variation>
+                                                <connections>
+                                                    <outlet property="delegate" destination="HDe-A5-Gp2" id="zAa-tx-c38"/>
+                                                    <outlet property="presentInView" destination="veG-8T-2ii" id="cFD-xZ-IWb"/>
+                                                </connections>
                                             </textField>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="clinic.png" translatesAutoresizingMaskIntoConstraints="NO" id="cRJ-n6-QIQ">
                                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
@@ -530,15 +576,6 @@ Terms of Use and Privacy Policy</string>
                                                     <rect key="frame" x="8" y="36" width="100" height="100"/>
                                                 </variation>
                                             </imageView>
-                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Description" translatesAutoresizingMaskIntoConstraints="NO" id="1vY-Hm-4AF">
-                                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                                <variation key="widthClass=compact" fixedFrame="YES">
-                                                    <rect key="frame" x="0.0" y="0.0" width="0.0" height="0.0"/>
-                                                </variation>
-                                            </textView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Address" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="veg-da-Yft">
                                                 <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -548,45 +585,65 @@ Terms of Use and Privacy Policy</string>
                                                     <rect key="frame" x="8" y="143.5" width="64" height="20.5"/>
                                                 </variation>
                                             </label>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Street" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="KCb-MP-8aL">
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Street" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="KCb-MP-8aL" customClass="TextFieldValidator">
                                                 <rect key="frame" x="0.0" y="-30" width="97" height="30"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
+                                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
                                                 <variation key="widthClass=compact" fixedFrame="YES">
                                                     <rect key="frame" x="8" y="172" width="263" height="30"/>
                                                 </variation>
+                                                <connections>
+                                                    <outlet property="delegate" destination="HDe-A5-Gp2" id="a6C-aV-eGq"/>
+                                                    <outlet property="presentInView" destination="veG-8T-2ii" id="atv-gR-Agc"/>
+                                                </connections>
                                             </textField>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Number" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="0Sc-mV-cge">
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Number" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="0Sc-mV-cge" customClass="TextFieldValidator">
                                                 <rect key="frame" x="0.0" y="-30" width="97" height="30"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad"/>
                                                 <variation key="widthClass=compact" fixedFrame="YES">
                                                     <rect key="frame" x="279" y="172" width="113" height="30"/>
                                                 </variation>
+                                                <connections>
+                                                    <outlet property="delegate" destination="HDe-A5-Gp2" id="rlz-LS-oNE"/>
+                                                    <outlet property="presentInView" destination="veG-8T-2ii" id="yZY-LE-T1G"/>
+                                                </connections>
                                             </textField>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="City" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="R2K-WO-fjz">
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="City" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="R2K-WO-fjz" customClass="TextFieldValidator">
                                                 <rect key="frame" x="0.0" y="-30" width="97" height="30"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
+                                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
                                                 <variation key="widthClass=compact" fixedFrame="YES">
                                                     <rect key="frame" x="8" y="210" width="384" height="30"/>
                                                 </variation>
+                                                <connections>
+                                                    <outlet property="delegate" destination="HDe-A5-Gp2" id="sZK-h2-fin"/>
+                                                    <outlet property="presentInView" destination="veG-8T-2ii" id="xV5-3U-dPk"/>
+                                                </connections>
                                             </textField>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="State" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="w8j-Je-2Wv">
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="State" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="w8j-Je-2Wv" customClass="TextFieldValidator">
                                                 <rect key="frame" x="0.0" y="-30" width="97" height="30"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
+                                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
                                                 <variation key="widthClass=compact" fixedFrame="YES">
                                                     <rect key="frame" x="8" y="248" width="263" height="30"/>
                                                 </variation>
+                                                <connections>
+                                                    <outlet property="delegate" destination="HDe-A5-Gp2" id="UmO-hT-5XN"/>
+                                                    <outlet property="presentInView" destination="veG-8T-2ii" id="VwO-bV-XU0"/>
+                                                </connections>
                                             </textField>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Postal Code" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="88q-ra-yHl">
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Postal Code" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="88q-ra-yHl" customClass="TextFieldValidator">
                                                 <rect key="frame" x="0.0" y="-30" width="97" height="30"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad"/>
                                                 <variation key="widthClass=compact" fixedFrame="YES">
                                                     <rect key="frame" x="279" y="248" width="113" height="30"/>
                                                 </variation>
+                                                <connections>
+                                                    <outlet property="delegate" destination="HDe-A5-Gp2" id="qPO-5l-DDS"/>
+                                                    <outlet property="presentInView" destination="veG-8T-2ii" id="rHR-Y9-uAP"/>
+                                                </connections>
                                             </textField>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pVR-JP-QtL">
                                                 <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
@@ -606,6 +663,7 @@ Terms of Use and Privacy Policy</string>
                                                     <rect key="frame" x="308" y="282" width="84" height="30"/>
                                                 </variation>
                                                 <connections>
+                                                    <action selector="viewMapButtonTapped:" destination="HDe-A5-Gp2" eventType="touchUpInside" id="BPz-Yz-1mn"/>
                                                     <segue destination="Sfm-07-mp9" kind="show" identifier="showMap" id="Ld7-Sq-XZw"/>
                                                 </connections>
                                             </button>
@@ -627,9 +685,19 @@ Terms of Use and Privacy Policy</string>
                                                     <rect key="frame" x="268" y="310" width="124" height="30"/>
                                                 </variation>
                                                 <connections>
+                                                    <action selector="scheduleButtonTapped:" destination="HDe-A5-Gp2" eventType="touchUpInside" id="BLa-7J-Za3"/>
                                                     <segue destination="O3E-Au-OsG" kind="show" identifier="showHours" id="yYu-fO-ADl"/>
                                                 </connections>
                                             </button>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Description" translatesAutoresizingMaskIntoConstraints="NO" id="1vY-Hm-4AF">
+                                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                <variation key="widthClass=compact" fixedFrame="YES">
+                                                    <rect key="frame" x="116" y="74" width="276" height="62"/>
+                                                </variation>
+                                            </textView>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <variation key="default">
@@ -637,7 +705,6 @@ Terms of Use and Privacy Policy</string>
                                                 <exclude reference="Kv4-SD-DH2"/>
                                                 <exclude reference="SRs-RG-3Gn"/>
                                                 <exclude reference="cRJ-n6-QIQ"/>
-                                                <exclude reference="1vY-Hm-4AF"/>
                                                 <exclude reference="veg-da-Yft"/>
                                                 <exclude reference="KCb-MP-8aL"/>
                                                 <exclude reference="0Sc-mV-cge"/>
@@ -648,6 +715,7 @@ Terms of Use and Privacy Policy</string>
                                                 <exclude reference="NAn-wj-45m"/>
                                                 <exclude reference="b23-hj-d47"/>
                                                 <exclude reference="ept-9R-d51"/>
+                                                <exclude reference="1vY-Hm-4AF"/>
                                             </mask>
                                         </variation>
                                         <variation key="widthClass=compact" fixedFrame="YES">
@@ -656,7 +724,6 @@ Terms of Use and Privacy Policy</string>
                                                 <include reference="Kv4-SD-DH2"/>
                                                 <include reference="SRs-RG-3Gn"/>
                                                 <include reference="cRJ-n6-QIQ"/>
-                                                <include reference="1vY-Hm-4AF"/>
                                                 <include reference="veg-da-Yft"/>
                                                 <include reference="KCb-MP-8aL"/>
                                                 <include reference="0Sc-mV-cge"/>
@@ -667,6 +734,7 @@ Terms of Use and Privacy Policy</string>
                                                 <include reference="NAn-wj-45m"/>
                                                 <include reference="b23-hj-d47"/>
                                                 <include reference="ept-9R-d51"/>
+                                                <include reference="1vY-Hm-4AF"/>
                                             </mask>
                                         </variation>
                                     </view>
@@ -717,8 +785,21 @@ Terms of Use and Privacy Policy</string>
                     <navigationItem key="navigationItem" title="New Clinic" id="ugk-ml-r9M">
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="Z7W-2p-0Ov">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="saveButtonTapped:" destination="HDe-A5-Gp2" id="77o-uB-v9X"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="cityText" destination="R2K-WO-fjz" id="hGc-eh-6ku"/>
+                        <outlet property="descriptionText" destination="1vY-Hm-4AF" id="rlg-gh-huq"/>
+                        <outlet property="imageClinic" destination="cRJ-n6-QIQ" id="4PH-Pz-Ebf"/>
+                        <outlet property="nameClinicText" destination="SRs-RG-3Gn" id="jgz-bG-KYv"/>
+                        <outlet property="numberText" destination="0Sc-mV-cge" id="GA5-Rd-QBn"/>
+                        <outlet property="postalCodeText" destination="88q-ra-yHl" id="wNZ-Jh-KKX"/>
+                        <outlet property="stateText" destination="w8j-Je-2Wv" id="vgb-KO-bVo"/>
+                        <outlet property="streetText" destination="KCb-MP-8aL" id="bVg-Py-1gM"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gpF-eU-ecG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
