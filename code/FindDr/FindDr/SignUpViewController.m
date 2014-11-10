@@ -11,7 +11,7 @@
 #import "ActionSheetStringPicker.h"
 #import "ActionSheetDatePicker.h"
 
-@interface SignUpViewController () <UITableViewDataSource, UITableViewDelegate>
+@interface SignUpViewController () <UITableViewDataSource, UITableViewDelegate, UIActionSheetDelegate>
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *nextButton;
 @property (strong, nonatomic) IBOutlet UIImageView *userImage;
 @property (strong, nonatomic) IBOutlet TextFieldValidator *emailText;
@@ -86,7 +86,42 @@
 }
 
 - (IBAction)imageUserTapped:(id)sender {
-    NSLog(@"image user tapped");
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil
+                                                             delegate:self
+                                                    cancelButtonTitle:@"Cancel"
+                                               destructiveButtonTitle:nil
+                                                    otherButtonTitles:@"Take photo", @"Choose from library", nil];
+    [actionSheet showInView:self.view];
+}
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
+    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+    picker.allowsEditing = YES;
+    picker.delegate = self;
+
+    if (buttonIndex == 0){  //NSLog(@"TakePhotoWithCamera");
+        if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]){
+            picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+            [self presentViewController:picker animated:YES completion:nil];
+        }
+    }else if (buttonIndex == 1){  //NSLog(@"SelectPhotoFromLibrary");
+        if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary]){
+            picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+            [self presentViewController:picker animated:YES completion:nil];
+        }
+    }else if (buttonIndex == 2){
+        //NSLog(@"cancel");
+    }
+}
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
+    // Access the edited image from info dictionary
+    UIImage *imageEdited = [info objectForKey:@"UIImagePickerControllerEditedImage"];
+
+    self.userImage.image = imageEdited;
+
+    // Dismiss controller
+    [picker dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (IBAction)switchUserTapped:(UISwitch *)sender {

@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ClinicViewController : UIViewController
+@interface ClinicViewController : UIViewController <UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 
 @property BOOL typeOperation;
 

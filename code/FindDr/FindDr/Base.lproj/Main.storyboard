@@ -29,7 +29,7 @@
                                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 <nil key="highlightedColor"/>
                                                 <variation key="widthClass=compact" fixedFrame="YES">
-                                                    <rect key="frame" x="13" y="5" width="64" height="20.5"/>
+                                                    <rect key="frame" x="13" y="5" width="64" height="21"/>
                                                 </variation>
                                             </label>
                                             <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="user.png" translatesAutoresizingMaskIntoConstraints="NO" id="dfH-yS-uBN">
@@ -105,7 +105,7 @@
                                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 <nil key="highlightedColor"/>
                                                 <variation key="widthClass=compact" fixedFrame="YES">
-                                                    <rect key="frame" x="16" y="157" width="49" height="20.5"/>
+                                                    <rect key="frame" x="16" y="157" width="49" height="21"/>
                                                 </variation>
                                             </label>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Title" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eIh-ps-xbZ" customClass="TextFieldValidator">
@@ -198,7 +198,7 @@
                                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 <nil key="highlightedColor"/>
                                                 <variation key="widthClass=compact" fixedFrame="YES">
-                                                    <rect key="frame" x="16" y="342.5" width="84" height="20.5"/>
+                                                    <rect key="frame" x="16" y="343" width="84" height="21"/>
                                                 </variation>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xwv-Ln-51z">
@@ -222,7 +222,7 @@ Terms of Use and Privacy Policy</string>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                 <variation key="widthClass=compact" fixedFrame="YES">
                                                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
-                                                    <rect key="frame" x="0.0" y="0.0" width="0.0" height="0.0"/>
+                                                    <rect key="frame" x="50" y="483" width="300" height="50"/>
                                                 </variation>
                                             </textView>
                                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Dpq-vj-7YC">
@@ -249,7 +249,7 @@ Terms of Use and Privacy Policy</string>
                                                     </tableViewCell>
                                                 </prototypes>
                                                 <variation key="widthClass=compact" fixedFrame="YES">
-                                                    <rect key="frame" x="0.0" y="0.0" width="0.0" height="0.0"/>
+                                                    <rect key="frame" x="0.0" y="371" width="400" height="100"/>
                                                 </variation>
                                                 <connections>
                                                     <outlet property="dataSource" destination="zJx-sL-pyI" id="3GQ-ND-Jeb"/>
@@ -569,13 +569,38 @@ Terms of Use and Privacy Policy</string>
                                                     <outlet property="presentInView" destination="veG-8T-2ii" id="cFD-xZ-IWb"/>
                                                 </connections>
                                             </textField>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="clinic.png" translatesAutoresizingMaskIntoConstraints="NO" id="cRJ-n6-QIQ">
+                                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="clinic.png" translatesAutoresizingMaskIntoConstraints="NO" id="cRJ-n6-QIQ">
                                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                                 <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                <gestureRecognizers/>
                                                 <variation key="widthClass=compact" fixedFrame="YES">
                                                     <rect key="frame" x="8" y="36" width="100" height="100"/>
                                                 </variation>
+                                                <connections>
+                                                    <outletCollection property="gestureRecognizers" destination="1HP-gw-1NE" appends="YES" id="CG5-xp-1cA"/>
+                                                </connections>
                                             </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Specialties" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vcH-ew-pp4">
+                                                <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <nil key="highlightedColor"/>
+                                                <variation key="widthClass=compact" fixedFrame="YES">
+                                                    <rect key="frame" x="118" y="75" width="84" height="21"/>
+                                                </variation>
+                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZwE-E9-zrq">
+                                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                                <state key="normal" title="Select">
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <variation key="widthClass=compact" fixedFrame="YES">
+                                                    <rect key="frame" x="349" y="70" width="43" height="30"/>
+                                                </variation>
+                                                <connections>
+                                                    <action selector="selectSpecialtiesTapped:" destination="HDe-A5-Gp2" eventType="touchUpInside" id="BWX-Af-AWL"/>
+                                                </connections>
+                                            </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Address" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="veg-da-Yft">
                                                 <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -695,7 +720,7 @@ Terms of Use and Privacy Policy</string>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                 <variation key="widthClass=compact" fixedFrame="YES">
-                                                    <rect key="frame" x="116" y="74" width="276" height="62"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="0.0" height="0.0"/>
                                                 </variation>
                                             </textView>
                                         </subviews>
@@ -705,6 +730,8 @@ Terms of Use and Privacy Policy</string>
                                                 <exclude reference="Kv4-SD-DH2"/>
                                                 <exclude reference="SRs-RG-3Gn"/>
                                                 <exclude reference="cRJ-n6-QIQ"/>
+                                                <exclude reference="vcH-ew-pp4"/>
+                                                <exclude reference="ZwE-E9-zrq"/>
                                                 <exclude reference="veg-da-Yft"/>
                                                 <exclude reference="KCb-MP-8aL"/>
                                                 <exclude reference="0Sc-mV-cge"/>
@@ -724,6 +751,8 @@ Terms of Use and Privacy Policy</string>
                                                 <include reference="Kv4-SD-DH2"/>
                                                 <include reference="SRs-RG-3Gn"/>
                                                 <include reference="cRJ-n6-QIQ"/>
+                                                <include reference="vcH-ew-pp4"/>
+                                                <include reference="ZwE-E9-zrq"/>
                                                 <include reference="veg-da-Yft"/>
                                                 <include reference="KCb-MP-8aL"/>
                                                 <include reference="0Sc-mV-cge"/>
@@ -802,6 +831,11 @@ Terms of Use and Privacy Policy</string>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gpF-eU-ecG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="1HP-gw-1NE">
+                    <connections>
+                        <action selector="imageClinicTapped:" destination="HDe-A5-Gp2" id="yYZ-vq-2gc"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="2649" y="231"/>
         </scene>

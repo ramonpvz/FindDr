@@ -9,7 +9,7 @@
 #import "ClinicViewController.h"
 #import "TextFieldValidator.h"
 
-@interface ClinicViewController ()
+@interface ClinicViewController () <UIActionSheetDelegate>
 @property (strong, nonatomic) IBOutlet TextFieldValidator *nameClinicText;
 @property (strong, nonatomic) IBOutlet UITextView *descriptionText;
 @property (strong, nonatomic) IBOutlet UIImageView *imageClinic;
@@ -48,11 +48,54 @@
     }
 }
 
+- (IBAction)imageClinicTapped:(id)sender {
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil
+                                                             delegate:self
+                                                    cancelButtonTitle:@"Cancel"
+                                               destructiveButtonTitle:nil
+                                                    otherButtonTitles:@"Take photo", @"Choose from library", nil];
+    [actionSheet showInView:self.view];
+}
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
+    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+    picker.allowsEditing = YES;
+    picker.delegate = self;
+
+    if (buttonIndex == 0){  //NSLog(@"TakePhotoWithCamera");
+        if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]){
+            picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+            [self presentViewController:picker animated:YES completion:nil];
+        }
+    }else if (buttonIndex == 1){  //NSLog(@"SelectPhotoFromLibrary");
+        if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary]){
+            picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+            [self presentViewController:picker animated:YES completion:nil];
+        }
+    }else if (buttonIndex == 2){
+        //NSLog(@"cancel");
+    }
+}
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
+    // Access the edited image from info dictionary
+    UIImage *imageEdited = [info objectForKey:@"UIImagePickerControllerEditedImage"];
+
+    self.imageClinic.image = imageEdited;
+
+    // Dismiss controller
+    [picker dismissViewControllerAnimated:YES completion:nil];
+}
+
 - (IBAction)viewMapButtonTapped:(UIButton *)sender {
 }
 
 - (IBAction)scheduleButtonTapped:(UIButton *)sender {
 }
+
+- (IBAction)selectSpecialtiesTapped:(UIButton *)sender {
+}
+
 
 /*
 #pragma mark - Navigation
