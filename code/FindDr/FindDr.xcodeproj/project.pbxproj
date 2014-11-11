@@ -15,7 +15,6 @@
 		A555671B1A0AE04D00B9CDAF /* RecoverPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A555671A1A0AE04D00B9CDAF /* RecoverPasswordViewController.swift */; };
 		A55567251A0AE93D00B9CDAF /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55567241A0AE93D00B9CDAF /* TextField.swift */; };
 		A55567271A0AE9BF00B9CDAF /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55567261A0AE9BF00B9CDAF /* UIColorExtension.swift */; };
-		A58F738C1A0966F800226385 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A58F738B1A0966F800226385 /* AppDelegate.m */; };
 		A58F738F1A0966F800226385 /* FindDr.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A58F738D1A0966F800226385 /* FindDr.xcdatamodeld */; };
 		A58F73921A0966F800226385 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A58F73911A0966F800226385 /* ViewController.m */; };
 		A58F73951A0966F800226385 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A58F73931A0966F800226385 /* Main.storyboard */; };
@@ -48,6 +47,9 @@
 		C375C60D1A0999FB0075CEE4 /* Doctor.m in Sources */ = {isa = PBXBuildFile; fileRef = C375C60C1A0999FB0075CEE4 /* Doctor.m */; };
 		C375C6101A099A290075CEE4 /* Clinic.m in Sources */ = {isa = PBXBuildFile; fileRef = C375C60F1A099A290075CEE4 /* Clinic.m */; };
 		C39A98871A0C67B000E43C57 /* Patient.m in Sources */ = {isa = PBXBuildFile; fileRef = C39A98861A0C67B000E43C57 /* Patient.m */; };
+		C3A592191A127DD200675FA6 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A58F738B1A0966F800226385 /* AppDelegate.m */; };
+		C3A592201A1287DA00675FA6 /* DValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A5921F1A1287DA00675FA6 /* DValidator.m */; };
+		C3A592241A129C9000675FA6 /* DSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A592231A129C9000675FA6 /* DSettings.m */; };
 		E42ECE691A099A0A005E320E /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E42ECE681A099A0A005E320E /* SignUpViewController.m */; };
 		E42ECE6C1A09A381005E320E /* ShowClinicsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E42ECE6B1A09A381005E320E /* ShowClinicsViewController.m */; };
 		E44873B81A0B00640036CAFF /* clinic.png in Resources */ = {isa = PBXBuildFile; fileRef = E44873B71A0B00640036CAFF /* clinic.png */; };
@@ -138,6 +140,10 @@
 		C375C60F1A099A290075CEE4 /* Clinic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Clinic.m; sourceTree = "<group>"; };
 		C39A98851A0C67B000E43C57 /* Patient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Patient.h; sourceTree = "<group>"; };
 		C39A98861A0C67B000E43C57 /* Patient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Patient.m; sourceTree = "<group>"; };
+		C3A5921E1A1287DA00675FA6 /* DValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DValidator.h; sourceTree = "<group>"; };
+		C3A5921F1A1287DA00675FA6 /* DValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DValidator.m; sourceTree = "<group>"; };
+		C3A592221A129C9000675FA6 /* DSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSettings.h; sourceTree = "<group>"; };
+		C3A592231A129C9000675FA6 /* DSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSettings.m; sourceTree = "<group>"; };
 		E42ECE671A099A0A005E320E /* SignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpViewController.h; sourceTree = "<group>"; };
 		E42ECE681A099A0A005E320E /* SignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpViewController.m; sourceTree = "<group>"; };
 		E42ECE6A1A09A381005E320E /* ShowClinicsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowClinicsViewController.h; sourceTree = "<group>"; };
@@ -243,6 +249,8 @@
 			children = (
 				A55567241A0AE93D00B9CDAF /* TextField.swift */,
 				A55567261A0AE9BF00B9CDAF /* UIColorExtension.swift */,
+				C3A5921E1A1287DA00675FA6 /* DValidator.h */,
+				C3A5921F1A1287DA00675FA6 /* DValidator.m */,
 			);
 			name = utils;
 			sourceTree = "<group>";
@@ -271,6 +279,7 @@
 		A58F73851A0966F800226385 /* FindDr */ = {
 			isa = PBXGroup;
 			children = (
+				C3A592211A129C6F00675FA6 /* Settings */,
 				C30AE7681A0D62A000C61111 /* Security */,
 				C375C60A1A0998BC0075CEE4 /* Data Model */,
 				A58F738A1A0966F800226385 /* AppDelegate.h */,
@@ -369,6 +378,15 @@
 				C39A98861A0C67B000E43C57 /* Patient.m */,
 			);
 			name = "Data Model";
+			sourceTree = "<group>";
+		};
+		C3A592211A129C6F00675FA6 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				C3A592221A129C9000675FA6 /* DSettings.h */,
+				C3A592231A129C9000675FA6 /* DSettings.m */,
+			);
+			name = Settings;
 			sourceTree = "<group>";
 		};
 		E4C2CEB71A0BEE8700120F70 /* TPKeyboardAvoiding */ = {
@@ -527,15 +545,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				E4DA5D211A0D7BB700C4FCAB /* ActionSheetDistancePicker.m in Sources */,
-				C322B5D31A0AB85D00822599 /* Time.m in Sources */,
 				E4DA5D251A0D7BB700C4FCAB /* SWActionSheet.m in Sources */,
-				A58F738C1A0966F800226385 /* AppDelegate.m in Sources */,
 				E4DA5D231A0D7BB700C4FCAB /* ActionSheetStringPicker.m in Sources */,
 				C375C60D1A0999FB0075CEE4 /* Doctor.m in Sources */,
-				A58F738C1A0966F800226385 /* AppDelegate.m in Sources */,
 				C30AE7671A0D559500C61111 /* Login.m in Sources */,
 				C31122271A0A7B39001A3FF7 /* Schedule.m in Sources */,
 				E4C2CEC31A0BEE8700120F70 /* UIScrollView+TPKeyboardAvoidingAdditions.m in Sources */,
+				C3A592201A1287DA00675FA6 /* DValidator.m in Sources */,
 				E4C2CEC01A0BEE8700120F70 /* TPKeyboardAvoidingCollectionView.m in Sources */,
 				C31122301A0A7C6A001A3FF7 /* Appointment.m in Sources */,
 				E4DA5D291A0D7BF200C4FCAB /* TextFieldValidator.m in Sources */,
@@ -543,6 +559,8 @@
 				E4DA5D1F1A0D7BB700C4FCAB /* ActionSheetCustomPicker.m in Sources */,
 				A55567271A0AE9BF00B9CDAF /* UIColorExtension.swift in Sources */,
 				C39A98871A0C67B000E43C57 /* Patient.m in Sources */,
+				C3A592241A129C9000675FA6 /* DSettings.m in Sources */,
+				C3A592191A127DD200675FA6 /* AppDelegate.m in Sources */,
 				E42ECE691A099A0A005E320E /* SignUpViewController.m in Sources */,
 				E4C2CEC21A0BEE8700120F70 /* TPKeyboardAvoidingTableView.m in Sources */,
 				E4DA5D1E1A0D7BB700C4FCAB /* AbstractActionSheetPicker.m in Sources */,

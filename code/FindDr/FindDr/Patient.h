@@ -25,6 +25,4 @@
 
 + (void) save: (Patient *) patient;
 
-+ (BOOL) validEmail : (NSString*) emailString;
-
 @end
