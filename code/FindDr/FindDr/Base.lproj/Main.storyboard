@@ -720,7 +720,7 @@ Terms of Use and Privacy Policy</string>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                 <variation key="widthClass=compact" fixedFrame="YES">
-                                                    <rect key="frame" x="0.0" y="0.0" width="0.0" height="0.0"/>
+                                                    <rect key="frame" x="118" y="104" width="274" height="50"/>
                                                 </variation>
                                             </textView>
                                         </subviews>
@@ -874,7 +874,7 @@ Terms of Use and Privacy Policy</string>
                         <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6r1-Ej-YF7">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="6r1-Ej-YF7">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <connections>
                                     <outlet property="delegate" destination="Sfm-07-mp9" id="iMR-IH-sL5"/>

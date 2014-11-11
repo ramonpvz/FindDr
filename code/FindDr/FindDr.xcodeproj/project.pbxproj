@@ -54,6 +54,9 @@
 		E42ECE6C1A09A381005E320E /* ShowClinicsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E42ECE6B1A09A381005E320E /* ShowClinicsViewController.m */; };
 		E44873B81A0B00640036CAFF /* clinic.png in Resources */ = {isa = PBXBuildFile; fileRef = E44873B71A0B00640036CAFF /* clinic.png */; };
 		E44873BA1A0B00700036CAFF /* user.png in Resources */ = {isa = PBXBuildFile; fileRef = E44873B91A0B00700036CAFF /* user.png */; };
+		E4AF64871A12975D006C24B9 /* AZDraggableAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = E4AF64861A12975D006C24B9 /* AZDraggableAnnotationView.m */; };
+		E4AF648A1A129887006C24B9 /* draggable_annotation_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = E4AF64881A129887006C24B9 /* draggable_annotation_icon.png */; };
+		E4AF648B1A129887006C24B9 /* draggable_annotation_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E4AF64891A129887006C24B9 /* draggable_annotation_icon@2x.png */; };
 		E4BBD3401A0AAB9500E8DDF7 /* ClinicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4BBD33F1A0AAB9500E8DDF7 /* ClinicViewController.m */; };
 		E4BBD3431A0AAF2C00E8DDF7 /* MapViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4BBD3421A0AAF2C00E8DDF7 /* MapViewViewController.m */; };
 		E4C2CEB41A0BDCEF00120F70 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4BBD3441A0AB0EE00E8DDF7 /* MapKit.framework */; };
@@ -150,6 +153,10 @@
 		E42ECE6B1A09A381005E320E /* ShowClinicsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowClinicsViewController.m; sourceTree = "<group>"; };
 		E44873B71A0B00640036CAFF /* clinic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = clinic.png; sourceTree = "<group>"; };
 		E44873B91A0B00700036CAFF /* user.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = user.png; sourceTree = "<group>"; };
+		E4AF64851A12975D006C24B9 /* AZDraggableAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AZDraggableAnnotationView.h; sourceTree = "<group>"; };
+		E4AF64861A12975D006C24B9 /* AZDraggableAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AZDraggableAnnotationView.m; sourceTree = "<group>"; };
+		E4AF64881A129887006C24B9 /* draggable_annotation_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = draggable_annotation_icon.png; sourceTree = "<group>"; };
+		E4AF64891A129887006C24B9 /* draggable_annotation_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "draggable_annotation_icon@2x.png"; sourceTree = "<group>"; };
 		E4BBD33E1A0AAB9500E8DDF7 /* ClinicViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClinicViewController.h; sourceTree = "<group>"; };
 		E4BBD33F1A0AAB9500E8DDF7 /* ClinicViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClinicViewController.m; sourceTree = "<group>"; };
 		E4BBD3411A0AAF2C00E8DDF7 /* MapViewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewViewController.h; sourceTree = "<group>"; };
@@ -231,6 +238,8 @@
 				A555670A1A0ACBD100B9CDAF /* doc.png */,
 				A55567131A0AD27400B9CDAF /* background3.png */,
 				A555670B1A0ACBD100B9CDAF /* pacient.png */,
+				E4AF64881A129887006C24B9 /* draggable_annotation_icon.png */,
+				E4AF64891A129887006C24B9 /* draggable_annotation_icon@2x.png */,
 			);
 			name = images;
 			sourceTree = "<group>";
@@ -295,6 +304,7 @@
 				E42ECE6B1A09A381005E320E /* ShowClinicsViewController.m */,
 				E42ECE671A099A0A005E320E /* SignUpViewController.h */,
 				E42ECE681A099A0A005E320E /* SignUpViewController.m */,
+				E4AF64841A129740006C24B9 /* AZDraggableAnnotationView */,
 				E4DA5D261A0D7BDC00C4FCAB /* TextFieldValidator */,
 				E4DA5D0C1A0D7BB700C4FCAB /* Pickers */,
 				E4C2CEB71A0BEE8700120F70 /* TPKeyboardAvoiding */,
@@ -387,6 +397,15 @@
 				C3A592231A129C9000675FA6 /* DSettings.m */,
 			);
 			name = Settings;
+			sourceTree = "<group>";
+		};
+		E4AF64841A129740006C24B9 /* AZDraggableAnnotationView */ = {
+			isa = PBXGroup;
+			children = (
+				E4AF64851A12975D006C24B9 /* AZDraggableAnnotationView.h */,
+				E4AF64861A12975D006C24B9 /* AZDraggableAnnotationView.m */,
+			);
+			name = AZDraggableAnnotationView;
 			sourceTree = "<group>";
 		};
 		E4C2CEB71A0BEE8700120F70 /* TPKeyboardAvoiding */ = {
@@ -521,11 +540,13 @@
 				E4DA5D2B1A0D7C1100C4FCAB /* error@2x.png in Resources */,
 				A55567151A0AD27400B9CDAF /* background3.png in Resources */,
 				E44873BA1A0B00700036CAFF /* user.png in Resources */,
+				E4AF648B1A129887006C24B9 /* draggable_annotation_icon@2x.png in Resources */,
 				A58F73951A0966F800226385 /* Main.storyboard in Resources */,
 				A55567041A0ABC7500B9CDAF /* lupa.png in Resources */,
 				A555670D1A0ACBD100B9CDAF /* pacient.png in Resources */,
 				A58F739A1A0966F800226385 /* LaunchScreen.xib in Resources */,
 				A58F73971A0966F800226385 /* Images.xcassets in Resources */,
+				E4AF648A1A129887006C24B9 /* draggable_annotation_icon.png in Resources */,
 				E44873B81A0B00640036CAFF /* clinic.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -550,6 +571,7 @@
 				C375C60D1A0999FB0075CEE4 /* Doctor.m in Sources */,
 				C30AE7671A0D559500C61111 /* Login.m in Sources */,
 				C31122271A0A7B39001A3FF7 /* Schedule.m in Sources */,
+				E4AF64871A12975D006C24B9 /* AZDraggableAnnotationView.m in Sources */,
 				E4C2CEC31A0BEE8700120F70 /* UIScrollView+TPKeyboardAvoidingAdditions.m in Sources */,
 				C3A592201A1287DA00675FA6 /* DValidator.m in Sources */,
 				E4C2CEC01A0BEE8700120F70 /* TPKeyboardAvoidingCollectionView.m in Sources */,

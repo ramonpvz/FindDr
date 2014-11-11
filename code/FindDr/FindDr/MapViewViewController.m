@@ -7,12 +7,15 @@
 //
 
 #import "MapViewViewController.h"
-#import <CoreLocation/CoreLocation.h>
 #import <MapKit/MapKit.h>
+#import <CoreLocation/CoreLocation.h>
+#import "AZDraggableAnnotationView.h"
 
-@interface MapViewViewController () <MKMapViewDelegate, CLLocationManagerDelegate>
+
+@interface MapViewViewController () <MKMapViewDelegate, CLLocationManagerDelegate, UIGestureRecognizerDelegate, AZDraggableAnnotationViewDelegate>
 
 @property (strong, nonatomic) IBOutlet MKMapView *mapView;
+@property (strong, nonatomic) MKPointAnnotation *annotation;
 @property CLLocationManager *myLocationManager;
 @property CLPlacemark *currentLocation;
 
@@ -27,6 +30,25 @@
     self.myLocationManager.delegate = self;
 
     [self.myLocationManager startUpdatingLocation];
+
+    UITapGestureRecognizer *singleTapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleSingleTapGesture:)];
+    singleTapRecognizer.numberOfTapsRequired = 1;
+    singleTapRecognizer.numberOfTouchesRequired = 1;
+    [self.mapView addGestureRecognizer:singleTapRecognizer];
+
+    UITapGestureRecognizer *doubleTapRecognizer = [[UITapGestureRecognizer alloc] init];
+    doubleTapRecognizer.numberOfTapsRequired = 2;
+    doubleTapRecognizer.numberOfTouchesRequired = 1;
+
+    // In order to pass double-taps to the underlying MKMapView the delegate
+    // for this recognizer (self) needs to return YES from
+    // gestureRecognizer:shouldRecognizeSimultaneouslyWithGestureRecognizer:
+    doubleTapRecognizer.delegate = self;
+    [self.mapView addGestureRecognizer:doubleTapRecognizer];
+
+    // This delays the single-tap recognizer slightly and ensures that it
+    // will _not_ fire if there is a double-tap
+    [singleTapRecognizer requireGestureRecognizerToFail:doubleTapRecognizer];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -39,7 +61,7 @@
     for (CLLocation *location in locations) {
         if(location.verticalAccuracy < 1000 && location.horizontalAccuracy < 1000){
             [self reverseGeocode:location];
-            NSLog(@"location: %@",location);
+            NSLog(@"location: %f,%f",location.coordinate.latitude,location.coordinate.longitude);
             [self.myLocationManager stopUpdatingLocation];
             break;
         }
@@ -50,12 +72,22 @@
     CLGeocoder *geocoder = [CLGeocoder new];
     [geocoder reverseGeocodeLocation:location completionHandler:^(NSArray *placemarks, NSError *error) {
         self.currentLocation = placemarks.firstObject;
-        NSString *address = [NSString stringWithFormat:@"%@, %@ at %@",
+        [self moveAnnotationToCoordinate:self.currentLocation.location.coordinate];
+        [self zoomIn];
+    }];
+}
+
+- (void)searchAddress:(CLLocation *)location{
+    CLGeocoder *geocoder = [CLGeocoder new];
+    [geocoder reverseGeocodeLocation:location completionHandler:^(NSArray *placemarks, NSError *error) {
+        self.currentLocation = placemarks.firstObject;
+        NSString *address = [NSString stringWithFormat:@"%@, %@, %@ at %@, CP %@",
                              self.currentLocation.subThoroughfare,
                              self.currentLocation.thoroughfare,
-                             self.currentLocation.locality];
-        NSLog(@"Found you: %@",address);
-        [self zoomIn];
+                             self.currentLocation.subLocality,
+                             self.currentLocation.locality,
+                             self.currentLocation.postalCode];
+        NSLog(@"Found you at: %@",address);
     }];
 }
 
@@ -68,8 +100,8 @@
     zoom.longitude = location.coordinate.longitude;
 
     MKCoordinateSpan span;
-    span.latitudeDelta = .01;
-    span.longitudeDelta = .01;
+    span.latitudeDelta = .005;
+    span.longitudeDelta = .005;
 
     MKCoordinateRegion region;
     region.center = zoom;
@@ -79,15 +111,16 @@
 }
 
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation{
-    if (annotation == mapView.userLocation) {
-        return nil;
-    }
-    MKPinAnnotationView *pin = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"MyPinID"];
-    pin.canShowCallout = YES;
-    pin.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
-    pin.image = [UIImage imageNamed:@"clinic.png"];
+    MKAnnotationView *annotationView = [mapView dequeueReusableAnnotationViewWithIdentifier:@"DraggableAnnotationView"];
 
-    return pin;
+    if (!annotationView) {
+        annotationView = [[AZDraggableAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"DraggableAnnotationView"];
+    }
+
+    ((AZDraggableAnnotationView *)annotationView).delegate = self;
+    ((AZDraggableAnnotationView *)annotationView).mapView = mapView;
+
+    return annotationView;
 }
 
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error{
@@ -98,6 +131,61 @@
                                                otherButtonTitles:nil];
     [errorAlert show];
     NSLog(@"Error: %@",error);
+}
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation{
+    return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
+}
+
+- (void)moveAnnotationToCoordinate:(CLLocationCoordinate2D)coordinate{
+    if (self.annotation) {
+        [UIView beginAnimations:[NSString stringWithFormat:@"slideannotation%@", self.annotation] context:nil];
+        [UIView setAnimationCurve:UIViewAnimationCurveEaseOut];
+        [UIView setAnimationDuration:0.2];
+
+        self.annotation.coordinate = coordinate;
+
+        NSLog(@"Moved annotation to %f,%f", coordinate.latitude, coordinate.longitude);
+        CLLocation *newlocation = [[CLLocation alloc] initWithLatitude:coordinate.latitude
+                                                             longitude:coordinate.longitude];
+        [self searchAddress:newlocation];
+        [UIView commitAnimations];
+    } else {
+        self.annotation = [[MKPointAnnotation alloc] init];
+        self.annotation.coordinate = self.currentLocation.location.coordinate;
+
+        [self.mapView addAnnotation:self.annotation];
+    }
+}
+
+#pragma mark UIGestureRecognizerDelegate methods
+
+/**
+ Asks the delegate if two gesture recognizers should be allowed to recognize gestures simultaneously.
+ */
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer{
+    // Returning YES ensures that double-tap gestures propogate to the MKMapView
+    return YES;
+}
+
+#pragma mark UIGestureRecognizer handlers
+
+- (void)handleSingleTapGesture:(UIGestureRecognizer *)gestureRecognizer{
+    if (gestureRecognizer.state != UIGestureRecognizerStateEnded){
+        return;
+    }
+
+    CGPoint touchPoint = [gestureRecognizer locationInView:self.mapView];
+    [self moveAnnotationToCoordinate:[self.mapView convertPoint:touchPoint toCoordinateFromView:self.mapView]];
+}
+
+#pragma mark Draggable-AnnotationView
+
+- (void)movedAnnotation:(MKPointAnnotation *)anno{
+    NSLog(@"Dragged annotation to %f,%f", anno.coordinate.latitude, anno.coordinate.longitude);
+    CLLocation *newlocation = [[CLLocation alloc] initWithLatitude:anno.coordinate.latitude
+                                                         longitude:anno.coordinate.longitude];
+    [self searchAddress:newlocation];
 }
 
 /*
