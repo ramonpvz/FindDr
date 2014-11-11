@@ -7,11 +7,12 @@
 //
 
 #import <Parse/Parse.h>
-#import "User.h"
 
 @interface Speciality : PFObject <PFSubclassing>
 
 @property NSString *name;
 @property NSString *description;
+
++ (void)lisSpecialities:(void (^)(NSArray *specialities))complete;
 
 @end

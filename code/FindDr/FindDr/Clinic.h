@@ -7,12 +7,9 @@
 //
 
 #import <Parse/Parse.h>
-#import "User.h"
-#import "Schedule.h"
 
 @interface Clinic : PFObject <PFSubclassing>
 
-@property User *doctor;
 @property NSString *name;
 @property NSString *street;
 @property NSString *number;
@@ -21,6 +18,8 @@
 @property NSString *zipCode;
 @property NSString *latitude;
 @property NSString *longitude;
-@property Schedule *schedule;
+@property NSArray *specialities;
+
++ (void) save: (Clinic *) clinic;
 
 @end

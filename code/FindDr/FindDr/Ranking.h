@@ -7,12 +7,15 @@
 //
 
 #import <Parse/Parse.h>
-#import "User.h"
+#import "Doctor.h"
+#import "Patient.h"
 
 @interface Ranking : PFObject <PFSubclassing>
 
-@property User *user;
-@property User *doctor;
+@property Patient *patient;
+@property Doctor *doctor;
 @property NSNumber *ranking;
+
++ (void) save: (Ranking *) ranking;
 
 @end

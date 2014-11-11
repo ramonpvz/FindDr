@@ -7,16 +7,21 @@
 //
 
 #import <Parse/Parse.h>
-#import "Day.h"
+#import "Clinic.h"
 
 @interface Schedule : PFObject <PFSubclassing>
 
-@property Day *monday;
-@property Day *tuesday;
-@property Day *wednesday;
-@property Day *thursday;
-@property Day *friday;
-@property Day *saturday;
-@property Day *sunday;
+@property NSArray *monday;
+@property NSArray *tuesday;
+@property NSArray *wednesday;
+@property NSArray *thursday;
+@property NSArray *friday;
+@property NSArray *saturday;
+@property NSArray *sunday;
+@property Clinic *clinic;
+
++ (void)getScheduleByClinic: (Clinic *) clinic sched: (void (^)(Schedule *schedule))complete;
+
++ (void) save: (Schedule *) schedule;
 
 @end

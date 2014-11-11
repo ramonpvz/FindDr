@@ -10,11 +10,12 @@
 
 @implementation Appointment
 
-@dynamic user;
 @dynamic clinic;
 @dynamic description;
-@dynamic appDate;
+@dynamic date;
 @dynamic status;
+@dynamic patient;
+@dynamic doctor;
 
 + (void) load
 {
@@ -23,6 +24,26 @@
 
 + (NSString *) parseClassName {
     return @"Appointment";
+}
+
+- (void) update: (NSString *) status
+{
+    [self setObject:status forKey:@"status"];
+    [self saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        NSLog(@"Status saved...");
+    }];
+}
+
++ (void) save: (Appointment *) appointment {
+    if (appointment.doctor != nil && appointment.patient != nil && appointment.clinic != nil)
+    {
+        [appointment saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+            NSLog(@"Appointment saved.");
+        }];
+    } else
+    {
+        NSLog(@"Appointment is invalid.");
+    }
 }
 
 @end

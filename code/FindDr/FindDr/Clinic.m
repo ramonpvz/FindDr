@@ -10,7 +10,6 @@
 
 @implementation Clinic
 
-@dynamic doctor;
 @dynamic name;
 @dynamic street;
 @dynamic number;
@@ -19,7 +18,7 @@
 @dynamic zipCode;
 @dynamic latitude;
 @dynamic longitude;
-@dynamic schedule;
+@dynamic specialities;
 
 + (void) load
 {
@@ -28,6 +27,26 @@
 
 + (NSString *) parseClassName {
     return @"Clinic";
+}
+
++ (void) save: (Clinic *) clinic {
+    if (clinic.latitude != nil && clinic.longitude != nil)
+    {
+        [clinic saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+            if (!error)
+            {
+                NSLog(@"Clinic is saved.");
+            }
+            else
+            {
+                NSLog(@"Error: %@",error);
+            }
+        }];
+    }
+    else
+    {
+        NSLog(@"Clinic is invalid.");
+    }
 }
 
 @end

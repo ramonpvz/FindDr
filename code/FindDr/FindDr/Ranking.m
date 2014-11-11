@@ -7,11 +7,11 @@
 //
 
 #import "Ranking.h"
-#import "User.h"
+#import "Doctor.h"
 
 @implementation Ranking
 
-@dynamic user;
+@dynamic patient;
 @dynamic doctor;
 @dynamic ranking;
 
@@ -22,6 +22,18 @@
 
 + (NSString *) parseClassName {
     return @"Ranking";
+}
+
++ (void) save: (Ranking *) ranking {
+    if (ranking.patient != nil && ranking.doctor != nil && ranking.description != nil) {
+        [ranking saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+            NSLog(@"Ranking is saved.");
+        }];
+    }
+    else
+    {
+        NSLog(@"Ranking is invalid.");
+    }
 }
 
 @end

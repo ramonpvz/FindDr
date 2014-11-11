@@ -10,9 +10,8 @@
 
 @implementation Comment
 
-@dynamic user;
-@dynamic doctor;
 @dynamic description;
+@dynamic patient;
 
 + (void) load
 {

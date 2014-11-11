@@ -17,6 +17,7 @@
 @dynamic friday;
 @dynamic saturday;
 @dynamic sunday;
+@dynamic clinic;
 
 + (void) load
 {
@@ -25,6 +26,29 @@
 
 + (NSString *) parseClassName {
     return @"Schedule";
+}
+
++ (void)getScheduleByClinic: (Clinic *) clinic sched: (void (^)(Schedule *schedule))complete {
+    PFQuery *scheduleQuery = [Schedule query];
+    [scheduleQuery whereKey:@"clinic" equalTo:clinic];
+    [scheduleQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        complete([objects objectAtIndex:0]);
+        NSLog(@"Schedule: %@", [objects objectAtIndex:0]);
+    }];
+}
+
++ (void) save: (Schedule *) schedule {
+    
+    if (schedule.clinic != nil) {
+        [schedule saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+            NSLog(@"Schedule saved.");
+        }];
+    }
+    else
+    {
+        NSLog(@"Schedule is invalid.");
+    }
+    
 }
 
 @end

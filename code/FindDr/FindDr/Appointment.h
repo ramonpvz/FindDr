@@ -7,15 +7,21 @@
 //
 
 #import <Parse/Parse.h>
-#import "User.h"
 #import "Clinic.h"
+#import "Patient.h"
+#import "Doctor.h"
 
 @interface Appointment : PFObject <PFSubclassing>
 
-@property User *user;
 @property Clinic *clinic;
 @property NSString *description;
-@property NSDate *appDate;
+@property NSDate *date;
 @property NSString *status;
+@property Patient *patient;
+@property Doctor *doctor;
+
+- (void) update: (NSString *) status;
+
++ (void) save: (Appointment *) appointment;
 
 @end

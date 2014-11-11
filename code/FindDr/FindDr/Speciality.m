@@ -22,4 +22,18 @@
     return @"Speciality";
 }
 
+// --- Lists the specialities catalog --- //
++ (void)lisSpecialities:(void (^)(NSArray *specialities))complete {
+    PFQuery *querySpecialities = [PFQuery queryWithClassName:@"Speciality"];
+    [querySpecialities findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (error)
+        {
+            NSLog(@"Error: %@" , error);
+        }
+        else {
+            complete(objects);
+        }
+    }];
+}
+
 @end

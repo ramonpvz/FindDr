@@ -7,12 +7,11 @@
 //
 
 #import <Parse/Parse.h>
-#import "User.h"
+#import "Patient.h"
 
 @interface Comment : PFObject <PFSubclassing>
 
-@property User *user;
-@property User *doctor;
 @property NSString *description;
+@property Patient *patient;
 
 @end
