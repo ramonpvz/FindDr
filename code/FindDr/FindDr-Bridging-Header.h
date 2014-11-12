@@ -3,3 +3,5 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Schedule.h"
+#import "Doctor.h"

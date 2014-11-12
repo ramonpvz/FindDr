@@ -128,6 +128,14 @@ class CallendarViewController: UIViewController, UICollectionViewDelegateFlowLay
     //MARK: - Action View methods
     
     @IBAction func addSchedule(sender: AnyObject) {
+        let MONDAY    = 0
+        let TUESDAY   = 1
+        let WEDNESDAY = 2
+        let THURSDAY  = 3
+        let FRIDAY    = 4
+        let SATURDAY  = 5
+        let SUNDAY    = 6
+
         var hour : NSMutableArray?
         var week = Array<Array<Bool>>()
         //creating week array(each day has an Array fo 12 hours)
@@ -144,7 +152,33 @@ class CallendarViewController: UIViewController, UICollectionViewDelegateFlowLay
                 week[indexPath!.row - 1][indexPath!.section - 1] = true
             }
         }
-        printSchedule(week)
+//--------------------------------------------
+//----------SAVE THE SCHEDULE-----------------
+//--------------------------------------------
+
+//        let schedule = Schedule()
+        //TODO set the doctor
+//        let doc : Doctor?
+//
+//        if doc != nil {
+//            schedule.monday    = week[MONDAY].reverse()
+//            schedule.tuesday   = week[TUESDAY].reverse()
+//            schedule.wednesday = week[WEDNESDAY].reverse()
+//            schedule.thursday  = week[THURSDAY].reverse()
+//            schedule.friday    = week[FRIDAY].reverse()
+//            schedule.saturday  = week[SATURDAY].reverse()
+//            schedule.sunday    = week[SUNDAY].reverse()
+            //TODO Falta descomentar esta linea agregando la clinica que queramos
+            //a partir de un doctor
+            //schedule.clinic =
+
+            //schedule.save()
+            
+            printSchedule(week)
+//        }
+//        else {
+            //TODO ver como trataremos el error
+//        }
     }
 
     //MARK: - Helper methods
