@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A51313F31A13F6500079FFFE /* CalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51313F11A13F6500079FFFE /* CalendarCell.swift */; };
+		A51313F41A13F6500079FFFE /* CallendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51313F21A13F6500079FFFE /* CallendarViewController.swift */; };
 		A55567041A0ABC7500B9CDAF /* lupa.png in Resources */ = {isa = PBXBuildFile; fileRef = A55567031A0ABC7500B9CDAF /* lupa.png */; };
 		A555670C1A0ACBD100B9CDAF /* doc.png in Resources */ = {isa = PBXBuildFile; fileRef = A555670A1A0ACBD100B9CDAF /* doc.png */; };
 		A555670D1A0ACBD100B9CDAF /* pacient.png in Resources */ = {isa = PBXBuildFile; fileRef = A555670B1A0ACBD100B9CDAF /* pacient.png */; };
@@ -87,6 +89,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A51313F11A13F6500079FFFE /* CalendarCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarCell.swift; sourceTree = "<group>"; };
+		A51313F21A13F6500079FFFE /* CallendarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CallendarViewController.swift; sourceTree = "<group>"; };
 		A55566F81A0AB75B00B9CDAF /* FindDr-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FindDr-Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
 		A55567031A0ABC7500B9CDAF /* lupa.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lupa.png; sourceTree = "<group>"; };
 		A555670A1A0ACBD100B9CDAF /* doc.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = doc.png; sourceTree = "<group>"; };
@@ -227,6 +231,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A51313F01A13F6410079FFFE /* calendar */ = {
+			isa = PBXGroup;
+			children = (
+				A51313F11A13F6500079FFFE /* CalendarCell.swift */,
+				A51313F21A13F6500079FFFE /* CallendarViewController.swift */,
+			);
+			name = calendar;
+			sourceTree = "<group>";
+		};
 		A55566F41A0AB4A800B9CDAF /* images */ = {
 			isa = PBXGroup;
 			children = (
@@ -277,6 +290,7 @@
 		A58F73851A0966F800226385 /* FindDr */ = {
 			isa = PBXGroup;
 			children = (
+				A51313F01A13F6410079FFFE /* calendar */,
 				C3A592211A129C6F00675FA6 /* Settings */,
 				C30AE7681A0D62A000C61111 /* Security */,
 				C375C60A1A0998BC0075CEE4 /* Data Model */,
@@ -563,6 +577,7 @@
 				C3A5922A1A12CDB500675FA6 /* LoginViewController.m in Sources */,
 				C30AE7671A0D559500C61111 /* Login.m in Sources */,
 				C31122271A0A7B39001A3FF7 /* Schedule.m in Sources */,
+				A51313F31A13F6500079FFFE /* CalendarCell.swift in Sources */,
 				E4AF64871A12975D006C24B9 /* AZDraggableAnnotationView.m in Sources */,
 				E4C2CEC31A0BEE8700120F70 /* UIScrollView+TPKeyboardAvoidingAdditions.m in Sources */,
 				C3A592201A1287DA00675FA6 /* DValidator.m in Sources */,
@@ -575,6 +590,7 @@
 				C39A98871A0C67B000E43C57 /* Patient.m in Sources */,
 				C3A592241A129C9000675FA6 /* DSettings.m in Sources */,
 				C3A592191A127DD200675FA6 /* AppDelegate.m in Sources */,
+				A51313F41A13F6500079FFFE /* CallendarViewController.swift in Sources */,
 				E42ECE691A099A0A005E320E /* SignUpViewController.m in Sources */,
 				E4C2CEC21A0BEE8700120F70 /* TPKeyboardAvoidingTableView.m in Sources */,
 				E4DA5D1E1A0D7BB700C4FCAB /* AbstractActionSheetPicker.m in Sources */,

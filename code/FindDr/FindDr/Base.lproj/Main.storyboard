@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="hI9-SR-S7C">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="hI9-SR-S7C">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Sign Up-->
@@ -1086,6 +1087,70 @@ Terms of Use and Privacy Policy</string>
             </objects>
             <point key="canvasLocation" x="939" y="-564"/>
         </scene>
+        <!--Schedule-->
+        <scene sceneID="07e-h1-mry">
+            <objects>
+                <viewController id="Fsx-Rr-tOH" customClass="CallendarViewController" customModule="FindDr" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="kio-Tk-b2k"/>
+                        <viewControllerLayoutGuide type="bottom" id="sL2-K5-pUy"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="WPL-h1-D0O">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="background3.png" translatesAutoresizingMaskIntoConstraints="NO" id="mzE-XJ-asC">
+                                <rect key="frame" x="16" y="0.0" width="568" height="536"/>
+                            </imageView>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="pSJ-df-bkj">
+                                <rect key="frame" x="16" y="0.0" width="568" height="536"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Aal-AD-nkf">
+                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="hourCell" id="sLd-OF-rMU">
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="Fsx-Rr-tOH" id="svc-h7-kHh"/>
+                                    <outlet property="delegate" destination="Fsx-Rr-tOH" id="T1p-NN-lb6"/>
+                                </connections>
+                            </collectionView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="pSJ-df-bkj" secondAttribute="trailing" id="1bD-cc-f29"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="pSJ-df-bkj" secondAttribute="bottom" id="Cqn-7G-8Gh"/>
+                            <constraint firstItem="pSJ-df-bkj" firstAttribute="top" secondItem="WPL-h1-D0O" secondAttribute="topMargin" id="Oxy-6u-jhL"/>
+                            <constraint firstItem="pSJ-df-bkj" firstAttribute="leading" secondItem="WPL-h1-D0O" secondAttribute="leadingMargin" id="Vfi-Ww-6gd"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Schedule" id="7te-Cz-CKW">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="7nR-Di-ReT">
+                            <connections>
+                                <action selector="addSchedule:" destination="Fsx-Rr-tOH" id="j9b-et-6Lh"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="calendarColView" destination="pSJ-df-bkj" id="tW9-xs-Fyf"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sLD-pf-z5j" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1747" y="-1863"/>
+        </scene>
         <!--Password Recover-->
         <scene sceneID="ifE-gJ-xCv">
             <objects>
@@ -1186,7 +1251,7 @@ Terms of Use and Privacy Policy</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cq1-cv-mEp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="936" y="-1216"/>
+            <point key="canvasLocation" x="1748" y="-1216"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="oJK-CV-T0t">
@@ -1233,6 +1298,24 @@ Terms of Use and Privacy Policy</string>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qZn-af-k5n" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="124" y="-1216"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Aqu-Gd-rSx">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Y1s-kg-sxl" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="fiA-o2-5h8">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Fsx-Rr-tOH" kind="relationship" relationship="rootViewController" id="0HY-Ek-JTL"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Qrt-xz-sYj" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="935" y="-1863"/>
         </scene>
     </scenes>
     <resources>
