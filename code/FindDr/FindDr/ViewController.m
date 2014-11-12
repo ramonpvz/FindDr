@@ -7,6 +7,11 @@
 //
 
 #import "ViewController.h"
+#import <Parse/Parse.h>
+#import "Clinic.h"
+#import "Schedule.h"
+#import "Ranking.h"
+#import "Comment.h"
 
 @interface ViewController ()
 

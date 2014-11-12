@@ -10,7 +10,15 @@
 
 @implementation Login
 
-- (NSString *) signUp: (NSString*)username pass: (NSString*) password{
+- (void) login:(NSDictionary *)credencials user:(void (^)(PFUser *pfUser))complete {
+    NSString *usr = [credencials objectForKey:@"username"];
+    NSString *pwd = [credencials objectForKey:@"password"];
+    [PFUser logInWithUsernameInBackground:usr password:pwd block:^(PFUser *user, NSError *error) {
+        complete(user);
+    }];
+}
+
+- (NSString *) signUp: (NSString*)username pass: (NSString*) password {
     NSString *message = @"";
     if ([DValidator validEmail:username]) {
         if ([DValidator validPassword:password]) {

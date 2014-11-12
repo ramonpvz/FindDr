@@ -12,6 +12,7 @@
 
 @interface Login : NSObject
 
+- (void) login:(NSDictionary *)credencials user:(void (^)(PFUser *pfUser))complete;
 - (NSString *) signUp: (NSString*)username pass: (NSString*) password;
 - (void) logOut;
 - (PFUser *) getCurrentUser;

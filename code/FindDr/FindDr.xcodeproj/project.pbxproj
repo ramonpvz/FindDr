@@ -7,12 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A55566FC1A0AB7AB00B9CDAF /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55566FB1A0AB7AB00B9CDAF /* LoginViewController.swift */; };
 		A55567041A0ABC7500B9CDAF /* lupa.png in Resources */ = {isa = PBXBuildFile; fileRef = A55567031A0ABC7500B9CDAF /* lupa.png */; };
 		A555670C1A0ACBD100B9CDAF /* doc.png in Resources */ = {isa = PBXBuildFile; fileRef = A555670A1A0ACBD100B9CDAF /* doc.png */; };
 		A555670D1A0ACBD100B9CDAF /* pacient.png in Resources */ = {isa = PBXBuildFile; fileRef = A555670B1A0ACBD100B9CDAF /* pacient.png */; };
 		A55567151A0AD27400B9CDAF /* background3.png in Resources */ = {isa = PBXBuildFile; fileRef = A55567131A0AD27400B9CDAF /* background3.png */; };
-		A555671B1A0AE04D00B9CDAF /* RecoverPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A555671A1A0AE04D00B9CDAF /* RecoverPasswordViewController.swift */; };
 		A55567251A0AE93D00B9CDAF /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55567241A0AE93D00B9CDAF /* TextField.swift */; };
 		A55567271A0AE9BF00B9CDAF /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55567261A0AE9BF00B9CDAF /* UIColorExtension.swift */; };
 		A58F738F1A0966F800226385 /* FindDr.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A58F738D1A0966F800226385 /* FindDr.xcdatamodeld */; };
@@ -50,6 +48,7 @@
 		C3A592191A127DD200675FA6 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A58F738B1A0966F800226385 /* AppDelegate.m */; };
 		C3A592201A1287DA00675FA6 /* DValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A5921F1A1287DA00675FA6 /* DValidator.m */; };
 		C3A592241A129C9000675FA6 /* DSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A592231A129C9000675FA6 /* DSettings.m */; };
+		C3A5922A1A12CDB500675FA6 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A592291A12CDB500675FA6 /* LoginViewController.m */; };
 		E42ECE691A099A0A005E320E /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E42ECE681A099A0A005E320E /* SignUpViewController.m */; };
 		E42ECE6C1A09A381005E320E /* ShowClinicsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E42ECE6B1A09A381005E320E /* ShowClinicsViewController.m */; };
 		E44873B81A0B00640036CAFF /* clinic.png in Resources */ = {isa = PBXBuildFile; fileRef = E44873B71A0B00640036CAFF /* clinic.png */; };
@@ -89,12 +88,10 @@
 
 /* Begin PBXFileReference section */
 		A55566F81A0AB75B00B9CDAF /* FindDr-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FindDr-Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
-		A55566FB1A0AB7AB00B9CDAF /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginViewController.swift; path = FindDr/LoginViewController.swift; sourceTree = "<group>"; };
 		A55567031A0ABC7500B9CDAF /* lupa.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lupa.png; sourceTree = "<group>"; };
 		A555670A1A0ACBD100B9CDAF /* doc.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = doc.png; sourceTree = "<group>"; };
 		A555670B1A0ACBD100B9CDAF /* pacient.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pacient.png; sourceTree = "<group>"; };
 		A55567131A0AD27400B9CDAF /* background3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background3.png; sourceTree = "<group>"; };
-		A555671A1A0AE04D00B9CDAF /* RecoverPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecoverPasswordViewController.swift; path = FindDr/RecoverPasswordViewController.swift; sourceTree = "<group>"; };
 		A55567241A0AE93D00B9CDAF /* TextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
 		A55567261A0AE9BF00B9CDAF /* UIColorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		A58F73831A0966F800226385 /* FindDr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FindDr.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -147,6 +144,8 @@
 		C3A5921F1A1287DA00675FA6 /* DValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DValidator.m; sourceTree = "<group>"; };
 		C3A592221A129C9000675FA6 /* DSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSettings.h; sourceTree = "<group>"; };
 		C3A592231A129C9000675FA6 /* DSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSettings.m; sourceTree = "<group>"; };
+		C3A592281A12CDB500675FA6 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		C3A592291A12CDB500675FA6 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		E42ECE671A099A0A005E320E /* SignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpViewController.h; sourceTree = "<group>"; };
 		E42ECE681A099A0A005E320E /* SignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpViewController.m; sourceTree = "<group>"; };
 		E42ECE6A1A09A381005E320E /* ShowClinicsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowClinicsViewController.h; sourceTree = "<group>"; };
@@ -244,15 +243,6 @@
 			name = images;
 			sourceTree = "<group>";
 		};
-		A55566F71A0AB74500B9CDAF /* login */ = {
-			isa = PBXGroup;
-			children = (
-				A55566FB1A0AB7AB00B9CDAF /* LoginViewController.swift */,
-				A555671A1A0AE04D00B9CDAF /* RecoverPasswordViewController.swift */,
-			);
-			name = login;
-			sourceTree = "<group>";
-		};
 		A55567051A0AC44A00B9CDAF /* utils */ = {
 			isa = PBXGroup;
 			children = (
@@ -268,7 +258,6 @@
 			isa = PBXGroup;
 			children = (
 				A55567051A0AC44A00B9CDAF /* utils */,
-				A55566F71A0AB74500B9CDAF /* login */,
 				A55566F41A0AB4A800B9CDAF /* images */,
 				A58F73851A0966F800226385 /* FindDr */,
 				A58F73A21A0966F800226385 /* FindDrTests */,
@@ -293,6 +282,8 @@
 				C375C60A1A0998BC0075CEE4 /* Data Model */,
 				A58F738A1A0966F800226385 /* AppDelegate.h */,
 				A58F738B1A0966F800226385 /* AppDelegate.m */,
+				C3A592281A12CDB500675FA6 /* LoginViewController.h */,
+				C3A592291A12CDB500675FA6 /* LoginViewController.m */,
 				A58F73901A0966F800226385 /* ViewController.h */,
 				A58F73911A0966F800226385 /* ViewController.m */,
 				A58F73931A0966F800226385 /* Main.storyboard */,
@@ -569,6 +560,7 @@
 				E4DA5D251A0D7BB700C4FCAB /* SWActionSheet.m in Sources */,
 				E4DA5D231A0D7BB700C4FCAB /* ActionSheetStringPicker.m in Sources */,
 				C375C60D1A0999FB0075CEE4 /* Doctor.m in Sources */,
+				C3A5922A1A12CDB500675FA6 /* LoginViewController.m in Sources */,
 				C30AE7671A0D559500C61111 /* Login.m in Sources */,
 				C31122271A0A7B39001A3FF7 /* Schedule.m in Sources */,
 				E4AF64871A12975D006C24B9 /* AZDraggableAnnotationView.m in Sources */,
@@ -592,8 +584,6 @@
 				E4BBD3401A0AAB9500E8DDF7 /* ClinicViewController.m in Sources */,
 				E4DA5D241A0D7BB700C4FCAB /* DistancePickerView.m in Sources */,
 				A58F73921A0966F800226385 /* ViewController.m in Sources */,
-				A55566FC1A0AB7AB00B9CDAF /* LoginViewController.swift in Sources */,
-				A555671B1A0AE04D00B9CDAF /* RecoverPasswordViewController.swift in Sources */,
 				E4DA5D221A0D7BB700C4FCAB /* ActionSheetLocalePicker.m in Sources */,
 				A58F738F1A0966F800226385 /* FindDr.xcdatamodeld in Sources */,
 				C311222A1A0A7B92001A3FF7 /* Ranking.m in Sources */,
