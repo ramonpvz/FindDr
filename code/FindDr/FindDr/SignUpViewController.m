@@ -10,6 +10,7 @@
 #import "TextFieldValidator.h"
 #import "ActionSheetStringPicker.h"
 #import "ActionSheetDatePicker.h"
+#import "Speciality.h"
 
 @interface SignUpViewController () <UITableViewDataSource, UITableViewDelegate, UIActionSheetDelegate>
 @property (strong, nonatomic) IBOutlet UIView *contentView;
@@ -29,6 +30,8 @@
 @property (strong, nonatomic) IBOutlet UILabel *specialtiesLabel;
 @property (strong, nonatomic) IBOutlet UIButton *addSpecialtyButton;
 @property (strong, nonatomic) IBOutlet UITableView *specialtiesTable;
+@property (strong, nonatomic) NSMutableArray *specialties;
+@property (strong, nonatomic) NSArray *specialtiesCatalog;
 
 @end
 
@@ -47,6 +50,7 @@
 
     [self.phoneNumberText addRegx:@"[0-9]{1,}" withMsg:@"Only numeric characters are allowed"];
 
+    self.specialties = [[NSMutableArray alloc]init];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -57,13 +61,31 @@
 #pragma mark - table Specialties
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 0;
+    return self.specialties.count;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellSpecialty" forIndexPath:indexPath];
 
+    Speciality *especiality = self.specialties[indexPath.row];
+    cell.textLabel.text = especiality.name;
+    cell.detailTextLabel.text = [especiality objectForKey:@"description"];
+
     return cell;
+}
+
+-(BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath{
+    return YES;
+}
+
+-(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        // Delete the row (speciality)
+        [self.specialties removeObjectAtIndex:indexPath.row];
+
+        // Animate the deletion
+        [self.specialtiesTable deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+    }
 }
 
 #pragma mark - Actions
@@ -73,12 +95,12 @@
     if ([self.emailText validate] & [self.passwordText validate]  & [self.titleText validate] & [self.genderText validate] & [self.birthdayText validate] & [self.firstNameText validate] & [self.lastNameText validate] & [self.secondLastNameText validate] & [self.phoneNumberText validate]) {
 
         if ((self.switchUser.on == YES) & [self.licenseText validate]) {
-            if (YES ) { //si el doctor tiene por lo menos una especialidad
+            if (self.specialties.count > 0) { //the doctor has at least one specialty
                 //guardar datos del usuario doctor y mandarlo a crear la clinica
                 [self performSegueWithIdentifier:@"showClinics" sender:self];
-            }/*else{
-                [[[UIAlertView alloc] initWithTitle:nil message:@"Please, add a specialty." delegate:nil cancelButtonTitle:nil otherButtonTitles:@"Ok", nil] show];
-            }*/
+            }else{
+                [[[UIAlertView alloc] initWithTitle:nil message:@"Please, add at least one specialty." delegate:nil cancelButtonTitle:nil otherButtonTitles:@"Ok", nil] show];
+            }
         }else {
             //guardar datos del usuario paciente y permitir entrar
         }
@@ -127,17 +149,19 @@
 
 - (IBAction)switchUserTapped:(UISwitch *)sender {
     if (sender.on == YES) {
-        //show some elements to pacients
+        //show some elements to doctor
         self.licenseText.hidden = NO;
         self.specialtiesLabel.hidden = NO;
         self.specialtiesTable.hidden = NO;
         self.addSpecialtyButton.hidden = NO;
+        [self.specialtiesTable setEditing:YES animated:YES];
     }else{
         //hide some elements to pacients
         self.licenseText.hidden = YES;
         self.specialtiesLabel.hidden = YES;
         self.specialtiesTable.hidden = YES;
         self.addSpecialtyButton.hidden = YES;
+        [self.specialtiesTable setEditing:NO animated:YES];
     }
 }
 
@@ -145,19 +169,17 @@
     if (myTextField == self.titleText) {
         [myTextField resignFirstResponder];
         // Create an array of strings you want to show in the picker:
-        NSArray *data = [NSArray arrayWithObjects:@"Sr.", @"Sra.", @"Dr.", @"Dra.", nil];
+        NSArray *data = [NSArray arrayWithObjects:@"Dr.", @"Dra.", @"Sr.", @"Sra.", nil];
 
         [ActionSheetStringPicker showPickerWithTitle:@"Select:"
                                                 rows:data
                                     initialSelection:0
                                            doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
-                                               NSLog(@"Selected Index: %ld", (long)selectedIndex);
-                                               NSLog(@"Selected Value: %@", selectedValue);
                                                self.titleText.text = selectedValue;
                                                [self.titleText validate];
                                            }
                                          cancelBlock:^(ActionSheetStringPicker *picker) {
-                                             NSLog(@"Block String Picker Canceled");
+                                             //NSLog(@"Block String Picker Canceled");
                                          }
                                               origin:self.view];
 
@@ -173,7 +195,7 @@
                                                [self.genderText validate];
                                            }
                                          cancelBlock:^(ActionSheetStringPicker *picker) {
-                                             NSLog(@"Block String Picker Canceled");
+                                             //NSLog(@"Block String Picker Canceled");
                                          }
                                               origin:self.view];
 
@@ -191,14 +213,32 @@
                                              [self.birthdayText validate];
                                          }
                                        cancelBlock:^(ActionSheetDatePicker *picker) {
-                                           NSLog(@"Block Date Picker Canceled");
+                                           //NSLog(@"Block Date Picker Canceled");
                                        }
                                             origin:self.view];
     }
 }
 
 - (IBAction)addSpecialtyButtonTapped:(UIButton *)sender {
-    NSLog(@"add specialty tapped");
+    NSMutableArray *nameSpecialities = [[NSMutableArray alloc] init];
+    [Speciality lisSpecialities:^(NSArray *specialities) {
+        self.specialtiesCatalog = specialities;
+
+        for (Speciality *speciality in self.specialtiesCatalog){
+            [nameSpecialities addObject:speciality.name];
+        }
+        [ActionSheetStringPicker showPickerWithTitle:@"Select:"
+                                                rows:nameSpecialities
+                                    initialSelection:0
+                                           doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
+                                               [self.specialties addObject:self.specialtiesCatalog[selectedIndex]];
+                                               [self.specialtiesTable reloadData];
+                                           }
+                                         cancelBlock:^(ActionSheetStringPicker *picker) {
+                                             //NSLog(@"Block String Picker Canceled");
+                                         }
+                                              origin:self.view];
+    }];
 }
 
 
