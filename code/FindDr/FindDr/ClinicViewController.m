@@ -10,6 +10,7 @@
 #import "TextFieldValidator.h"
 
 @interface ClinicViewController () <UIActionSheetDelegate>
+@property (strong, nonatomic) IBOutlet UIView *contentView;
 @property (strong, nonatomic) IBOutlet TextFieldValidator *nameClinicText;
 @property (strong, nonatomic) IBOutlet UITextView *descriptionText;
 @property (strong, nonatomic) IBOutlet UIImageView *imageClinic;

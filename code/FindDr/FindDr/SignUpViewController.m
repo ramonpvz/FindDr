@@ -12,6 +12,7 @@
 #import "ActionSheetDatePicker.h"
 
 @interface SignUpViewController () <UITableViewDataSource, UITableViewDelegate, UIActionSheetDelegate>
+@property (strong, nonatomic) IBOutlet UIView *contentView;
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *nextButton;
 @property (strong, nonatomic) IBOutlet UIImageView *userImage;
 @property (strong, nonatomic) IBOutlet TextFieldValidator *emailText;
