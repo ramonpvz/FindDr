@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="hI9-SR-S7C">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="lux-Ob-pQo">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -1710,7 +1711,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sLD-pf-z5j" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1747" y="-1863"/>
+            <point key="canvasLocation" x="2559" y="-1863"/>
         </scene>
         <!--Password Recover-->
         <scene sceneID="ifE-gJ-xCv">
@@ -1860,6 +1861,81 @@
             </objects>
             <point key="canvasLocation" x="124" y="-1216"/>
         </scene>
+        <!--SearchDoctor-->
+        <scene sceneID="pei-Id-qUI">
+            <objects>
+                <viewController title="SearchDoctor" id="HFu-kA-LQC" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ssP-bb-kPW"/>
+                        <viewControllerLayoutGuide type="bottom" id="E8I-sV-TgJ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="jCF-Nc-OTP">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background3.png" translatesAutoresizingMaskIntoConstraints="NO" id="IJ2-Va-W7b">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                            </imageView>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="2Td-5X-gze">
+                                <rect key="frame" x="0.0" y="64" width="600" height="44"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="PYl-Vf-fcy">
+                                <rect key="frame" x="239" y="123" width="123" height="29"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="123" id="EPc-y3-6tx"/>
+                                </constraints>
+                                <segments>
+                                    <segment title="First"/>
+                                    <segment title="List"/>
+                                </segments>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </segmentedControl>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="whX-zN-pjT">
+                                <rect key="frame" x="36" y="178" width="528" height="372"/>
+                            </mapView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s7M-uf-GrW">
+                                <rect key="frame" x="36" y="552" width="103" height="28"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="13"/>
+                                <state key="normal" title="My Appointments">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jwj-r8-19D">
+                                <rect key="frame" x="472" y="552" width="92" height="28"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <state key="normal" title="Top Specialties">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="whX-zN-pjT" secondAttribute="trailing" constant="20" id="1jl-6O-eHM"/>
+                            <constraint firstItem="2Td-5X-gze" firstAttribute="leading" secondItem="jCF-Nc-OTP" secondAttribute="leading" id="7Cl-Ph-pFk"/>
+                            <constraint firstItem="E8I-sV-TgJ" firstAttribute="top" secondItem="IJ2-Va-W7b" secondAttribute="bottom" id="9tB-Ul-gJf"/>
+                            <constraint firstAttribute="trailing" secondItem="IJ2-Va-W7b" secondAttribute="trailing" id="HTw-zj-QRT"/>
+                            <constraint firstItem="2Td-5X-gze" firstAttribute="top" secondItem="ssP-bb-kPW" secondAttribute="bottom" id="LXZ-UQ-D7B"/>
+                            <constraint firstItem="E8I-sV-TgJ" firstAttribute="top" secondItem="s7M-uf-GrW" secondAttribute="bottom" constant="20" id="O1U-B7-goD"/>
+                            <constraint firstItem="IJ2-Va-W7b" firstAttribute="leading" secondItem="jCF-Nc-OTP" secondAttribute="leading" id="Zn2-Y7-rHY"/>
+                            <constraint firstItem="E8I-sV-TgJ" firstAttribute="top" secondItem="whX-zN-pjT" secondAttribute="bottom" constant="50" id="cPf-J4-svP"/>
+                            <constraint firstItem="whX-zN-pjT" firstAttribute="top" secondItem="PYl-Vf-fcy" secondAttribute="bottom" constant="27" id="cn2-0l-ezn"/>
+                            <constraint firstItem="whX-zN-pjT" firstAttribute="leading" secondItem="jCF-Nc-OTP" secondAttribute="leadingMargin" constant="20" id="grF-Co-5RV"/>
+                            <constraint firstItem="IJ2-Va-W7b" firstAttribute="top" secondItem="jCF-Nc-OTP" secondAttribute="top" id="hG3-TW-Bhg"/>
+                            <constraint firstAttribute="centerX" secondItem="PYl-Vf-fcy" secondAttribute="centerX" constant="-0.5" id="hIe-M8-O14"/>
+                            <constraint firstItem="PYl-Vf-fcy" firstAttribute="top" secondItem="2Td-5X-gze" secondAttribute="bottom" constant="15" id="ib3-gY-pMx"/>
+                            <constraint firstItem="Jwj-r8-19D" firstAttribute="leading" secondItem="whX-zN-pjT" secondAttribute="trailing" constant="-92" id="jne-K6-ehF"/>
+                            <constraint firstItem="whX-zN-pjT" firstAttribute="leading" secondItem="s7M-uf-GrW" secondAttribute="trailing" constant="-103" id="qZ9-JT-NXx"/>
+                            <constraint firstAttribute="trailing" secondItem="2Td-5X-gze" secondAttribute="trailing" id="qe6-bX-9b5"/>
+                            <constraint firstItem="E8I-sV-TgJ" firstAttribute="top" secondItem="Jwj-r8-19D" secondAttribute="bottom" constant="20" id="zOi-H2-ORC"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Search" id="fXs-Lb-SJP"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dF6-cm-Qct" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1444" y="-2547"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="Aqu-Gd-rSx">
             <objects>
@@ -1876,7 +1952,25 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qrt-xz-sYj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="935" y="-1863"/>
+            <point key="canvasLocation" x="1747" y="-1863"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="4KT-Re-bOU">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="lux-Ob-pQo" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="hBB-It-yKV">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="HFu-kA-LQC" kind="relationship" relationship="rootViewController" id="3SQ-3d-ntZ"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xsB-wQ-Ind" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="371" y="-2555"/>
         </scene>
     </scenes>
     <resources>
