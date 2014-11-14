@@ -21,6 +21,7 @@
 		A58F73971A0966F800226385 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A58F73961A0966F800226385 /* Images.xcassets */; };
 		A58F739A1A0966F800226385 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = A58F73981A0966F800226385 /* LaunchScreen.xib */; };
 		A58F73A61A0966F800226385 /* FindDrTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A58F73A51A0966F800226385 /* FindDrTests.m */; };
+		A5BBA1DA1A16763800BDF698 /* SearchDoctorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BBA1D91A16763800BDF698 /* SearchDoctorViewController.swift */; };
 		C30AE7671A0D559500C61111 /* Login.m in Sources */ = {isa = PBXBuildFile; fileRef = C30AE7661A0D559500C61111 /* Login.m */; };
 		C31122271A0A7B39001A3FF7 /* Schedule.m in Sources */ = {isa = PBXBuildFile; fileRef = C31122261A0A7B39001A3FF7 /* Schedule.m */; };
 		C311222A1A0A7B92001A3FF7 /* Ranking.m in Sources */ = {isa = PBXBuildFile; fileRef = C31122291A0A7B92001A3FF7 /* Ranking.m */; };
@@ -116,6 +117,7 @@
 		A58F739F1A0966F800226385 /* FindDrTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FindDrTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A58F73A41A0966F800226385 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A58F73A51A0966F800226385 /* FindDrTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FindDrTests.m; sourceTree = "<group>"; };
+		A5BBA1D91A16763800BDF698 /* SearchDoctorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchDoctorViewController.swift; sourceTree = "<group>"; };
 		C30AE7651A0D559500C61111 /* Login.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Login.h; sourceTree = "<group>"; };
 		C30AE7661A0D559500C61111 /* Login.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Login.m; sourceTree = "<group>"; };
 		C31122251A0A7B39001A3FF7 /* Schedule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Schedule.h; sourceTree = "<group>"; };
@@ -302,6 +304,7 @@
 		A58F73851A0966F800226385 /* FindDr */ = {
 			isa = PBXGroup;
 			children = (
+				A5BBA1D81A16761B00BDF698 /* search */,
 				A51313F01A13F6410079FFFE /* calendar */,
 				C3A592211A129C6F00675FA6 /* Settings */,
 				C30AE7681A0D62A000C61111 /* Security */,
@@ -377,6 +380,14 @@
 				A58F73A41A0966F800226385 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		A5BBA1D81A16761B00BDF698 /* search */ = {
+			isa = PBXGroup;
+			children = (
+				A5BBA1D91A16763800BDF698 /* SearchDoctorViewController.swift */,
+			);
+			name = search;
 			sourceTree = "<group>";
 		};
 		C30AE7681A0D62A000C61111 /* Security */ = {
@@ -613,6 +624,7 @@
 				E42ECE691A099A0A005E320E /* SignUpViewController.m in Sources */,
 				E4C2CEC21A0BEE8700120F70 /* TPKeyboardAvoidingTableView.m in Sources */,
 				E4DA5D1E1A0D7BB700C4FCAB /* AbstractActionSheetPicker.m in Sources */,
+				A5BBA1DA1A16763800BDF698 /* SearchDoctorViewController.swift in Sources */,
 				E4DA5D201A0D7BB700C4FCAB /* ActionSheetDatePicker.m in Sources */,
 				E4BBD3431A0AAF2C00E8DDF7 /* MapViewViewController.m in Sources */,
 				E42ECE6C1A09A381005E320E /* ShowClinicsViewController.m in Sources */,

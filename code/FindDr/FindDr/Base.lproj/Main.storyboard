@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="hI9-SR-S7C">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="lux-Ob-pQo">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -2238,7 +2239,7 @@
         <!--SearchDoctor-->
         <scene sceneID="pei-Id-qUI">
             <objects>
-                <viewController title="SearchDoctor" id="HFu-kA-LQC" sceneMemberID="viewController">
+                <viewController title="SearchDoctor" id="HFu-kA-LQC" customClass="SearchDoctorViewController" customModule="FindDr" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ssP-bb-kPW"/>
                         <viewControllerLayoutGuide type="bottom" id="E8I-sV-TgJ"/>
@@ -2253,6 +2254,9 @@
                             <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="2Td-5X-gze">
                                 <rect key="frame" x="0.0" y="64" width="600" height="44"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="HFu-kA-LQC" id="545-jk-F4X"/>
+                                </connections>
                             </searchBar>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="PYl-Vf-fcy">
                                 <rect key="frame" x="239" y="123" width="123" height="29"/>
@@ -2264,6 +2268,9 @@
                                     <segment title="List"/>
                                 </segments>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <action selector="changeView:" destination="HFu-kA-LQC" eventType="valueChanged" id="tRA-QM-LeD"/>
+                                </connections>
                             </segmentedControl>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="whX-zN-pjT">
                                 <rect key="frame" x="36" y="178" width="528" height="372"/>
@@ -2282,29 +2289,61 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="9rH-ai-M94">
+                                <rect key="frame" x="36" y="178" width="528" height="372"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="searchCell" id="Y87-zz-tRf">
+                                        <rect key="frame" x="0.0" y="0.0" width="528" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Y87-zz-tRf" id="21f-yI-HSN">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="HFu-kA-LQC" id="F8K-8s-b2m"/>
+                                    <outlet property="delegate" destination="HFu-kA-LQC" id="bNy-eo-MDH"/>
+                                </connections>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="whX-zN-pjT" secondAttribute="trailing" constant="20" id="1jl-6O-eHM"/>
+                            <constraint firstItem="E8I-sV-TgJ" firstAttribute="top" secondItem="9rH-ai-M94" secondAttribute="bottom" constant="50" id="2LZ-HL-GvW"/>
                             <constraint firstItem="2Td-5X-gze" firstAttribute="leading" secondItem="jCF-Nc-OTP" secondAttribute="leading" id="7Cl-Ph-pFk"/>
                             <constraint firstItem="E8I-sV-TgJ" firstAttribute="top" secondItem="IJ2-Va-W7b" secondAttribute="bottom" id="9tB-Ul-gJf"/>
                             <constraint firstAttribute="trailing" secondItem="IJ2-Va-W7b" secondAttribute="trailing" id="HTw-zj-QRT"/>
                             <constraint firstItem="2Td-5X-gze" firstAttribute="top" secondItem="ssP-bb-kPW" secondAttribute="bottom" id="LXZ-UQ-D7B"/>
                             <constraint firstItem="E8I-sV-TgJ" firstAttribute="top" secondItem="s7M-uf-GrW" secondAttribute="bottom" constant="20" id="O1U-B7-goD"/>
                             <constraint firstItem="IJ2-Va-W7b" firstAttribute="leading" secondItem="jCF-Nc-OTP" secondAttribute="leading" id="Zn2-Y7-rHY"/>
+                            <constraint firstItem="9rH-ai-M94" firstAttribute="leading" secondItem="jCF-Nc-OTP" secondAttribute="leadingMargin" constant="20" id="b4H-Xe-A3s"/>
                             <constraint firstItem="E8I-sV-TgJ" firstAttribute="top" secondItem="whX-zN-pjT" secondAttribute="bottom" constant="50" id="cPf-J4-svP"/>
                             <constraint firstItem="whX-zN-pjT" firstAttribute="top" secondItem="PYl-Vf-fcy" secondAttribute="bottom" constant="27" id="cn2-0l-ezn"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="9rH-ai-M94" secondAttribute="trailing" constant="20" id="do0-VF-Pe3"/>
                             <constraint firstItem="whX-zN-pjT" firstAttribute="leading" secondItem="jCF-Nc-OTP" secondAttribute="leadingMargin" constant="20" id="grF-Co-5RV"/>
                             <constraint firstItem="IJ2-Va-W7b" firstAttribute="top" secondItem="jCF-Nc-OTP" secondAttribute="top" id="hG3-TW-Bhg"/>
                             <constraint firstAttribute="centerX" secondItem="PYl-Vf-fcy" secondAttribute="centerX" constant="-0.5" id="hIe-M8-O14"/>
                             <constraint firstItem="PYl-Vf-fcy" firstAttribute="top" secondItem="2Td-5X-gze" secondAttribute="bottom" constant="15" id="ib3-gY-pMx"/>
                             <constraint firstItem="Jwj-r8-19D" firstAttribute="leading" secondItem="whX-zN-pjT" secondAttribute="trailing" constant="-92" id="jne-K6-ehF"/>
+                            <constraint firstItem="9rH-ai-M94" firstAttribute="top" secondItem="PYl-Vf-fcy" secondAttribute="bottom" constant="27" id="pOL-qj-lVL"/>
                             <constraint firstItem="whX-zN-pjT" firstAttribute="leading" secondItem="s7M-uf-GrW" secondAttribute="trailing" constant="-103" id="qZ9-JT-NXx"/>
                             <constraint firstAttribute="trailing" secondItem="2Td-5X-gze" secondAttribute="trailing" id="qe6-bX-9b5"/>
+                            <constraint firstItem="Jwj-r8-19D" firstAttribute="top" secondItem="9rH-ai-M94" secondAttribute="bottom" constant="50" id="tGL-le-ugb"/>
                             <constraint firstItem="E8I-sV-TgJ" firstAttribute="top" secondItem="Jwj-r8-19D" secondAttribute="bottom" constant="20" id="zOi-H2-ORC"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="tGL-le-ugb"/>
+                            </mask>
+                        </variation>
                     </view>
                     <navigationItem key="navigationItem" title="Search" id="fXs-Lb-SJP"/>
+                    <connections>
+                        <outlet property="searchBar" destination="2Td-5X-gze" id="U1o-0h-4il"/>
+                        <outlet property="searchMapView" destination="whX-zN-pjT" id="yo8-MH-xHk"/>
+                        <outlet property="searchTable" destination="9rH-ai-M94" id="sLX-ni-fXq"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dF6-cm-Qct" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
