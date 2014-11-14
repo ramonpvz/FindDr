@@ -32,14 +32,6 @@
     return @"Patient";
 }
 
-- (void) getAppointments:(void (^)(NSArray *appointments))complete {
-    PFQuery *appointmentsQuery = [Appointment query];
-    [appointmentsQuery whereKey:@"patient" equalTo:self];
-    [appointmentsQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        complete(objects);
-    } ];
-}
-
 + (void) save: (Patient *) patient {
     if (patient.user != nil && patient.email != nil && [DValidator validEmail:patient.email]) {
         [patient saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
@@ -50,6 +42,22 @@
     {
         NSLog(@"Patient is invalid.");
     }
+}
+
+- (void) getAppointments:(void (^)(NSArray *appointments))complete {
+    PFQuery *appointmentsQuery = [Appointment query];
+    [appointmentsQuery whereKey:@"patient" equalTo:self];
+    [appointmentsQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        complete(objects);
+    } ];
+}
+
+- (NSString *) getFullName {
+    return [NSString stringWithFormat:@"%@ %@ %@", self.name, self.lastName, self.secondLastName];
+}
+
+- (void) loadImage: (void (^)(UIImage *image))complete {
+    complete ([UIImage imageWithData:[NSData dataWithData:[self.photo getData]]]);
 }
 
 @end

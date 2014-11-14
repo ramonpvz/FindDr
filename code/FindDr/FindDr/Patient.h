@@ -23,6 +23,10 @@
 
 - (void) getAppointments:(void (^)(NSArray *appointments))complete;
 
+- (NSString *) getFullName;
+
+- (void) loadImage: (void (^)(UIImage *image))complete;
+
 + (void) save: (Patient *) patient;
 
 @end

@@ -7,10 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <Parse/Parse.h>
 
 @interface DValidator : NSObject
 
 + (BOOL) validEmail : (NSString*) emailString;
 + (BOOL) validPassword : (NSString*) passString;
++ (NSString *) dateToString : (NSDate*) date;
 
 @end

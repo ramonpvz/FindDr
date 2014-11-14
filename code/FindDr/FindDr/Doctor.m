@@ -36,6 +36,14 @@
     return @"Doctor";
 }
 
++ (void) getDoctorByUser:(PFUser *)user doc:(void (^)(Doctor *doctor))complete {
+    PFQuery *doctorQuery = [Doctor query];
+    [doctorQuery whereKey:@"user" equalTo:user];
+    [doctorQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        complete([objects objectAtIndex:0]);
+    }];
+}
+
 - (void)getSpecialities:(void (^)(NSArray *specialities))complete {
     PFQuery *specsQry = [self relationForKey:@"specialities"].query;
     [specsQry findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
@@ -57,6 +65,16 @@
     [appointmentsQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         complete(objects);
     } ];
+}
+
+- (void) getAppointmentsByStatus: (NSString *)status apps:(void (^)(NSArray *appointments))complete {
+    PFQuery *appointmentsQuery = [Appointment query];
+    [appointmentsQuery whereKey:@"doctor" equalTo:self];
+    [appointmentsQuery whereKey:@"status" equalTo:status];
+    [appointmentsQuery includeKey:@"patient"];
+    [appointmentsQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        complete(objects);
+    }];
 }
 
 - (void) addSpeciality: (Speciality *) speciality {

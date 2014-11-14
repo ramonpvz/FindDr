@@ -9,12 +9,14 @@
 #import <Foundation/Foundation.h>
 #import <Parse/Parse.h>
 #import "DValidator.h"
+#import "User.h"
 
 @interface Login : NSObject
 
-- (void) login:(NSDictionary *)credencials user:(void (^)(PFUser *pfUser))complete;
+- (void) login:(NSDictionary *)credencials user:(void (^)(User *pfUser))complete;
+- (void) newSignUp: (NSString*)username pass: (NSString*) password user:(void (^)(User *pfUser))complete;
 - (NSString *) signUp: (NSString*)username pass: (NSString*) password;
 - (void) logOut;
-- (PFUser *) getCurrentUser;
+- (User *) getCurrentUser;
 
 @end

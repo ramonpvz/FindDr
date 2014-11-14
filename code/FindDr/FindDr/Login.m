@@ -7,15 +7,58 @@
 //
 
 #import "Login.h"
+#import "User.h"
 
 @implementation Login
 
-- (void) login:(NSDictionary *)credencials user:(void (^)(PFUser *pfUser))complete {
+- (void) login:(NSDictionary *)credencials user:(void (^)(User *pfUser))complete {
     NSString *usr = [credencials objectForKey:@"username"];
     NSString *pwd = [credencials objectForKey:@"password"];
-    [PFUser logInWithUsernameInBackground:usr password:pwd block:^(PFUser *user, NSError *error) {
-        complete(user);
+    [User logInWithUsernameInBackground:usr password:pwd block:^(PFUser *user, NSError *error) {
+        complete((User *)[PFUser user]);
     }];
+}
+
+- (void) newSignUp: (NSString*)username pass: (NSString*) password user:(void (^)(User *pfUser))complete {
+    User *userError = [[User alloc] init];
+    if ([DValidator validEmail:username]) {
+        if ([DValidator validPassword:password]) {
+            PFQuery *userQuery = [PFUser query];
+            [userQuery whereKey:@"username" equalTo:username];
+            [userQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+                if (objects.count > 0) {
+                    userError.message = [NSString  stringWithFormat:@"Sorry, the user %@ already exists.", username];
+                    complete(userError);
+                }
+                else
+                {
+                    PFUser *newUser = [PFUser user];
+                    newUser.username = username;
+                    newUser.password = password;
+                    [newUser signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                        if (error) {
+                            NSLog(@"Error: %@", error);
+                        }
+                        else
+                        {
+                            NSLog(@"User saved.");
+                            complete((User *)newUser);
+                        }
+                    }];
+                }
+            }];
+        }
+        else
+        {
+            userError.message = @"Password is incorrect; should be alphanumeric and not less than 6 characters.";
+            complete(userError);
+        }
+    }
+    else
+    {
+        userError.message = @"User is incorrect, verify the e-mail format.";
+        complete(userError);
+    }
 }
 
 - (NSString *) signUp: (NSString*)username pass: (NSString*) password {
@@ -49,13 +92,13 @@
 
 - (void) logOut {
 
-    [PFUser logOut];
+    [User logOut];
 
 }
 
-- (PFUser *) getCurrentUser {
+- (User *) getCurrentUser {
 
-    return [PFUser currentUser];
+    return [User currentUser];
 
 }
 

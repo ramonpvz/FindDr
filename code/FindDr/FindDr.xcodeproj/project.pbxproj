@@ -27,6 +27,8 @@
 		C311222D1A0A7BA3001A3FF7 /* Comment.m in Sources */ = {isa = PBXBuildFile; fileRef = C311222C1A0A7BA3001A3FF7 /* Comment.m */; };
 		C31122301A0A7C6A001A3FF7 /* Appointment.m in Sources */ = {isa = PBXBuildFile; fileRef = C311222F1A0A7C6A001A3FF7 /* Appointment.m */; };
 		C31122331A0A7C97001A3FF7 /* Speciality.m in Sources */ = {isa = PBXBuildFile; fileRef = C31122321A0A7C97001A3FF7 /* Speciality.m */; };
+		C342777A1A15360D00AF9237 /* Logout-32.png in Resources */ = {isa = PBXBuildFile; fileRef = C34277791A15360D00AF9237 /* Logout-32.png */; };
+		C342777D1A156A2700AF9237 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = C342777C1A156A2700AF9237 /* User.m */; };
 		C375C5EC1A096AC60075CEE4 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C375C5EB1A096AC60075CEE4 /* Accounts.framework */; };
 		C375C5EE1A096AD50075CEE4 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C375C5ED1A096AD50075CEE4 /* AdSupport.framework */; };
 		C375C5F01A096AE00075CEE4 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C375C5EF1A096AE00075CEE4 /* AudioToolbox.framework */; };
@@ -51,6 +53,8 @@
 		C3A592201A1287DA00675FA6 /* DValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A5921F1A1287DA00675FA6 /* DValidator.m */; };
 		C3A592241A129C9000675FA6 /* DSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A592231A129C9000675FA6 /* DSettings.m */; };
 		C3A5922A1A12CDB500675FA6 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A592291A12CDB500675FA6 /* LoginViewController.m */; };
+		C3A592301A12ED6700675FA6 /* DrInboxViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A5922F1A12ED6700675FA6 /* DrInboxViewController.m */; };
+		C3FFD8C11A13BB8100D30DED /* AppGenInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3FFD8C01A13BB8100D30DED /* AppGenInfoViewController.m */; };
 		E42ECE691A099A0A005E320E /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E42ECE681A099A0A005E320E /* SignUpViewController.m */; };
 		E42ECE6C1A09A381005E320E /* ShowClinicsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E42ECE6B1A09A381005E320E /* ShowClinicsViewController.m */; };
 		E44873B81A0B00640036CAFF /* clinic.png in Resources */ = {isa = PBXBuildFile; fileRef = E44873B71A0B00640036CAFF /* clinic.png */; };
@@ -124,6 +128,9 @@
 		C311222F1A0A7C6A001A3FF7 /* Appointment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Appointment.m; sourceTree = "<group>"; };
 		C31122311A0A7C97001A3FF7 /* Speciality.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Speciality.h; sourceTree = "<group>"; };
 		C31122321A0A7C97001A3FF7 /* Speciality.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Speciality.m; sourceTree = "<group>"; };
+		C34277791A15360D00AF9237 /* Logout-32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Logout-32.png"; sourceTree = "<group>"; };
+		C342777B1A156A2700AF9237 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		C342777C1A156A2700AF9237 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		C375C5EB1A096AC60075CEE4 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		C375C5ED1A096AD50075CEE4 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		C375C5EF1A096AE00075CEE4 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -150,6 +157,10 @@
 		C3A592231A129C9000675FA6 /* DSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSettings.m; sourceTree = "<group>"; };
 		C3A592281A12CDB500675FA6 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		C3A592291A12CDB500675FA6 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		C3A5922E1A12ED6700675FA6 /* DrInboxViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrInboxViewController.h; sourceTree = "<group>"; };
+		C3A5922F1A12ED6700675FA6 /* DrInboxViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrInboxViewController.m; sourceTree = "<group>"; };
+		C3FFD8BF1A13BB8100D30DED /* AppGenInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppGenInfoViewController.h; sourceTree = "<group>"; };
+		C3FFD8C01A13BB8100D30DED /* AppGenInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppGenInfoViewController.m; sourceTree = "<group>"; };
 		E42ECE671A099A0A005E320E /* SignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpViewController.h; sourceTree = "<group>"; };
 		E42ECE681A099A0A005E320E /* SignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpViewController.m; sourceTree = "<group>"; };
 		E42ECE6A1A09A381005E320E /* ShowClinicsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowClinicsViewController.h; sourceTree = "<group>"; };
@@ -243,6 +254,7 @@
 		A55566F41A0AB4A800B9CDAF /* images */ = {
 			isa = PBXGroup;
 			children = (
+				C34277791A15360D00AF9237 /* Logout-32.png */,
 				E44873B91A0B00700036CAFF /* user.png */,
 				E4DA5D2A1A0D7C1100C4FCAB /* error@2x.png */,
 				E44873B71A0B00640036CAFF /* clinic.png */,
@@ -296,6 +308,8 @@
 				C375C60A1A0998BC0075CEE4 /* Data Model */,
 				A58F738A1A0966F800226385 /* AppDelegate.h */,
 				A58F738B1A0966F800226385 /* AppDelegate.m */,
+				C3A5922E1A12ED6700675FA6 /* DrInboxViewController.h */,
+				C3A5922F1A12ED6700675FA6 /* DrInboxViewController.m */,
 				C3A592281A12CDB500675FA6 /* LoginViewController.h */,
 				C3A592291A12CDB500675FA6 /* LoginViewController.m */,
 				A58F73901A0966F800226385 /* ViewController.h */,
@@ -318,6 +332,8 @@
 				A58F738D1A0966F800226385 /* FindDr.xcdatamodeld */,
 				A55566F81A0AB75B00B9CDAF /* FindDr-Bridging-Header.h */,
 				A58F73861A0966F800226385 /* Supporting Files */,
+				C3FFD8BF1A13BB8100D30DED /* AppGenInfoViewController.h */,
+				C3FFD8C01A13BB8100D30DED /* AppGenInfoViewController.m */,
 			);
 			path = FindDr;
 			sourceTree = "<group>";
@@ -391,6 +407,8 @@
 				C31122321A0A7C97001A3FF7 /* Speciality.m */,
 				C39A98851A0C67B000E43C57 /* Patient.h */,
 				C39A98861A0C67B000E43C57 /* Patient.m */,
+				C342777B1A156A2700AF9237 /* User.h */,
+				C342777C1A156A2700AF9237 /* User.m */,
 			);
 			name = "Data Model";
 			sourceTree = "<group>";
@@ -548,6 +566,7 @@
 				E4AF648B1A129887006C24B9 /* draggable_annotation_icon@2x.png in Resources */,
 				A58F73951A0966F800226385 /* Main.storyboard in Resources */,
 				A55567041A0ABC7500B9CDAF /* lupa.png in Resources */,
+				C342777A1A15360D00AF9237 /* Logout-32.png in Resources */,
 				A555670D1A0ACBD100B9CDAF /* pacient.png in Resources */,
 				A58F739A1A0966F800226385 /* LaunchScreen.xib in Resources */,
 				A58F73971A0966F800226385 /* Images.xcassets in Resources */,
@@ -598,8 +617,11 @@
 				E4BBD3431A0AAF2C00E8DDF7 /* MapViewViewController.m in Sources */,
 				E42ECE6C1A09A381005E320E /* ShowClinicsViewController.m in Sources */,
 				E4BBD3401A0AAB9500E8DDF7 /* ClinicViewController.m in Sources */,
+				C342777D1A156A2700AF9237 /* User.m in Sources */,
 				E4DA5D241A0D7BB700C4FCAB /* DistancePickerView.m in Sources */,
 				A58F73921A0966F800226385 /* ViewController.m in Sources */,
+				C3A592301A12ED6700675FA6 /* DrInboxViewController.m in Sources */,
+				C3FFD8C11A13BB8100D30DED /* AppGenInfoViewController.m in Sources */,
 				E4DA5D221A0D7BB700C4FCAB /* ActionSheetLocalePicker.m in Sources */,
 				A58F738F1A0966F800226385 /* FindDr.xcdatamodeld in Sources */,
 				C311222A1A0A7B92001A3FF7 /* Ranking.m in Sources */,

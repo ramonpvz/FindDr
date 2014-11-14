@@ -20,6 +20,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.login = [[Login alloc] init];
+    [self clear];
+    if ([self.login getCurrentUser] != nil) {
+        [self performSegueWithIdentifier:@"inboxDr" sender:self];
+    }
 }
 
 - (IBAction)login:(id)sender {
@@ -33,15 +37,15 @@
         if (pfUser != nil)
         {
             [self clear];
-            [self performSegueWithIdentifier:@"showSignUp" sender:self];
+            [self performSegueWithIdentifier:@"inboxDr" sender:self];
         }
     }];
 
 }
 
 - (void) clear {
-    self.usernameField.text = @"";
-    self.passwordField.text = @"";
+    self.usernameField.text = @"ram@gmail.com";
+    self.passwordField.text = @"test12345";
 }
 
 @end
