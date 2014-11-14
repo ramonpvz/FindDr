@@ -11,5 +11,6 @@
 @interface User : PFUser <PFSubclassing>
 
 @property NSString *message;
+@property NSString *profile;
 
 @end

@@ -101,7 +101,7 @@
             if (self.specialties.count > 0) { //the doctor has at least one specialty
                 Login *login = [[Login alloc]init];
 
-                [login newSignUp:self.emailText.text pass:self.passwordText.text user:^(User *pfUser) {
+                [login signUp:self.emailText.text pass:self.passwordText.text user:^(User *pfUser) {
                     NSLog(@"User: %@",pfUser);
 
                     if (pfUser.username != nil) {

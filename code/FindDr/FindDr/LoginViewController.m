@@ -36,16 +36,24 @@
     [self.login login:credentials user:^(PFUser *pfUser) {
         if (pfUser != nil)
         {
+            User *usr = (User*)pfUser;
             [self clear];
-            [self performSegueWithIdentifier:@"inboxDr" sender:self];
+            if ([usr.profile isEqualToString:@"doctor"])
+            {
+                [self performSegueWithIdentifier:@"inboxDr" sender:self];
+            }
+            else
+            {
+                [self performSegueWithIdentifier:@"homeSearch" sender:self];
+            }
         }
     }];
 
 }
 
 - (void) clear {
-    self.usernameField.text = @"ram@gmail.com";
-    self.passwordField.text = @"test12345";
+    self.usernameField.text = @"";
+    self.passwordField.text = @"";
 }
 
 @end

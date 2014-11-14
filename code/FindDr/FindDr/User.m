@@ -11,6 +11,7 @@
 @implementation User
 
 @dynamic message;
+@dynamic profile;
 
 + (void) load
 {
