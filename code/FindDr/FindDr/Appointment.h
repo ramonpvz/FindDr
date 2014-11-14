@@ -20,7 +20,7 @@
 @property Patient *patient;
 @property Doctor *doctor;
 
-- (void) update: (NSString *) status;
+- (void) updateToStatus: (NSString *) status;
 
 + (void) save: (Appointment *) appointment;
 

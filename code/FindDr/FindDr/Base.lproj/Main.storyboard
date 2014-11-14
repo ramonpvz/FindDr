@@ -878,6 +878,9 @@
                                                 <rect key="frame" x="0.0" y="-30" width="97" height="30"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
+                                                <variation key="widthClass=compact" ambiguous="YES" misplaced="YES">
+                                                    <rect key="frame" x="0.0" y="-30" width="97" height="30.5"/>
+                                                </variation>
                                                 <connections>
                                                     <outlet property="delegate" destination="HDe-A5-Gp2" id="zAa-tx-c38"/>
                                                     <outlet property="presentInView" destination="veG-8T-2ii" id="cFD-xZ-IWb"/>
@@ -1929,31 +1932,6 @@
                                     </mask>
                                 </variation>
                             </textView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="neu-8O-Qft">
-                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="66" id="Udh-NJ-Fag"/>
-                                    <constraint firstAttribute="height" constant="30" id="yWo-32-vvE"/>
-                                </constraints>
-                                <state key="normal" title="Postpone">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="Udh-NJ-Fag"/>
-                                        <exclude reference="yWo-32-vvE"/>
-                                    </mask>
-                                </variation>
-                                <variation key="widthClass=compact">
-                                    <mask key="constraints">
-                                        <include reference="Udh-NJ-Fag"/>
-                                        <include reference="yWo-32-vvE"/>
-                                    </mask>
-                                </variation>
-                                <connections>
-                                    <action selector="postpone:" destination="v6r-2s-QYo" eventType="touchUpInside" id="XHm-Jo-tv7"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="015-A2-jty">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                 <constraints>
@@ -1979,6 +1957,33 @@
                                     <action selector="accept:" destination="v6r-2s-QYo" eventType="touchUpInside" id="ewC-Fx-9dg"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="neu-8O-Qft">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="66" id="Udh-NJ-Fag">
+                                        <variation key="widthClass=compact" constant="51"/>
+                                    </constraint>
+                                    <constraint firstAttribute="height" constant="30" id="yWo-32-vvE"/>
+                                </constraints>
+                                <state key="normal" title="Decline">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="Udh-NJ-Fag"/>
+                                        <exclude reference="yWo-32-vvE"/>
+                                    </mask>
+                                </variation>
+                                <variation key="widthClass=compact">
+                                    <mask key="constraints">
+                                        <include reference="Udh-NJ-Fag"/>
+                                        <include reference="yWo-32-vvE"/>
+                                    </mask>
+                                </variation>
+                                <connections>
+                                    <action selector="decline:" destination="v6r-2s-QYo" eventType="touchUpInside" id="huw-Ne-iV5"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -1988,7 +1993,7 @@
                                 <variation key="widthClass=compact" constant="23"/>
                             </constraint>
                             <constraint firstItem="neu-8O-Qft" firstAttribute="leading" secondItem="cXp-KD-VKU" secondAttribute="leading" constant="43" id="BhT-cL-zCk">
-                                <variation key="widthClass=compact" constant="33"/>
+                                <variation key="widthClass=compact" constant="41"/>
                             </constraint>
                             <constraint firstItem="g7R-E1-aqA" firstAttribute="top" secondItem="B1H-Sh-trb" secondAttribute="bottom" constant="20" id="Cbo-zi-qjX"/>
                             <constraint firstItem="xMB-YL-Tlc" firstAttribute="leading" secondItem="cXp-KD-VKU" secondAttribute="leading" constant="16" id="EsS-cA-aEY"/>
@@ -2019,8 +2024,8 @@
                                 <exclude reference="UcR-Lx-XwG"/>
                                 <exclude reference="9ny-zo-5yt"/>
                                 <exclude reference="xMB-YL-Tlc"/>
-                                <exclude reference="neu-8O-Qft"/>
                                 <exclude reference="015-A2-jty"/>
+                                <exclude reference="neu-8O-Qft"/>
                             </mask>
                             <mask key="constraints">
                                 <exclude reference="Lqo-Ql-cNf"/>
@@ -2049,8 +2054,8 @@
                                 <include reference="UcR-Lx-XwG"/>
                                 <include reference="9ny-zo-5yt"/>
                                 <include reference="xMB-YL-Tlc"/>
-                                <include reference="neu-8O-Qft"/>
                                 <include reference="015-A2-jty"/>
+                                <include reference="neu-8O-Qft"/>
                             </mask>
                             <mask key="constraints">
                                 <include reference="Lqo-Ql-cNf"/>
@@ -2074,12 +2079,12 @@
                     </view>
                     <connections>
                         <outlet property="acceptButton" destination="015-A2-jty" id="rJk-Zq-fUp"/>
+                        <outlet property="declineButton" destination="neu-8O-Qft" id="RiS-dd-7aW"/>
                         <outlet property="patientAge" destination="UcR-Lx-XwG" id="sXV-A0-qo9"/>
                         <outlet property="patientDateApp" destination="9ny-zo-5yt" id="Zrz-1E-hlJ"/>
                         <outlet property="patientDescription" destination="xMB-YL-Tlc" id="wpj-zM-DEz"/>
                         <outlet property="patientName" destination="e5F-M5-Uqn" id="tb5-vj-Arv"/>
                         <outlet property="photo" destination="Zll-6Y-JHx" id="3U5-vS-nNZ"/>
-                        <outlet property="postponeButton" destination="neu-8O-Qft" id="M69-Fp-Y3o"/>
                         <segue destination="5No-4Y-VFr" kind="unwind" unwindAction="unwindAppointment:" id="fHB-Rh-ywh"/>
                     </connections>
                 </viewController>

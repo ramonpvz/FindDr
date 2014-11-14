@@ -18,9 +18,9 @@
 @property (strong, nonatomic) IBOutlet UILabel *patientAge;
 @property (strong, nonatomic) IBOutlet UILabel *patientDateApp;
 @property (strong, nonatomic) IBOutlet UITextView *patientDescription;
-@property (strong, nonatomic) IBOutlet UIButton *postponeButton;
+@property (strong, nonatomic) IBOutlet UIButton *declineButton;
 @property (strong, nonatomic) IBOutlet UIButton *acceptButton;
-@property NSDate *postponedDate;
+@property NSDate *acceptedDate;
 @end
 
 @implementation AppGenInfoViewController
@@ -34,9 +34,15 @@
     self.patientDateApp.text = [DValidator dateToString:self.appointment.date];
     self.patientDescription.text = [self.appointment objectForKey:@"description"];
     if ([self.appointment.status isEqualToString:@"scheduled"]) {
-        self.postponeButton.hidden = YES;
+        self.declineButton.hidden = YES;
         self.acceptButton.hidden = YES;
     }
+}
+- (IBAction)decline:(id)sender {
+    NSString *msg = @"The schedule will be declined";
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Confirm" message:msg delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Accept", nil];
+    [alert setTag:1];
+    [alert show];
 }
 
 - (IBAction)accept:(id)sender {
@@ -50,102 +56,27 @@
 - (void) alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     if (alertView.tag == 1)
     {
-        if (buttonIndex ==  1)
+        if (buttonIndex == 1)
         {
-            [Schedule getScheduleByClinic:self.appointment.clinic sched:^(Schedule *schedule) {
-                NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-                [dateFormatter setDateFormat:@"EEEE"];
-                NSString *day = [dateFormatter stringFromDate:self.postponedDate];
-                [dateFormatter setDateFormat:@"HH"];
-                int hour = [[dateFormatter stringFromDate:self.postponedDate] intValue] - 1;
-                NSNumber *isAvailable = [[self getDayTime:schedule day:day] objectAtIndex:hour];
-                if ([isAvailable boolValue] == YES)
-                {
-                    NSLog(@"That time is available.");
-                    //self.appointment.status = @"scheduled";
-                    //[self.appointment save];
-                    [self.navigationController popViewControllerAnimated:YES];
-                }
-                else
-                {
-                    NSLog(@"That time is not available.");
-                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Busy time" message:@"Select different time" delegate:self cancelButtonTitle:@"Accept" otherButtonTitles:nil, nil];
-                    [alert setTag:3];
-                    [alert show];
-                }
-            }];
+            [self.appointment updateToStatus:@"declined"];
+            [self.navigationController popViewControllerAnimated:YES];
         }
     }
     else if (alertView.tag == 2)
     {
         if (buttonIndex ==  1)
         {
-            self.appointment.status = @"scheduled";
-            [self.appointment save];
+            [self.appointment updateToStatus:@"scheduled"];
+            [self.appointment.doctor getAppointmentsByStatusAndDate:self.appointment.date status:@"pending" apps:^(NSArray *appointments){
+                NSLog(@"Notify to these appointments: %@", appointments);
+            }];
             [self.navigationController popViewControllerAnimated:YES];
         }
     }
-    else if (alertView.tag == 3 || alertView.tag == 4)
+    else
     {
-        [self postpone:self];
+        NSLog(@"Tag is not defined");
     }
-}
-
-- (IBAction)postpone:(id)sender {
-    [ActionSheetDatePicker
-        showPickerWithTitle:@"Select:"
-        datePickerMode:UIDatePickerModeDateAndTime
-        selectedDate:[NSDate date]
-        doneBlock:^(ActionSheetDatePicker *picker, id selectedDate, id origin) {
-
-            NSDate *currentDate = [NSDate date];
-            NSDateComponents *dateComponents = [[NSDateComponents alloc] init];
-            [dateComponents setDay:-1];
-            NSDate *yesterday = [[NSCalendar currentCalendar] dateByAddingComponents:dateComponents toDate:currentDate options:0];
-            NSLog(@"\ncurrentDate: %@\nseven days ago: %@", currentDate, yesterday);
-    
-            if ([yesterday timeIntervalSince1970] > [selectedDate timeIntervalSince1970]) {
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Message" message:@"Selected date should be in future" delegate:self cancelButtonTitle:@"Accept" otherButtonTitles:nil, nil];
-                [alert setTag:4];
-                [alert show];
-            }
-            else
-            {
-                NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-                [dateFormatter setDateFormat:@"dd-MM-yyyy 'at' HH:mm a"];
-                NSString *strDate = [dateFormatter stringFromDate:selectedDate];
-                NSString *msg = [NSString stringWithFormat:@"%@ %@", @"The appointment will be scheduled the ",strDate];
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Confirm" message:msg delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Accept", nil];
-                [alert setTag:1];
-                [alert show];
-                self.postponedDate = selectedDate;
-            }
-        }
-        cancelBlock:^(ActionSheetDatePicker *picker) {
-            NSLog(@"Block Date Picker Canceled");
-        }origin:self.view];
-}
-
-- (NSArray *) getDayTime:(Schedule *)schedule day : (NSString *)day {
-    NSArray *time = [NSArray array];
-    if ([@"Monday" isEqualToString:day]) {
-        time = schedule.monday;
-    } else if ([@"Tuesday" isEqualToString:day]) {
-        time = schedule.tuesday;
-    } else if ([@"Wednesday" isEqualToString:day]) {
-        time = schedule.wednesday;
-    } else if ([@"Thursday" isEqualToString:day]) {
-        time = schedule.thursday;
-    } else if ([@"Friday" isEqualToString:day]) {
-        time = schedule.friday;
-    } else if ([@"Saturday" isEqualToString:day]) {
-        time = schedule.saturday;
-    } else if ([@"Sunday" isEqualToString:day]) {
-        time = schedule.sunday;
-    } else {
-        NSLog(@"Day is not available: %@", day);
-    }
-    return time;
 }
 
 @end

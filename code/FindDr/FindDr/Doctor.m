@@ -77,6 +77,15 @@
     }];
 }
 
+- (void) getAppointmentsByStatusAndDate: (NSDate *)date status: (NSString *)status apps:(void (^)(NSArray *appointments))complete {
+    PFQuery *appointmentsQuery = [Appointment query];
+    [appointmentsQuery whereKey:@"date" equalTo:date];
+    [appointmentsQuery whereKey:@"status" equalTo:status];
+    [appointmentsQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        complete(objects);
+    }];
+}
+
 - (void) addSpeciality: (Speciality *) speciality {
     PFRelation *specialityRelation = self.specialities;
     [specialityRelation addObject:speciality];

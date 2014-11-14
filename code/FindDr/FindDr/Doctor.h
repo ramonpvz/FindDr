@@ -32,6 +32,7 @@
 - (void) getSpecialities:(void (^)(NSArray *specialities))complete;
 - (void) getClinics:(void (^)(NSArray *clinics))complete;
 - (void) getAppointmentsByStatus: (NSString *)status apps:(void (^)(NSArray *appointments))complete;
+- (void) getAppointmentsByStatusAndDate: (NSDate *)date status: (NSString *)status apps:(void (^)(NSArray *appointments))complete;
 - (void) getAppointments:(void (^)(NSArray *appointments))complete;
 - (void) addSpeciality: (Speciality *) speciality;
 - (void) addClinic: (Clinic *) clinic;

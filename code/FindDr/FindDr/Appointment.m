@@ -26,7 +26,7 @@
     return @"Appointment";
 }
 
-- (void) update: (NSString *) status
+- (void) updateToStatus: (NSString *) status
 {
     [self setObject:status forKey:@"status"];
     [self saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
