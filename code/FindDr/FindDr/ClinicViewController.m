@@ -98,6 +98,7 @@
 }
 
 - (IBAction)scheduleButtonTapped:(UIButton *)sender {
+    [self performSegueWithIdentifier:@"showSchedule" sender:self];
 }
 
 - (IBAction)selectSpecialtiesTapped:(UIButton *)sender {

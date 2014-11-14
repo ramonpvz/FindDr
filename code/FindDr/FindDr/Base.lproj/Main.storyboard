@@ -1092,7 +1092,6 @@
                                                 </variation>
                                                 <connections>
                                                     <action selector="scheduleButtonTapped:" destination="HDe-A5-Gp2" eventType="touchUpInside" id="BLa-7J-Za3"/>
-                                                    <segue destination="O3E-Au-OsG" kind="show" identifier="showHours" id="yYu-fO-ADl"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -1358,6 +1357,7 @@
                         <outlet property="postalCodeText" destination="88q-ra-yHl" id="wNZ-Jh-KKX"/>
                         <outlet property="stateText" destination="w8j-Je-2Wv" id="vgb-KO-bVo"/>
                         <outlet property="streetText" destination="KCb-MP-8aL" id="bVg-Py-1gM"/>
+                        <segue destination="Fsx-Rr-tOH" kind="show" identifier="showSchedule" id="X0g-gn-vtn"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gpF-eU-ecG" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1368,29 +1368,6 @@
                 </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="2649" y="231"/>
-        </scene>
-        <!--Hours-->
-        <scene sceneID="RSd-Ox-6Rp">
-            <objects>
-                <viewController id="O3E-Au-OsG" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="qp1-CZ-qUt"/>
-                        <viewControllerLayoutGuide type="bottom" id="dxU-d5-HsA"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="Q3b-pk-XP3">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="Hours" id="alT-Y4-VWE">
-                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="S2g-eO-DRm">
-                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        </barButtonItem>
-                    </navigationItem>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ocR-eh-Ohg" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2649" y="990"/>
         </scene>
         <!--Map View-->
         <scene sceneID="Ov0-h3-LS4">
@@ -1679,7 +1656,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sLD-pf-z5j" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2559" y="-1863"/>
+            <point key="canvasLocation" x="2649" y="977"/>
         </scene>
         <!--Dr Inbox View Controller-->
         <scene sceneID="Vku-HK-h2s">
@@ -2365,24 +2342,6 @@
             <point key="canvasLocation" x="1444" y="-2547"/>
         </scene>
         <!--Navigation Controller-->
-        <scene sceneID="Aqu-Gd-rSx">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Y1s-kg-sxl" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="fiA-o2-5h8">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="Fsx-Rr-tOH" kind="relationship" relationship="rootViewController" id="0HY-Ek-JTL"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Qrt-xz-sYj" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1747" y="-1863"/>
-        </scene>
-        <!--Navigation Controller-->
         <scene sceneID="4KT-Re-bOU">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="lux-Ob-pQo" sceneMemberID="viewController">
@@ -2410,7 +2369,7 @@
         <image name="user.png" width="600" height="557"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="owX-Tx-wFs"/>
         <segue reference="6IX-UW-gso"/>
+        <segue reference="d8v-Sz-oeK"/>
     </inferredMetricsTieBreakers>
 </document>
