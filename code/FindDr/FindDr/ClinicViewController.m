@@ -8,6 +8,8 @@
 
 #import "ClinicViewController.h"
 #import "TextFieldValidator.h"
+#import "Doctor.h"
+#import "Clinic.h"
 
 @interface ClinicViewController () <UIActionSheetDelegate>
 @property (strong, nonatomic) IBOutlet UIView *contentView;
@@ -19,6 +21,7 @@
 @property (strong, nonatomic) IBOutlet TextFieldValidator *cityText;
 @property (strong, nonatomic) IBOutlet TextFieldValidator *stateText;
 @property (strong, nonatomic) IBOutlet TextFieldValidator *postalCodeText;
+@property (strong, nonatomic) Doctor *currentDoctor;
 
 @end
 
@@ -26,6 +29,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [Doctor getDoctorByUser:[PFUser currentUser] doc:^(Doctor *doctor) {
+        self.currentDoctor = doctor;
+    }];
 
     [self.numberText addRegx:@"[0-9]{1,}" withMsg:@"Only numeric characters are allowed"];
     [self.postalCodeText addRegx:@"[0-9]{1,5}" withMsg:@"Only 5 numeric characters are allowed"];

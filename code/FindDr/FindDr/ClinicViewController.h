@@ -7,9 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Clinic.h"
 
 @interface ClinicViewController : UIViewController <UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 
-@property BOOL typeOperation;
+@property (strong, nonatomic) Clinic *currentClinic;
 
 @end

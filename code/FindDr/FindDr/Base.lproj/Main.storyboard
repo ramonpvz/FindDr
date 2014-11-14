@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="lux-Ob-pQo">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="hI9-SR-S7C">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
-        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -765,6 +764,10 @@
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="PJO-OB-m9N" id="XHy-lv-Bxq"/>
+                                    <outlet property="delegate" destination="PJO-OB-m9N" id="OI3-ki-JpY"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -798,13 +801,23 @@
                         </variation>
                     </view>
                     <navigationItem key="navigationItem" title="Clinics" id="F6W-yM-uqV">
+                        <barButtonItem key="leftBarButtonItem" title="Home" id="LHd-rR-8CX">
+                            <connections>
+                                <action selector="homeButtonTapped:" destination="PJO-OB-m9N" id="Rqg-Fj-cQY"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="rYb-HC-3KY">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
-                                <segue destination="HDe-A5-Gp2" kind="show" identifier="addClinic" id="Pnk-fH-1hL"/>
+                                <action selector="addClinicButtonTapped:" destination="PJO-OB-m9N" id="d6s-GD-MuC"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="clinicsTable" destination="Rb2-vk-lPn" id="rZh-Ks-CZl"/>
+                        <segue destination="eCu-wW-mKG" kind="show" identifier="goHome" id="owX-Tx-wFs"/>
+                        <segue destination="HDe-A5-Gp2" kind="show" identifier="addClinic" id="6IX-UW-gso"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wCn-2K-vcF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -878,9 +891,6 @@
                                                 <rect key="frame" x="0.0" y="-30" width="97" height="30"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
-                                                <variation key="widthClass=compact" ambiguous="YES" misplaced="YES">
-                                                    <rect key="frame" x="0.0" y="-30" width="97" height="30.5"/>
-                                                </variation>
                                                 <connections>
                                                     <outlet property="delegate" destination="HDe-A5-Gp2" id="zAa-tx-c38"/>
                                                     <outlet property="presentInView" destination="veG-8T-2ii" id="cFD-xZ-IWb"/>
@@ -2400,6 +2410,7 @@
         <image name="user.png" width="600" height="557"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Pnk-fH-1hL"/>
+        <segue reference="owX-Tx-wFs"/>
+        <segue reference="6IX-UW-gso"/>
     </inferredMetricsTieBreakers>
 </document>
