@@ -15,9 +15,14 @@
     NSString *usr = [credencials objectForKey:@"username"];
     NSString *pwd = [credencials objectForKey:@"password"];
     [User logInWithUsernameInBackground:usr password:pwd block:^(PFUser *user, NSError *error) {
-        User *usr = (User *)[PFUser user];
-        usr.profile = [user objectForKey:@"profile"];
-        complete(usr);
+        if(!error) {
+            User *usr = (User *)[PFUser user];
+            usr.profile = [user objectForKey:@"profile"];
+            complete(usr);
+        }
+        else {
+            complete((User *)[PFUser user]);
+        }
     }];
 }
 

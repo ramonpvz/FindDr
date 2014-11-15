@@ -49,7 +49,8 @@
 
     [self.passwordText addRegx:@"^.{6,32}$" withMsg:@"Password charaters limit should be come between 6-32"];
 
-    //self.birthdayText.isMandatory = NO;
+    self.secondLastNameText.isMandatory = NO;
+    self.birthdayText.isMandatory = NO;
 
     [self.phoneNumberText addRegx:@"[0-9]{1,}" withMsg:@"Only numeric characters are allowed"];
 
@@ -100,43 +101,45 @@
         if ((self.switchUser.on == YES) & [self.licenseText validate]) {
             if (self.specialties.count > 0) { //the doctor has at least one specialty
                 Login *login = [[Login alloc]init];
-
                 [login signUp:self.emailText.text pass:self.passwordText.text user:^(User *pfUser) {
                     NSLog(@"User: %@",pfUser);
-
-                    if (pfUser.username != nil) {
-                        //save doctor data
-                        Doctor *doc = [Doctor object];
-
-                        doc.user = [login getCurrentUser];
-                        self.imageData = UIImageJPEGRepresentation(self.userImage.image, 1.0f);
-                        PFFile *image = [PFFile fileWithName:@"image.png" data:self.imageData];
-                        doc.photo = image;
-                        doc.licence = self.licenseText.text;
-                        doc.title = self.titleText.text;
-                        doc.gender = self.genderText.text;
-                        doc.email = self.emailText.text;
-                        doc.phone = self.phoneNumberText.text;
-
-                        NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
-                        [formatter setDateFormat:@"dd/MM/yyyy"];
-                        NSDate *date = [formatter dateFromString:self.birthdayText.text];
-                        doc.birthday = date;
-
-                        doc.name = self.firstNameText.text;
-                        doc.lastName = self.lastNameText.text;
-                        doc.secondLastName = self.secondLastNameText.text;
-
-                        [doc saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-                            for (Speciality *speciality in self.specialties){
-                                [doc addSpeciality:speciality];
-                            }
-
-                            [self performSegueWithIdentifier:@"showClinics" sender:self];
-                        }];
-                    }else{
-                        [[[UIAlertView alloc] initWithTitle:nil message:pfUser.message delegate:nil cancelButtonTitle:nil otherButtonTitles:@"Ok", nil] show];
-                    }
+                    pfUser.profile = @"doctor";
+                    [pfUser saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                        if (pfUser.username != nil) {
+                            //save doctor data
+                            Doctor *doc = [Doctor object];
+                            
+                            doc.user = [login getCurrentUser];
+                            self.imageData = UIImageJPEGRepresentation(self.userImage.image, 1.0f);
+                            PFFile *image = [PFFile fileWithName:@"image.png" data:self.imageData];
+                            doc.photo = image;
+                            doc.licence = self.licenseText.text;
+                            doc.title = self.titleText.text;
+                            doc.gender = self.genderText.text;
+                            doc.email = self.emailText.text;
+                            doc.phone = self.phoneNumberText.text;
+                            
+                            NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
+                            [formatter setDateFormat:@"dd/MM/yyyy"];
+                            NSDate *date = [formatter dateFromString:self.birthdayText.text];
+                            doc.birthday = date;
+                            
+                            doc.name = self.firstNameText.text;
+                            doc.lastName = self.lastNameText.text;
+                            doc.secondLastName = self.secondLastNameText.text;
+                            
+                            
+                            [doc saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                                for (Speciality *speciality in self.specialties){
+                                    [doc addSpeciality:speciality];
+                                }
+                                
+                                [self performSegueWithIdentifier:@"showClinics" sender:self];
+                            }];
+                        }else{
+                            [[[UIAlertView alloc] initWithTitle:nil message:pfUser.message delegate:nil cancelButtonTitle:nil otherButtonTitles:@"Ok", nil] show];
+                        }
+                    }];
                 }];
             }else{
                 [[[UIAlertView alloc] initWithTitle:nil message:@"Please, add at least one specialty." delegate:nil cancelButtonTitle:nil otherButtonTitles:@"Ok", nil] show];

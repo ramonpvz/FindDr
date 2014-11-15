@@ -28,6 +28,8 @@
 		C311222D1A0A7BA3001A3FF7 /* Comment.m in Sources */ = {isa = PBXBuildFile; fileRef = C311222C1A0A7BA3001A3FF7 /* Comment.m */; };
 		C31122301A0A7C6A001A3FF7 /* Appointment.m in Sources */ = {isa = PBXBuildFile; fileRef = C311222F1A0A7C6A001A3FF7 /* Appointment.m */; };
 		C31122331A0A7C97001A3FF7 /* Speciality.m in Sources */ = {isa = PBXBuildFile; fileRef = C31122321A0A7C97001A3FF7 /* Speciality.m */; };
+		C33861FF1A16B9A90060ADA7 /* Search.m in Sources */ = {isa = PBXBuildFile; fileRef = C33861FE1A16B9A90060ADA7 /* Search.m */; };
+		C33862021A16C8050060ADA7 /* Result.m in Sources */ = {isa = PBXBuildFile; fileRef = C33862011A16C8050060ADA7 /* Result.m */; };
 		C342777A1A15360D00AF9237 /* Logout-32.png in Resources */ = {isa = PBXBuildFile; fileRef = C34277791A15360D00AF9237 /* Logout-32.png */; };
 		C342777D1A156A2700AF9237 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = C342777C1A156A2700AF9237 /* User.m */; };
 		C375C5EC1A096AC60075CEE4 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C375C5EB1A096AC60075CEE4 /* Accounts.framework */; };
@@ -130,6 +132,10 @@
 		C311222F1A0A7C6A001A3FF7 /* Appointment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Appointment.m; sourceTree = "<group>"; };
 		C31122311A0A7C97001A3FF7 /* Speciality.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Speciality.h; sourceTree = "<group>"; };
 		C31122321A0A7C97001A3FF7 /* Speciality.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Speciality.m; sourceTree = "<group>"; };
+		C33861FD1A16B9A90060ADA7 /* Search.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Search.h; sourceTree = "<group>"; };
+		C33861FE1A16B9A90060ADA7 /* Search.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Search.m; sourceTree = "<group>"; };
+		C33862001A16C8050060ADA7 /* Result.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Result.h; sourceTree = "<group>"; };
+		C33862011A16C8050060ADA7 /* Result.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Result.m; sourceTree = "<group>"; };
 		C34277791A15360D00AF9237 /* Logout-32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Logout-32.png"; sourceTree = "<group>"; };
 		C342777B1A156A2700AF9237 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		C342777C1A156A2700AF9237 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
@@ -386,6 +392,10 @@
 			isa = PBXGroup;
 			children = (
 				A5BBA1D91A16763800BDF698 /* SearchDoctorViewController.swift */,
+				C33861FD1A16B9A90060ADA7 /* Search.h */,
+				C33861FE1A16B9A90060ADA7 /* Search.m */,
+				C33862001A16C8050060ADA7 /* Result.h */,
+				C33862011A16C8050060ADA7 /* Result.m */,
 			);
 			name = search;
 			sourceTree = "<group>";
@@ -606,6 +616,7 @@
 				C375C60D1A0999FB0075CEE4 /* Doctor.m in Sources */,
 				C3A5922A1A12CDB500675FA6 /* LoginViewController.m in Sources */,
 				C30AE7671A0D559500C61111 /* Login.m in Sources */,
+				C33862021A16C8050060ADA7 /* Result.m in Sources */,
 				C31122271A0A7B39001A3FF7 /* Schedule.m in Sources */,
 				A51313F31A13F6500079FFFE /* CalendarCell.swift in Sources */,
 				E4AF64871A12975D006C24B9 /* AZDraggableAnnotationView.m in Sources */,
@@ -635,6 +646,7 @@
 				C3A592301A12ED6700675FA6 /* DrInboxViewController.m in Sources */,
 				C3FFD8C11A13BB8100D30DED /* AppGenInfoViewController.m in Sources */,
 				E4DA5D221A0D7BB700C4FCAB /* ActionSheetLocalePicker.m in Sources */,
+				C33861FF1A16B9A90060ADA7 /* Search.m in Sources */,
 				A58F738F1A0966F800226385 /* FindDr.xcdatamodeld in Sources */,
 				C311222A1A0A7B92001A3FF7 /* Ranking.m in Sources */,
 				C31122331A0A7C97001A3FF7 /* Speciality.m in Sources */,

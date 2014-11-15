@@ -21,8 +21,12 @@
     [super viewDidLoad];
     self.login = [[Login alloc] init];
     [self clear];
-    if ([self.login getCurrentUser] != nil) {
-        [self performSegueWithIdentifier:@"inboxDr" sender:self];
+    User *currentUser = [self.login getCurrentUser];
+    if (currentUser != nil) {
+        if ([currentUser.profile isEqualToString:@"doctor"])
+            [self performSegueWithIdentifier:@"inboxDr" sender:self];
+        else
+            [self performSegueWithIdentifier:@"homeSearch" sender:self];
     }
 }
 
@@ -34,7 +38,7 @@
                                nil];
 
     [self.login login:credentials user:^(PFUser *pfUser) {
-        if (pfUser != nil)
+        if ([self.login getCurrentUser] != nil)
         {
             User *usr = (User*)pfUser;
             [self clear];
@@ -42,10 +46,18 @@
             {
                 [self performSegueWithIdentifier:@"inboxDr" sender:self];
             }
-            else
+            else if ([usr.profile isEqualToString:@"patient"])
             {
                 [self performSegueWithIdentifier:@"homeSearch" sender:self];
             }
+            else
+            {
+                NSLog(@"Invalid profile: %@",usr.profile);
+            }
+        }
+        else
+        {
+            NSLog(@"User is not valid.");
         }
     }];
 
