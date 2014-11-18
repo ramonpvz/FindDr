@@ -46,9 +46,19 @@
 
 + (NSString *) dateToString : (NSDate*) date
 {
-    NSDateFormatter *dateformate=[[NSDateFormatter alloc]init];
-    [dateformate setDateFormat:@"yyyy-MM-dd HH:mm a"]; // Date formater
-    return [dateformate stringFromDate:date];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setLocale:[NSLocale currentLocale]];
+    [dateFormatter setTimeZone:[NSTimeZone timeZoneWithName:@"GMT"]];
+    [dateFormatter setDateFormat:@"MM/dd/yyyy hh:00 a"];
+    return [dateFormatter stringFromDate:date];
+}
+
++ (NSDate *) stringToDate : (NSString*) date {
+    NSDateFormatter *dateFormatter2 = [[NSDateFormatter alloc] init];
+    [dateFormatter2 setLocale:[NSLocale currentLocale]];
+    [dateFormatter2 setTimeZone:[NSTimeZone timeZoneWithName:@"GMT"]];
+    [dateFormatter2 setDateFormat:@"MM/dd/yyyy hh:00 a"];
+    return [dateFormatter2 dateFromString:date];
 }
 
 @end

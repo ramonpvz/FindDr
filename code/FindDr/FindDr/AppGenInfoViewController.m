@@ -58,21 +58,35 @@
     {
         if (buttonIndex == 1)
         {
-            [self.appointment updateToStatus:@"declined"];
-            [self.navigationController popViewControllerAnimated:YES];
+            [self.appointment updateToStatus:@"declined" result:^(NSNumber *result) {
+                if(result == [NSNumber numberWithInt:1]) {
+                    [self.navigationController popViewControllerAnimated:YES];
+                }
+            }];
         }
     }
     else if (alertView.tag == 2)
     {
         if (buttonIndex ==  1)
         {
-            [self.appointment updateToStatus:@"scheduled"];
-            [self.appointment.doctor getAppointmentsByStatusAndDate:self.appointment.date status:@"pending" apps:^(NSArray *appointments){
-                for (Appointment *pendingAppointment in appointments) {
-                    [pendingAppointment updateToStatus:@"declined"];
+            [self.appointment updateToStatus:@"scheduled" result:^(NSNumber *result) {
+                if(result == [NSNumber numberWithInt:1]) {
+                    [self.appointment.doctor getAppointmentsByStatusAndDate:self.appointment.date status:@"pending" apps:^(NSArray *appointments){
+                        for (Appointment *pendingAppointment in appointments) {
+                            NSLog(@"Automatically declining: %@",pendingAppointment);
+                            [pendingAppointment updateToStatus:@"declined" result:^(NSNumber *result) {
+                                if(result == [NSNumber numberWithInt:1])
+                                {
+                                    NSLog(@"Appointment declined: %@",pendingAppointment.objectId);
+                                }
+                            }];
+                        }
+                    }];
+                    [self.navigationController popViewControllerAnimated:YES];
+                } else {
+                    NSLog(@"Error occurred.");
                 }
             }];
-            [self.navigationController popViewControllerAnimated:YES];
         }
     }
     else

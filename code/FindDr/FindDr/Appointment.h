@@ -20,7 +20,9 @@
 @property Patient *patient;
 @property Doctor *doctor;
 
-- (void) updateToStatus: (NSString *) status;
+//+ (void) getDoctorByUser:(PFUser *)user doc:(void (^)(Doctor *doctor))complete;
+
+- (void) updateToStatus: (NSString *) status result:(void (^)(NSNumber *result))complete;;
 
 + (void) save: (Appointment *) appointment;
 

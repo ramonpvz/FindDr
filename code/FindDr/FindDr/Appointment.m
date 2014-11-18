@@ -26,11 +26,15 @@
     return @"Appointment";
 }
 
-- (void) updateToStatus: (NSString *) status
+- (void) updateToStatus: (NSString *) status result:(void (^)(NSNumber *result))complete
 {
     [self setObject:status forKey:@"status"];
     [self saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-        NSLog(@"Status saved.");
+        if(!error) {
+            complete([NSNumber numberWithInt:1]);
+        } else {
+            NSLog(@"Error: %@",error);
+        }
     }];
 }
 

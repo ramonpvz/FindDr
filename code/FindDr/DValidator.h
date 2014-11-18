@@ -14,5 +14,6 @@
 + (BOOL) validEmail : (NSString*) emailString;
 + (BOOL) validPassword : (NSString*) passString;
 + (NSString *) dateToString : (NSDate*) date;
++ (NSDate *) stringToDate : (NSString*) date;
 
 @end
