@@ -19,6 +19,7 @@
 @property NSString *latitude;
 @property NSString *longitude;
 @property NSArray *specialities;
+@property PFFile *photo;
 
 + (void) save: (Clinic *) clinic;
 

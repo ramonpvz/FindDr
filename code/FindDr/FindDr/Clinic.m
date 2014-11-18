@@ -19,6 +19,7 @@
 @dynamic latitude;
 @dynamic longitude;
 @dynamic specialities;
+@dynamic photo;
 
 + (void) load
 {
