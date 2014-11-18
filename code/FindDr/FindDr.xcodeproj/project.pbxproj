@@ -57,6 +57,7 @@
 		C3A5922A1A12CDB500675FA6 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A592291A12CDB500675FA6 /* LoginViewController.m */; };
 		C3A592301A12ED6700675FA6 /* DrInboxViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A5922F1A12ED6700675FA6 /* DrInboxViewController.m */; };
 		C3FFD8C11A13BB8100D30DED /* AppGenInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3FFD8C01A13BB8100D30DED /* AppGenInfoViewController.m */; };
+		E427928C1A1BC709002A630B /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = E427928B1A1BC709002A630B /* MBProgressHUD.m */; };
 		E42ECE691A099A0A005E320E /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E42ECE681A099A0A005E320E /* SignUpViewController.m */; };
 		E42ECE6C1A09A381005E320E /* ShowClinicsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E42ECE6B1A09A381005E320E /* ShowClinicsViewController.m */; };
 		E44873B81A0B00640036CAFF /* clinic.png in Resources */ = {isa = PBXBuildFile; fileRef = E44873B71A0B00640036CAFF /* clinic.png */; };
@@ -166,6 +167,8 @@
 		C3A5922F1A12ED6700675FA6 /* DrInboxViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrInboxViewController.m; sourceTree = "<group>"; };
 		C3FFD8BF1A13BB8100D30DED /* AppGenInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppGenInfoViewController.h; sourceTree = "<group>"; };
 		C3FFD8C01A13BB8100D30DED /* AppGenInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppGenInfoViewController.m; sourceTree = "<group>"; };
+		E427928A1A1BC709002A630B /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
+		E427928B1A1BC709002A630B /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		E42ECE671A099A0A005E320E /* SignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpViewController.h; sourceTree = "<group>"; };
 		E42ECE681A099A0A005E320E /* SignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpViewController.m; sourceTree = "<group>"; };
 		E42ECE6A1A09A381005E320E /* ShowClinicsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowClinicsViewController.h; sourceTree = "<group>"; };
@@ -329,6 +332,7 @@
 				E42ECE6B1A09A381005E320E /* ShowClinicsViewController.m */,
 				E42ECE671A099A0A005E320E /* SignUpViewController.h */,
 				E42ECE681A099A0A005E320E /* SignUpViewController.m */,
+				E42792891A1BC709002A630B /* MBProgressHUD */,
 				E4AF64841A129740006C24B9 /* AZDraggableAnnotationView */,
 				E4DA5D261A0D7BDC00C4FCAB /* TextFieldValidator */,
 				E4DA5D0C1A0D7BB700C4FCAB /* Pickers */,
@@ -436,6 +440,15 @@
 				C3A592231A129C9000675FA6 /* DSettings.m */,
 			);
 			name = Settings;
+			sourceTree = "<group>";
+		};
+		E42792891A1BC709002A630B /* MBProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				E427928A1A1BC709002A630B /* MBProgressHUD.h */,
+				E427928B1A1BC709002A630B /* MBProgressHUD.m */,
+			);
+			path = MBProgressHUD;
 			sourceTree = "<group>";
 		};
 		E4AF64841A129740006C24B9 /* AZDraggableAnnotationView */ = {
@@ -620,6 +633,7 @@
 				C31122301A0A7C6A001A3FF7 /* Appointment.m in Sources */,
 				E4DA5D291A0D7BF200C4FCAB /* TextFieldValidator.m in Sources */,
 				A55567251A0AE93D00B9CDAF /* TextField.swift in Sources */,
+				E427928C1A1BC709002A630B /* MBProgressHUD.m in Sources */,
 				E4DA5D1F1A0D7BB700C4FCAB /* ActionSheetCustomPicker.m in Sources */,
 				A55567271A0AE9BF00B9CDAF /* UIColorExtension.swift in Sources */,
 				C39A98871A0C67B000E43C57 /* Patient.m in Sources */,
