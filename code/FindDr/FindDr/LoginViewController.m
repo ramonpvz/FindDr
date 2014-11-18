@@ -8,10 +8,12 @@
 
 #import "LoginViewController.h"
 #import "Login.h"
+#import "TextFieldValidator.h"
+#import "MBProgressHUD.h"
 
 @interface LoginViewController ()
-@property (strong, nonatomic) IBOutlet UITextField *usernameField;
-@property (strong, nonatomic) IBOutlet UITextField *passwordField;
+@property (strong, nonatomic) IBOutlet TextFieldValidator *usernameField;
+@property (strong, nonatomic) IBOutlet TextFieldValidator *passwordField;
 @property Login *login;
 @end
 
@@ -19,6 +21,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    //Validations
+    [self.usernameField addRegx:@"[A-Z0-9a-z._%+-]{3,}+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}" withMsg:@"Enter valid email"];
+    [self.passwordField addRegx:@"^.{6,32}$" withMsg:@"Password charaters limit should be come between 6-32"];
+
     self.login = [[Login alloc] init];
     [self clear];
     User *currentUser = [self.login getCurrentUser];
@@ -31,41 +37,47 @@
 }
 
 - (IBAction)login:(id)sender {
+    if ([self.usernameField validate] & [self.passwordField validate]) {
+        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        NSDictionary *credentials = [NSDictionary dictionaryWithObjectsAndKeys:
+                                     [self.usernameField text], @"username",
+                                     [self.passwordField text], @"password",
+                                     nil];
 
-    NSDictionary *credentials = [NSDictionary dictionaryWithObjectsAndKeys:
-                               [self.usernameField text], @"username",
-                               [self.passwordField text], @"password",
-                               nil];
-
-    [self.login login:credentials user:^(PFUser *pfUser) {
-        if ([self.login getCurrentUser] != nil)
-        {
-            User *usr = (User*)pfUser;
-            [self clear];
-            if ([usr.profile isEqualToString:@"doctor"])
+        [self.login login:credentials user:^(PFUser *pfUser) {
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+            if ([self.login getCurrentUser] != nil)
             {
-                [self performSegueWithIdentifier:@"inboxDr" sender:self];
-            }
-            else if ([usr.profile isEqualToString:@"patient"])
-            {
-                [self performSegueWithIdentifier:@"homeSearch" sender:self];
+                User *usr = (User*)pfUser;
+                [self clear];
+                if ([usr.profile isEqualToString:@"doctor"])
+                {
+                    [self performSegueWithIdentifier:@"inboxDr" sender:self];
+                }
+                else if ([usr.profile isEqualToString:@"patient"])
+                {
+                    [self performSegueWithIdentifier:@"homeSearch" sender:self];
+                }
+                else
+                {
+                    NSLog(@"Invalid profile: %@",usr.profile);
+                }
             }
             else
             {
-                NSLog(@"Invalid profile: %@",usr.profile);
+                [[[UIAlertView alloc] initWithTitle:nil message:@"User/password is not valid." delegate:nil cancelButtonTitle:nil otherButtonTitles:@"Ok", nil] show];
             }
-        }
-        else
-        {
-            NSLog(@"User is not valid.");
-        }
-    }];
-
+        }];
+    }
 }
 
 - (void) clear {
     self.usernameField.text = @"";
     self.passwordField.text = @"";
+}
+
+- (IBAction)unwindFromDrInboxViewController:(UIStoryboardSegue*)segue{
+    [self.login logOut];
 }
 
 @end
