@@ -36,6 +36,7 @@
 - (void) getAppointments:(void (^)(NSArray *appointments))complete;
 - (void) addSpeciality: (Speciality *) speciality;
 - (void) addClinic: (Clinic *) clinic;
+- (void) removeClinic: (Clinic *) clinic;
 - (void) addComment: (Comment *) comment;
 
 @end

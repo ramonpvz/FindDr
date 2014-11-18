@@ -114,6 +114,20 @@
     }];
 }
 
+- (void) removeClinic: (Clinic *) clinic {
+    PFRelation *clinicRelation = self.clinics;
+    [clinicRelation removeObject:clinic];
+    [self saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        if (error) {
+            NSLog(@"Error: %@",error);
+        }
+        else
+        {
+            NSLog(@"Clinic removed.");
+        }
+    }];
+}
+
 - (void) addComment: (Comment *) comment {
     [self addObject:comment forKey:@"comments"];
     [self saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
