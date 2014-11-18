@@ -41,8 +41,9 @@
 }
 
 - (void)doLogout:(id)sender {
-    [self.login logOut];
-    [self.navigationController popViewControllerAnimated:YES];
+    //[self.login logOut];
+    //[self.navigationController popViewControllerAnimated:YES];
+    [self performSegueWithIdentifier:@"logout" sender:self];
 }
 
 - (IBAction)getAppointments:(id)sender
