@@ -68,7 +68,9 @@
         {
             [self.appointment updateToStatus:@"scheduled"];
             [self.appointment.doctor getAppointmentsByStatusAndDate:self.appointment.date status:@"pending" apps:^(NSArray *appointments){
-                NSLog(@"Notify to these appointments: %@", appointments);
+                for (Appointment *pendingAppointment in appointments) {
+                    [pendingAppointment updateToStatus:@"declined"];
+                }
             }];
             [self.navigationController popViewControllerAnimated:YES];
         }

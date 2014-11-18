@@ -30,7 +30,7 @@
 {
     [self setObject:status forKey:@"status"];
     [self saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-        NSLog(@"Status saved...");
+        NSLog(@"Status saved.");
     }];
 }
 

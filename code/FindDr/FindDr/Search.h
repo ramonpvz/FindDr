@@ -7,9 +7,16 @@
 //
 
 #import <Parse/Parse.h>
+#import "Doctor.h"
 
 @interface Search : NSObject
 
-- (void) search: (NSString *)searchString results: (void(^)(NSArray *results))complete;
+- (void) search: (NSString *)searchString;
+
+- (void) loadClinics: (Doctor *)doc results: (void(^)(NSArray *clinics))complete ;
+
+- (void) getDoctorsByName: (NSString *)name apps:(void (^)(NSArray *doctors))complete;
+
+- (void) getDoctorsByClinicId: (NSString *)id apps:(void (^)(NSArray *doctors))complete;
 
 @end

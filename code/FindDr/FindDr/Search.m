@@ -10,129 +10,79 @@
 #import <Parse/Parse.h>
 #import "Speciality.h"
 #import "Doctor.h"
-#import "Result.h"
 
 @implementation Search
 
+- (void) search: (NSString *)searchString {
+    [self getDoctorsByName:searchString apps:^(NSArray *doctors) {
+        if (doctors.count > 0) {
+            for (Doctor *doc in doctors) {
+                [self loadClinics:doc results:^(NSArray *clinics) {
+                    for (Clinic *clinic in clinics) {
 
-- (void) search: (NSString *)searchString results: (void(^)(NSArray *results))complete
-{
-    
-    NSMutableArray *_results = [NSMutableArray array];
-    
-    PFQuery *specialityQuery = [Speciality query];
-    
-    NSString *criteria = [NSString stringWithFormat:@".*%@.*", searchString];
-    
-    [specialityQuery whereKey:@"name" matchesRegex:criteria];
-    
-    [specialityQuery findObjectsInBackgroundWithBlock:^(NSArray *specialitiesResult, NSError *error) {
-        
-        if(specialitiesResult == nil || [specialitiesResult count] == 0)
-        {
-            
-            //---- SEARCHING BY DOCTOR NAME -----//
-            
-            PFQuery *doctorQuery = [Doctor query];
-            
-            [doctorQuery whereKey:@"name" matchesRegex:criteria];
-            
-            [doctorQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-                
-                for (Doctor *doc in objects) {
-                    
-                    Result *result = [[Result alloc] init];
-                    
-                    result.doctor = doc;
-                    
-                    [doc getClinics:^(NSArray *clinics) {
+                        //Draw current clinic on map...
                         
-                        NSMutableArray *clinicsList = [NSMutableArray array];
+                        NSLog(@"Clinica: %@",clinic);
 
-                        for (Clinic *clinic in clinics) {
-                            
-                            NSLog(@"Doctor %@ has  %@ speciality(ies) in the clinic: %@", doc.name, clinic.specialities,clinic.name);
-
-                            [clinicsList addObject:clinic];
-
-                        }
-
-                        result.clinics = [NSArray arrayWithArray:clinicsList];
-
-                        [_results addObject:result];
-                        
-                        complete(_results);
-
-                    }];
-
-                }
- 
-            }];
-            
+                    }
+                }];
+            }
         }
-        
         else
-            
         {
-            
-            //---- SEARCHING BY SPECIALITY -----//
-            
-            PFQuery *doctorQry = [Doctor query];
-            
-            [doctorQry findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-                
-                for (Doctor *doc in objects) {
-                    
-                    [doc getClinics:^(NSArray *clinics) {
-
-                        for (Clinic *clinic in clinics) {
-
-                            for (Speciality *_speciality in clinic.specialities)
-
-                            {
+            NSLog(@"Doctor(s) not found by name: %@. Searching by speciality." , searchString);
+            NSString *criteria = [NSString stringWithFormat:@".*%@.*", searchString];
+            PFQuery *specialityQuery = [Speciality query];
+            [specialityQuery whereKey:@"name" matchesRegex:criteria];
+            [specialityQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+                for (Speciality *_spec in objects) {
+                    PFQuery *clinicsQry = [Clinic query];
+                    [clinicsQry includeKey:@"specialities"];
+                    [clinicsQry findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+                        for (Clinic *clinic in objects) {
+                            NSPredicate *pred = [NSPredicate predicateWithFormat:@"objectId == %@",_spec.objectId];
+                            NSArray *filteredSpecialities = [clinic.specialities filteredArrayUsingPredicate:pred];
+                            if (filteredSpecialities != nil && filteredSpecialities.count > 0) {
                                 
-                                for (Speciality *specFound in specialitiesResult)
-                                    
-                                {
-                                    
-                                    if ([_speciality.name isEqual:specFound.name])
-
-                                    {
-                                        
-                                        NSLog(@"Doctor %@ has the speciality %@ in the clinic: %@", doc.name, _speciality.name,clinic.name);
-                                        
-                                        Result *result = [[Result alloc] init];
-                                        
-                                        result.doctor = doc;
-                                        
-                                        NSMutableArray *clinicsList = [NSMutableArray array];
-                                        
-                                        [clinicsList addObject:clinic];
-                                        
-                                        result.clinics = clinicsList;
-                                        
-                                        [_results addObject:result];
-                                        
-                                        complete(_results);
-
-                                    }
-
-                                }
+                                //Draw current clinic on map...
+                                
+                                [self getDoctorsByClinicId:clinic.objectId apps:^(NSArray *doctors) {
+                                    NSLog(@"Doctors: %@",doctors);
+                                }];
                                 
                             }
-                            
                         }
-                        
                     }];
-                    
                 }
-
             }];
-            
         }
-        
     }];
+}
 
+- (void) loadClinics: (Doctor *)doc results: (void(^)(NSArray *clinics))complete {
+    [doc getClinics:^(NSArray *clinics) {
+        complete (clinics);
+    }];
+}
+
+- (void) getDoctorsByName: (NSString *)name apps:(void (^)(NSArray *doctors))complete
+{
+    NSString *criteria = [NSString stringWithFormat:@".*%@.*", name];
+    PFQuery *doctorQuery = [Doctor query];
+    [doctorQuery whereKey:@"name" matchesRegex:criteria];
+    [doctorQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        complete(objects);
+    }];
+}
+
+- (void) getDoctorsByClinicId: (NSString *)id apps:(void (^)(NSArray *doctors))complete {
+    PFQuery *doctorQuery = [Doctor query];
+    PFQuery *clinicQuery = [Clinic query];
+    [clinicQuery whereKey:@"objectId" equalTo:id];
+    [doctorQuery whereKey:@"clinics" matchesQuery:clinicQuery];
+    [doctorQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        complete(objects);
+    }];
 }
 
 @end
