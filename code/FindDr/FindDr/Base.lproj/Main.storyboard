@@ -1072,7 +1072,6 @@
                                                 </variation>
                                                 <connections>
                                                     <action selector="viewMapButtonTapped:" destination="HDe-A5-Gp2" eventType="touchUpInside" id="BPz-Yz-1mn"/>
-                                                    <segue destination="Sfm-07-mp9" kind="show" identifier="showMap" id="Ld7-Sq-XZw"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ept-9R-d51">
@@ -1365,6 +1364,7 @@
                         <outlet property="streetText" destination="KCb-MP-8aL" id="bVg-Py-1gM"/>
                         <segue destination="Fsx-Rr-tOH" kind="show" identifier="showSchedule" id="X0g-gn-vtn"/>
                         <segue destination="gwE-9e-29Z" kind="unwind" identifier="clinicAdded" unwindAction="unwindFromClinicViewController:" id="a3e-Mn-VvX"/>
+                        <segue destination="Sfm-07-mp9" kind="show" identifier="showMap" id="qgj-he-Rit"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gpF-eU-ecG" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1395,47 +1395,137 @@
                                     <outlet property="delegate" destination="Sfm-07-mp9" id="iMR-IH-sL5"/>
                                 </connections>
                             </mapView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NgI-ai-lPi">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Current address:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RqB-Lj-06T">
+                                        <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="14.5" id="Kxy-5k-jrq"/>
+                                            <constraint firstAttribute="width" constant="96" id="Vru-Yc-jOW"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                        <variation key="default">
+                                            <mask key="constraints">
+                                                <exclude reference="Kxy-5k-jrq"/>
+                                                <exclude reference="Vru-Yc-jOW"/>
+                                            </mask>
+                                        </variation>
+                                        <variation key="widthClass=compact">
+                                            <mask key="constraints">
+                                                <include reference="Kxy-5k-jrq"/>
+                                                <include reference="Vru-Yc-jOW"/>
+                                            </mask>
+                                        </variation>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Address" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gIe-8o-DSM">
+                                        <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="RqB-Lj-06T" firstAttribute="top" secondItem="NgI-ai-lPi" secondAttribute="top" constant="8" id="9rW-B5-kJA"/>
+                                    <constraint firstAttribute="trailing" secondItem="gIe-8o-DSM" secondAttribute="trailing" constant="8" id="EY2-0K-6WK"/>
+                                    <constraint firstAttribute="height" constant="100" id="I0G-6K-vcC"/>
+                                    <constraint firstItem="RqB-Lj-06T" firstAttribute="leading" secondItem="NgI-ai-lPi" secondAttribute="leading" constant="8" id="S0l-uL-Z9F"/>
+                                    <constraint firstItem="gIe-8o-DSM" firstAttribute="top" secondItem="NgI-ai-lPi" secondAttribute="top" constant="30" id="WYu-s4-aaY"/>
+                                    <constraint firstItem="gIe-8o-DSM" firstAttribute="leading" secondItem="NgI-ai-lPi" secondAttribute="leading" constant="8" id="ZOe-rx-WoY"/>
+                                    <constraint firstAttribute="bottom" secondItem="gIe-8o-DSM" secondAttribute="bottom" constant="8" id="bHW-E1-qiV"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="subviews">
+                                        <exclude reference="RqB-Lj-06T"/>
+                                        <exclude reference="gIe-8o-DSM"/>
+                                    </mask>
+                                    <mask key="constraints">
+                                        <exclude reference="I0G-6K-vcC"/>
+                                        <exclude reference="9rW-B5-kJA"/>
+                                        <exclude reference="S0l-uL-Z9F"/>
+                                        <exclude reference="EY2-0K-6WK"/>
+                                        <exclude reference="WYu-s4-aaY"/>
+                                        <exclude reference="ZOe-rx-WoY"/>
+                                        <exclude reference="bHW-E1-qiV"/>
+                                    </mask>
+                                </variation>
+                                <variation key="widthClass=compact">
+                                    <mask key="subviews">
+                                        <include reference="RqB-Lj-06T"/>
+                                        <include reference="gIe-8o-DSM"/>
+                                    </mask>
+                                    <mask key="constraints">
+                                        <include reference="I0G-6K-vcC"/>
+                                        <include reference="9rW-B5-kJA"/>
+                                        <include reference="S0l-uL-Z9F"/>
+                                        <include reference="EY2-0K-6WK"/>
+                                        <include reference="WYu-s4-aaY"/>
+                                        <include reference="ZOe-rx-WoY"/>
+                                        <include reference="bHW-E1-qiV"/>
+                                    </mask>
+                                </variation>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="6r1-Ej-YF7" firstAttribute="top" secondItem="EJW-VI-Ffm" secondAttribute="top" id="AGB-ym-n1p"/>
-                            <constraint firstAttribute="trailing" secondItem="6r1-Ej-YF7" secondAttribute="trailing" id="Ii9-6i-iE4"/>
-                            <constraint firstItem="5rL-1L-6S3" firstAttribute="top" secondItem="6r1-Ej-YF7" secondAttribute="bottom" id="ige-TL-zkS"/>
-                            <constraint firstItem="6r1-Ej-YF7" firstAttribute="leading" secondItem="EJW-VI-Ffm" secondAttribute="leading" id="nyC-Hs-fyQ"/>
+                            <constraint firstItem="5rL-1L-6S3" firstAttribute="top" secondItem="NgI-ai-lPi" secondAttribute="bottom" id="5oa-ud-atC"/>
+                            <constraint firstItem="6r1-Ej-YF7" firstAttribute="leading" secondItem="EJW-VI-Ffm" secondAttribute="leading" id="69O-vv-as3"/>
+                            <constraint firstAttribute="trailing" secondItem="NgI-ai-lPi" secondAttribute="trailing" id="KpR-tX-gb7"/>
+                            <constraint firstItem="NgI-ai-lPi" firstAttribute="leading" secondItem="EJW-VI-Ffm" secondAttribute="leading" id="RsD-9b-65i"/>
+                            <constraint firstItem="6r1-Ej-YF7" firstAttribute="top" secondItem="AYB-iL-dgb" secondAttribute="bottom" id="SrZ-ZR-zoT"/>
+                            <constraint firstItem="NgI-ai-lPi" firstAttribute="top" secondItem="6r1-Ej-YF7" secondAttribute="bottom" constant="-4" id="U4j-Pa-Nt1"/>
+                            <constraint firstAttribute="trailing" secondItem="6r1-Ej-YF7" secondAttribute="trailing" id="rIj-M6-Edf"/>
                         </constraints>
                         <variation key="default">
                             <mask key="subviews">
                                 <exclude reference="6r1-Ej-YF7"/>
+                                <exclude reference="NgI-ai-lPi"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="ige-TL-zkS"/>
-                                <exclude reference="AGB-ym-n1p"/>
-                                <exclude reference="Ii9-6i-iE4"/>
-                                <exclude reference="nyC-Hs-fyQ"/>
+                                <exclude reference="69O-vv-as3"/>
+                                <exclude reference="SrZ-ZR-zoT"/>
+                                <exclude reference="rIj-M6-Edf"/>
+                                <exclude reference="KpR-tX-gb7"/>
+                                <exclude reference="RsD-9b-65i"/>
+                                <exclude reference="U4j-Pa-Nt1"/>
+                                <exclude reference="5oa-ud-atC"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
                             <mask key="subviews">
                                 <include reference="6r1-Ej-YF7"/>
+                                <include reference="NgI-ai-lPi"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="ige-TL-zkS"/>
-                                <include reference="AGB-ym-n1p"/>
-                                <include reference="Ii9-6i-iE4"/>
-                                <include reference="nyC-Hs-fyQ"/>
+                                <include reference="69O-vv-as3"/>
+                                <include reference="SrZ-ZR-zoT"/>
+                                <include reference="rIj-M6-Edf"/>
+                                <include reference="KpR-tX-gb7"/>
+                                <include reference="RsD-9b-65i"/>
+                                <include reference="U4j-Pa-Nt1"/>
+                                <include reference="5oa-ud-atC"/>
                             </mask>
                         </variation>
                     </view>
                     <navigationItem key="navigationItem" title="Map View" id="4A5-Rz-Lt8">
-                        <barButtonItem key="rightBarButtonItem" systemItem="edit" id="RHP-5g-2mV">
+                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="RHP-5g-2mV">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="updateAddress:" destination="Sfm-07-mp9" id="0IB-fH-d1f"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="currentAddress" destination="gIe-8o-DSM" id="Tiw-oH-oth"/>
                         <outlet property="mapView" destination="6r1-Ej-YF7" id="9Ww-0S-IrW"/>
+                        <segue destination="tmp-CW-82Z" kind="unwind" identifier="updateAddress" unwindAction="unwindFromMapViewController:" id="AcE-Ho-Vwe"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="690-ct-p8b" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="tmp-CW-82Z" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="3462" y="231"/>
         </scene>
@@ -1661,7 +1751,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Schedule" id="7te-Cz-CKW">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="7nR-Di-ReT">
+                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="7nR-Di-ReT">
                             <connections>
                                 <action selector="addSchedule:" destination="Fsx-Rr-tOH" id="j9b-et-6Lh"/>
                             </connections>

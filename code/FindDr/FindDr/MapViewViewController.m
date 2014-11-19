@@ -7,8 +7,6 @@
 //
 
 #import "MapViewViewController.h"
-#import <MapKit/MapKit.h>
-#import <CoreLocation/CoreLocation.h>
 #import "AZDraggableAnnotationView.h"
 
 
@@ -17,7 +15,7 @@
 @property (strong, nonatomic) IBOutlet MKMapView *mapView;
 @property (strong, nonatomic) MKPointAnnotation *annotation;
 @property CLLocationManager *myLocationManager;
-@property CLPlacemark *currentLocation;
+@property (strong, nonatomic) IBOutlet UILabel *currentAddress;
 
 @end
 
@@ -29,7 +27,17 @@
     [self.myLocationManager requestWhenInUseAuthorization];
     self.myLocationManager.delegate = self;
 
-    [self.myLocationManager startUpdatingLocation];
+    self.currentAddress.text = @"Select a point in the map";
+
+    if (self.pinMap != nil) {
+        //to create pin map
+        [self moveAnnotationToCoordinate:self.pinMap.coordinate];
+        //to show pin map
+        [self moveAnnotationToCoordinate:self.pinMap.coordinate];
+        [self searchAddress:self.pinMap];
+    }else{
+        [self.myLocationManager startUpdatingLocation];
+    }
 
     UITapGestureRecognizer *singleTapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleSingleTapGesture:)];
     singleTapRecognizer.numberOfTapsRequired = 1;
@@ -61,7 +69,7 @@
     for (CLLocation *location in locations) {
         if(location.verticalAccuracy < 1000 && location.horizontalAccuracy < 1000){
             [self reverseGeocode:location];
-            NSLog(@"location: %f,%f",location.coordinate.latitude,location.coordinate.longitude);
+            [self searchAddress:location];
             [self.myLocationManager stopUpdatingLocation];
             break;
         }
@@ -81,13 +89,20 @@
     CLGeocoder *geocoder = [CLGeocoder new];
     [geocoder reverseGeocodeLocation:location completionHandler:^(NSArray *placemarks, NSError *error) {
         self.currentLocation = placemarks.firstObject;
-        NSString *address = [NSString stringWithFormat:@"%@, %@, %@ at %@, CP %@",
-                             self.currentLocation.subThoroughfare,
-                             self.currentLocation.thoroughfare,
-                             self.currentLocation.subLocality,
-                             self.currentLocation.locality,
-                             self.currentLocation.postalCode];
+        self.subThoroughfare = self.currentLocation.subThoroughfare;
+        self.thoroughfare = self.currentLocation.thoroughfare;
+        self.subLocality = self.currentLocation.subLocality;
+        self.locality = self.currentLocation.locality;
+        self.postalCode = self.currentLocation.postalCode;
+        NSString *address = [NSString stringWithFormat:@"%@ #%@, %@ at %@, CP %@",
+                             self.thoroughfare,
+                             self.subThoroughfare,
+                             self.subLocality,
+                             self.locality,
+                             self.postalCode];
         NSLog(@"Found you at: %@",address);
+        self.currentAddress.text = address;
+        [self zoomIn];
     }];
 }
 
@@ -186,6 +201,21 @@
     CLLocation *newlocation = [[CLLocation alloc] initWithLatitude:anno.coordinate.latitude
                                                          longitude:anno.coordinate.longitude];
     [self searchAddress:newlocation];
+}
+
+#pragma mark - Actions
+- (IBAction)updateAddress:(UIBarButtonItem *)sender {
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Do you want to select this address?" message:nil preferredStyle:UIAlertControllerStyleAlert];
+
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"Yes" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        [self performSegueWithIdentifier:@"updateAddress" sender:self];
+    }];
+
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"No" style:UIAlertActionStyleCancel handler:nil];
+    [alert addAction:cancelAction];
+    [alert addAction:okAction];
+
+    [self presentViewController:alert animated:YES completion:nil];
 }
 
 /*

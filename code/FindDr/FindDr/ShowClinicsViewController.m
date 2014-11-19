@@ -96,6 +96,8 @@
     PFFile *image = [PFFile fileWithName:@"image.png"
                                     data:UIImageJPEGRepresentation([UIImage imageNamed:@"clinic.png"], 1.0f)];
     newClinic.photo = image;
+    newClinic.latitude = @"0.0";
+    newClinic.longitude = @"0.0";
     //create a clinic
     [newClinic saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         self.clinicSelected = newClinic;
@@ -109,21 +111,18 @@
 #pragma mark - Navigation
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    NSLog(@"prepareForSegue method");
     if ([[segue identifier] isEqualToString:@"addClinic"]){
         //send new clinic
         ClinicViewController *cvc = [segue destinationViewController];
-        NSLog(@"setting new currentClinic");
         [cvc setCurrentClinic:self.clinicSelected];
         cvc.navigationItem.hidesBackButton = YES;
     }else if ([[segue identifier] isEqualToString:@"showClinic"]){
         //send clinic selected
         ClinicViewController *cvc = [segue destinationViewController];
-        NSLog(@"updating currentClinic");
         [cvc setCurrentClinic:self.clinicSelected];
     }
     if ([[segue identifier] isEqualToString:@"goHome"]){
-        NSLog(@"go home");
+        //NSLog(@"go home");
     }
 }
 

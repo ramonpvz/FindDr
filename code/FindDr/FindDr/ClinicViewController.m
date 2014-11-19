@@ -11,6 +11,8 @@
 #import "Doctor.h"
 #import "Clinic.h"
 #import "MBProgressHUD.h"
+#import "MapViewViewController.h"
+#import "FindDr-Swift.h"
 
 @interface ClinicViewController () <UIActionSheetDelegate>
 @property (strong, nonatomic) IBOutlet UIView *contentView;
@@ -45,7 +47,6 @@
     self.stateText.text = self.currentClinic.state;
     self.postalCodeText.text = self.currentClinic.zipCode;
 
-    [self.numberText addRegx:@"[0-9]{1,}" withMsg:@"Only numeric characters are allowed"];
     [self.postalCodeText addRegx:@"[0-9]{1,5}" withMsg:@"Only 5 numeric characters are allowed"];
 }
 
@@ -122,6 +123,7 @@
 }
 
 - (IBAction)viewMapButtonTapped:(UIButton *)sender {
+    [self performSegueWithIdentifier:@"showMap" sender:self];
 }
 
 - (IBAction)scheduleButtonTapped:(UIButton *)sender {
@@ -138,7 +140,35 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([[segue identifier] isEqualToString:@"clinicAdded"]){
         NSLog(@"updated data clinic");
+    }else if ([[segue identifier] isEqualToString:@"showMap"]){
+        if (![self.currentClinic.latitude isEqualToString:@"0.0"]) {
+            //NSLog(@"latitude: %@ longitude: %@",self.currentClinic.latitude, self.currentClinic.longitude);
+            MapViewViewController *mapView = [segue destinationViewController];
+            CLLocation *newlocation = [[CLLocation alloc] initWithLatitude:[self.currentClinic.latitude doubleValue]
+                                                                 longitude:[self.currentClinic.longitude doubleValue]];
+            [mapView setPinMap:newlocation];
+        }
+    }else if ([[segue identifier] isEqualToString:@"showSchedule"]){
+        CallendarViewController *cvc = [segue destinationViewController];
+        cvc.actualDoctor = self.currentDoctor;
+        cvc.actualClinic = self.currentClinic;
+        cvc.navigationItem.hidesBackButton = YES;
     }
+}
+
+-(IBAction)unwindFromMapViewController:(UIStoryboardSegue*)segue{
+    MapViewViewController *mapView = [segue sourceViewController];
+    //update address
+    self.streetText.text = mapView.thoroughfare;
+    self.numberText.text = mapView.subThoroughfare;
+    self.cityText.text = mapView.subLocality;
+    self.stateText.text = mapView.locality;
+    self.postalCodeText.text = mapView.postalCode;
+
+    //update position
+    self.currentClinic.latitude = [NSString stringWithFormat:@"%f",mapView.currentLocation.location.coordinate.latitude];
+    self.currentClinic.longitude = [NSString stringWithFormat:@"%f",mapView.currentLocation.location.coordinate.longitude];
+    //NSLog(@"updated latitude: %@ longitude: %@",self.currentClinic.latitude, self.currentClinic.longitude);
 }
 
 

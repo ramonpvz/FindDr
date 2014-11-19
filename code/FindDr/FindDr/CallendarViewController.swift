@@ -17,6 +17,8 @@ class CallendarViewController: UIViewController, UICollectionViewDelegateFlowLay
 
     //MARK: - Instance properties
     var actualCell : CalendarCell?
+    var actualDoctor : Doctor?
+    var actualClinic : Clinic?
 
     //MARK: - View Properties
     @IBOutlet var calendarColView: UICollectionView!
