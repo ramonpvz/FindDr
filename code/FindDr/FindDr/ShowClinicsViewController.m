@@ -10,6 +10,7 @@
 #import "Clinic.h"
 #import "Doctor.h"
 #import "ClinicViewController.h"
+#import "MBProgressHUD.h"
 
 @interface ShowClinicsViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (strong, nonatomic) IBOutlet UITableView *clinicsTable;
@@ -21,11 +22,21 @@
 
 @implementation ShowClinicsViewController
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
+- (void) loadData{
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     [Doctor getDoctorByUser:[PFUser currentUser] doc:^(Doctor *doctor) {
         self.currentDoctor = doctor;
+        [self.currentDoctor getClinics:^(NSArray *clinics) {
+            self.clinics = [[NSMutableArray alloc]initWithArray:clinics];
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+            [self.clinicsTable reloadData];
+        }];
     }];
+}
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    [self loadData];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -43,8 +54,8 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellClinic" forIndexPath:indexPath];
 
     Clinic *clinic = self.clinics[indexPath.row];
+    cell.imageView.image = [UIImage imageWithData:[clinic.photo getData]];
     cell.textLabel.text = clinic.name;
-    cell.detailTextLabel.text = [clinic objectForKey:@"description"];
 
     return cell;
 }
@@ -55,56 +66,69 @@
 
 -(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row (speciality)
-        [self.clinics removeObjectAtIndex:indexPath.row];
-
+        //delete relation form clinic to doctor
+        self.clinicSelected = [self.clinics objectAtIndex:indexPath.row];
+        [self.currentDoctor removeClinic:self.clinicSelected];
+        [self.clinics removeObject:self.clinicSelected];
         // Animate the deletion
         [self.clinicsTable deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
     }
 }
 
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    self.clinicSelected = [self.clinics objectAtIndex:indexPath.row];
+    [self performSegueWithIdentifier:@"showClinic" sender:self];
+}
+
 #pragma mark - Actions
 - (IBAction)homeButtonTapped:(UIBarButtonItem *)sender {
     if (self.clinics.count > 0) {  //the doctor has at least one clinic
-        //save clinics
-        [self.currentDoctor saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-            for (Clinic *clinic in self.clinics){
-                [self.currentDoctor addClinic:clinic];
-            }
-
-            [self performSegueWithIdentifier:@"goHome" sender:self];
-        }];
+        [self performSegueWithIdentifier:@"goHome" sender:self];
     }else{
         [[[UIAlertView alloc] initWithTitle:nil message:@"Please, add at least one clinic." delegate:nil cancelButtonTitle:nil otherButtonTitles:@"Ok", nil] show];
     }
 }
 
-
 - (IBAction)addClinicButtonTapped:(UIBarButtonItem *)sender {
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     Clinic *newClinic = [Clinic object];
+    [newClinic setObject:@"Description here" forKey:@"description"];
+    PFFile *image = [PFFile fileWithName:@"image.png"
+                                    data:UIImageJPEGRepresentation([UIImage imageNamed:@"clinic.png"], 1.0f)];
+    newClinic.photo = image;
+    //create a clinic
     [newClinic saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         self.clinicSelected = newClinic;
-        [self.clinics addObject:newClinic];
-        [self.clinicsTable reloadData];
+        //save clinic to doctor
+        [self.currentDoctor addClinic:newClinic];
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
         [self performSegueWithIdentifier:@"addClinic" sender:self];
     }];
-
 }
-
 
 #pragma mark - Navigation
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    //send clinic
-    if ([[segue identifier] isEqualToString:@"addClinic"])
-    {
-        // Get reference to the destination view controller
+    NSLog(@"prepareForSegue method");
+    if ([[segue identifier] isEqualToString:@"addClinic"]){
+        //send new clinic
         ClinicViewController *cvc = [segue destinationViewController];
-
-        // Pass any objects to the view controller here, like...
+        NSLog(@"setting new currentClinic");
         [cvc setCurrentClinic:self.clinicSelected];
+        cvc.navigationItem.hidesBackButton = YES;
+    }else if ([[segue identifier] isEqualToString:@"showClinic"]){
+        //send clinic selected
+        ClinicViewController *cvc = [segue destinationViewController];
+        NSLog(@"updating currentClinic");
+        [cvc setCurrentClinic:self.clinicSelected];
+    }
+    if ([[segue identifier] isEqualToString:@"goHome"]){
+        NSLog(@"go home");
     }
 }
 
+-(IBAction)unwindFromClinicViewController:(UIStoryboardSegue*)segue{
+    [self loadData];
+}
 
 @end

@@ -13,6 +13,8 @@
 #import "Speciality.h"
 #import "Login.h"
 #import "Doctor.h"
+#import "Patient.h"
+#import "MBProgressHUD.h"
 
 @interface SignUpViewController () <UITableViewDataSource, UITableViewDelegate, UIActionSheetDelegate>
 @property (strong, nonatomic) IBOutlet UIView *contentView;
@@ -98,56 +100,106 @@
     NSLog(@"Validations");
     if ([self.emailText validate] & [self.passwordText validate]  & [self.titleText validate] & [self.genderText validate] & [self.birthdayText validate] & [self.firstNameText validate] & [self.lastNameText validate] & [self.secondLastNameText validate] & [self.phoneNumberText validate]) {
 
+        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        Login *login = [[Login alloc]init];
         if ((self.switchUser.on == YES) & [self.licenseText validate]) {
             if (self.specialties.count > 0) { //the doctor has at least one specialty
-                Login *login = [[Login alloc]init];
                 [login signUp:self.emailText.text pass:self.passwordText.text user:^(User *pfUser) {
                     NSLog(@"User: %@",pfUser);
-                    pfUser.profile = @"doctor";
-                    [pfUser saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-                        if (pfUser.username != nil) {
-                            //save doctor data
-                            Doctor *doc = [Doctor object];
-                            
-                            doc.user = [login getCurrentUser];
-                            self.imageData = UIImageJPEGRepresentation(self.userImage.image, 1.0f);
-                            PFFile *image = [PFFile fileWithName:@"image.png" data:self.imageData];
-                            doc.photo = image;
-                            doc.licence = self.licenseText.text;
-                            doc.title = self.titleText.text;
-                            doc.gender = self.genderText.text;
-                            doc.email = self.emailText.text;
-                            doc.phone = self.phoneNumberText.text;
-                            
-                            NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
-                            [formatter setDateFormat:@"dd/MM/yyyy"];
-                            NSDate *date = [formatter dateFromString:self.birthdayText.text];
-                            doc.birthday = date;
-                            
-                            doc.name = self.firstNameText.text;
-                            doc.lastName = self.lastNameText.text;
-                            doc.secondLastName = self.secondLastNameText.text;
-                            
-                            
-                            [doc saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-                                for (Speciality *speciality in self.specialties){
-                                    [doc addSpeciality:speciality];
-                                }
-                                
-                                [self performSegueWithIdentifier:@"showClinics" sender:self];
-                            }];
-                        }else{
-                            [[[UIAlertView alloc] initWithTitle:nil message:pfUser.message delegate:nil cancelButtonTitle:nil otherButtonTitles:@"Ok", nil] show];
-                        }
-                    }];
+                    if (pfUser.message == nil) { //if logins is successful
+                        pfUser.profile = @"doctor";
+                        [pfUser saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) { //create the doctor
+                            if (pfUser.username != nil) {
+                                //save doctor data
+                                Doctor *doc = [Doctor object];
+
+                                doc.user = [login getCurrentUser];
+                                self.imageData = UIImageJPEGRepresentation(self.userImage.image, 1.0f);
+                                PFFile *image = [PFFile fileWithName:@"image.png" data:self.imageData];
+                                doc.photo = image;
+                                doc.licence = self.licenseText.text;
+                                doc.title = self.titleText.text;
+                                doc.gender = self.genderText.text;
+                                doc.email = self.emailText.text;
+                                doc.phone = self.phoneNumberText.text;
+
+                                NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
+                                [formatter setDateFormat:@"dd/MM/yyyy"];
+                                NSDate *date = [formatter dateFromString:self.birthdayText.text];
+                                doc.birthday = date;
+
+                                doc.name = self.firstNameText.text;
+                                doc.lastName = self.lastNameText.text;
+                                doc.secondLastName = self.secondLastNameText.text;
+
+
+                                [doc saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                                    for (Speciality *speciality in self.specialties){
+                                        [doc addSpeciality:speciality];
+                                    }
+
+                                    [MBProgressHUD hideHUDForView:self.view animated:YES];
+                                    [self performSegueWithIdentifier:@"showClinics" sender:self];
+                                }];
+                            }else{
+                                [MBProgressHUD hideHUDForView:self.view animated:YES];
+                                [[[UIAlertView alloc] initWithTitle:nil message:pfUser.message delegate:nil cancelButtonTitle:nil otherButtonTitles:@"Ok", nil] show];
+                            }
+                        }];
+                    }else{
+                        [MBProgressHUD hideHUDForView:self.view animated:YES];
+                        [[[UIAlertView alloc] initWithTitle:nil message:pfUser.message delegate:nil cancelButtonTitle:nil otherButtonTitles:@"Ok", nil] show];
+                    }
                 }];
             }else{
+                [MBProgressHUD hideHUDForView:self.view animated:YES];
                 [[[UIAlertView alloc] initWithTitle:nil message:@"Please, add at least one specialty." delegate:nil cancelButtonTitle:nil otherButtonTitles:@"Ok", nil] show];
             }
         }else {
-            //guardar datos del usuario paciente y permitir entrar
-        }
+            Login *login = [[Login alloc]init];
+            [login signUp:self.emailText.text pass:self.passwordText.text user:^(User *pfUser) {
+                NSLog(@"User: %@",pfUser);
+                if (pfUser.message == nil) { //if logins is successful
+                    pfUser.profile = @"patient";
+                    [pfUser saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) { //create the patient
+                        if (pfUser.username != nil) {
+                            //save doctor data
+                            Patient *patient = [Patient object];
 
+                            patient.user = [login getCurrentUser];
+                            self.imageData = UIImageJPEGRepresentation(self.userImage.image, 1.0f);
+                            PFFile *image = [PFFile fileWithName:@"image.png" data:self.imageData];
+                            patient.photo = image;
+                            patient.title = self.titleText.text;
+                            patient.gender = self.genderText.text;
+                            patient.email = self.emailText.text;
+                            patient.phone = self.phoneNumberText.text;
+
+                            NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
+                            [formatter setDateFormat:@"dd/MM/yyyy"];
+                            NSDate *date = [formatter dateFromString:self.birthdayText.text];
+                            patient.birthday = date;
+
+                            patient.name = self.firstNameText.text;
+                            patient.lastName = self.lastNameText.text;
+                            patient.secondLastName = self.secondLastNameText.text;
+
+
+                            [patient saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                                [MBProgressHUD hideHUDForView:self.view animated:YES];
+                                [self performSegueWithIdentifier:@"goSearchDoctor" sender:self];
+                            }];
+                        }else{
+                            [MBProgressHUD hideHUDForView:self.view animated:YES];
+                            [[[UIAlertView alloc] initWithTitle:nil message:pfUser.message delegate:nil cancelButtonTitle:nil otherButtonTitles:@"Ok", nil] show];
+                        }
+                    }];
+                }else{
+                    [MBProgressHUD hideHUDForView:self.view animated:YES];
+                    [[[UIAlertView alloc] initWithTitle:nil message:pfUser.message delegate:nil cancelButtonTitle:nil otherButtonTitles:@"Ok", nil] show];
+                }
+            }];
+        }
     }
 }
 
@@ -244,9 +296,18 @@
 
     }else if (myTextField == self.birthdayText){
         [myTextField resignFirstResponder];
+        NSDate *dateSelected;
+        if ([self.birthdayText.text isEqualToString:@""]) {
+            dateSelected = [NSDate date];
+        }else{
+            NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
+            [formatter setDateFormat:@"dd/MM/yyyy"];
+            NSDate *date = [formatter dateFromString:self.birthdayText.text];
+            dateSelected = date;
+        }
         [ActionSheetDatePicker showPickerWithTitle:@"Select:"
                                     datePickerMode:UIDatePickerModeDate
-                                      selectedDate:[NSDate date]
+                                      selectedDate:dateSelected
                                          doneBlock:^(ActionSheetDatePicker *picker, id selectedDate, id origin) {
                                              NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
                                              [dateFormatter setDateFormat:@"dd/MM/yyyy"];
@@ -264,6 +325,7 @@
 
 - (IBAction)addSpecialtyButtonTapped:(UIButton *)sender {
     NSMutableArray *nameSpecialities = [[NSMutableArray alloc] init];
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     [Speciality lisSpecialities:^(NSArray *specialities) {
         self.specialtiesCatalog = specialities;
 
@@ -274,14 +336,27 @@
                                                 rows:nameSpecialities
                                     initialSelection:0
                                            doneBlock:^(ActionSheetStringPicker *picker, NSInteger selectedIndex, id selectedValue) {
-                                               [self.specialties addObject:self.specialtiesCatalog[selectedIndex]];
-                                               [self.specialtiesTable reloadData];
+                                               if (![self doctorHasSpecialty:self.specialtiesCatalog[selectedIndex]]) {
+                                                   [self.specialties addObject:self.specialtiesCatalog[selectedIndex]];
+                                                   [self.specialtiesTable reloadData];
+                                               }
+                                               [MBProgressHUD hideHUDForView:self.view animated:YES];
                                            }
                                          cancelBlock:^(ActionSheetStringPicker *picker) {
                                              //NSLog(@"Block String Picker Canceled");
+                                             [MBProgressHUD hideHUDForView:self.view animated:YES];
                                          }
                                               origin:self.view];
     }];
+}
+
+- (BOOL)doctorHasSpecialty:(Speciality *)specialty{
+    for (Speciality *sp in self.specialties) {
+        if ([sp.objectId isEqual:specialty.objectId]) {
+            return YES;
+        }
+    }
+    return NO;
 }
 
 

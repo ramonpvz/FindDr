@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="hI9-SR-S7C">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="hI9-SR-S7C">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
-        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -713,6 +712,7 @@
                         <outlet property="titleText" destination="eIh-ps-xbZ" id="Z8k-Op-TGK"/>
                         <outlet property="userImage" destination="dfH-yS-uBN" id="5uo-05-ogM"/>
                         <segue destination="PJO-OB-m9N" kind="show" identifier="showClinics" id="lPO-Cy-xaE"/>
+                        <segue destination="HFu-kA-LQC" kind="show" identifier="goSearchDoctor" id="byB-AP-3yo"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HRB-hw-3mo" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -760,9 +760,6 @@
                                                 </imageView>
                                             </subviews>
                                         </tableViewCellContentView>
-                                        <connections>
-                                            <segue destination="HDe-A5-Gp2" kind="show" identifier="showClinic" id="NNf-Zw-xit"/>
-                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -818,6 +815,7 @@
                         <outlet property="clinicsTable" destination="Rb2-vk-lPn" id="rZh-Ks-CZl"/>
                         <segue destination="eCu-wW-mKG" kind="show" identifier="goHome" id="owX-Tx-wFs"/>
                         <segue destination="HDe-A5-Gp2" kind="show" identifier="addClinic" id="6IX-UW-gso"/>
+                        <segue destination="HDe-A5-Gp2" kind="show" identifier="showClinic" id="hIy-S9-tf3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wCn-2K-vcF" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1028,9 +1026,11 @@
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZwE-E9-zrq">
                                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="120" id="oOh-I1-dSM"/>
+                                                    <constraint firstAttribute="width" constant="120" id="oOh-I1-dSM">
+                                                        <variation key="widthClass=compact" constant="134"/>
+                                                    </constraint>
                                                 </constraints>
-                                                <state key="normal" title="Select specialties">
+                                                <state key="normal" title="Select specialties &gt;">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
@@ -1051,9 +1051,11 @@
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NAn-wj-45m">
                                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="175" id="xQb-pc-SIs"/>
+                                                    <constraint firstAttribute="width" constant="175" id="xQb-pc-SIs">
+                                                        <variation key="widthClass=compact" constant="189"/>
+                                                    </constraint>
                                                 </constraints>
-                                                <state key="normal" title="Obtain address from map">
+                                                <state key="normal" title="Obtain address from map &gt;">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
@@ -1075,9 +1077,11 @@
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ept-9R-d51">
                                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="147" id="KmB-hT-OqR"/>
+                                                    <constraint firstAttribute="width" constant="147" id="KmB-hT-OqR">
+                                                        <variation key="widthClass=compact" constant="161"/>
+                                                    </constraint>
                                                 </constraints>
-                                                <state key="normal" title="Select work schedule">
+                                                <state key="normal" title="Select work schedule &gt;">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
@@ -1359,9 +1363,11 @@
                         <outlet property="stateText" destination="w8j-Je-2Wv" id="vgb-KO-bVo"/>
                         <outlet property="streetText" destination="KCb-MP-8aL" id="bVg-Py-1gM"/>
                         <segue destination="Fsx-Rr-tOH" kind="show" identifier="showSchedule" id="X0g-gn-vtn"/>
+                        <segue destination="gwE-9e-29Z" kind="unwind" identifier="clinicAdded" unwindAction="unwindFromClinicViewController:" id="a3e-Mn-VvX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gpF-eU-ecG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="gwE-9e-29Z" userLabel="Exit" sceneMemberID="exit"/>
                 <tapGestureRecognizer id="1HP-gw-1NE">
                     <connections>
                         <action selector="imageClinicTapped:" destination="HDe-A5-Gp2" id="yYZ-vq-2gc"/>
@@ -1464,7 +1470,7 @@
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4pt-Wo-dRc">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4pt-Wo-dRc" customClass="TextFieldValidator">
                                 <rect key="frame" x="134" y="139" width="150" height="30"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -1475,8 +1481,12 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="lZI-Uk-AgI" id="a74-rk-0Ug"/>
+                                    <outlet property="presentInView" destination="GZt-7x-jWD" id="S7E-Re-ecB"/>
+                                </connections>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3gH-ZL-LvJ">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3gH-ZL-LvJ" customClass="TextFieldValidator">
                                 <rect key="frame" x="134" y="177" width="150" height="30"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -1493,6 +1503,10 @@
                                         <exclude reference="eU8-6I-ePk"/>
                                     </mask>
                                 </variation>
+                                <connections>
+                                    <outlet property="delegate" destination="lZI-Uk-AgI" id="YPQ-hz-PcT"/>
+                                    <outlet property="presentInView" destination="GZt-7x-jWD" id="HAs-Qp-6of"/>
+                                </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" reversesTitleShadowWhenHighlighted="YES" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5S3-p1-lhH">
                                 <rect key="frame" x="184" y="223" width="100" height="30"/>
@@ -1586,8 +1600,8 @@
                     </view>
                     <navigationItem key="navigationItem" title="IDoc" id="hIc-aa-xFO"/>
                     <connections>
-                        <outlet property="passwordField" destination="3gH-ZL-LvJ" id="WxS-Ry-UR6"/>
-                        <outlet property="usernameField" destination="4pt-Wo-dRc" id="tWh-qP-lKC"/>
+                        <outlet property="passwordField" destination="3gH-ZL-LvJ" id="4Ev-1k-k1q"/>
+                        <outlet property="usernameField" destination="4pt-Wo-dRc" id="pGg-Oi-4CV"/>
                         <segue destination="eCu-wW-mKG" kind="show" identifier="inboxDr" id="d8v-Sz-oeK"/>
                         <segue destination="HFu-kA-LQC" kind="show" identifier="homeSearch" id="J4X-re-tcI"/>
                     </connections>
@@ -1771,7 +1785,7 @@
                     <connections>
                         <outlet property="drSegmentCtrl" destination="i4f-Qh-Yrf" id="IVs-ot-Ide"/>
                         <outlet property="drTableView" destination="Uc7-zD-c7K" id="4SI-l5-sZk"/>
-                        <segue destination="c1m-Ek-3Uf" kind="unwind" unwindAction="unwindAppointment:" id="CTp-dp-owu"/>
+                        <segue destination="c1m-Ek-3Uf" kind="unwind" identifier="logout" unwindAction="unwindFromDrInboxViewController:" id="CTp-dp-owu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Z6C-o4-cVz" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2353,7 +2367,8 @@
         <image name="user.png" width="600" height="557"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="6IX-UW-gso"/>
         <segue reference="d8v-Sz-oeK"/>
+        <segue reference="J4X-re-tcI"/>
+        <segue reference="6IX-UW-gso"/>
     </inferredMetricsTieBreakers>
 </document>

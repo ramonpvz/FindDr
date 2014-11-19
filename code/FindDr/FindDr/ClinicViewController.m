@@ -10,12 +10,14 @@
 #import "TextFieldValidator.h"
 #import "Doctor.h"
 #import "Clinic.h"
+#import "MBProgressHUD.h"
 
 @interface ClinicViewController () <UIActionSheetDelegate>
 @property (strong, nonatomic) IBOutlet UIView *contentView;
 @property (strong, nonatomic) IBOutlet TextFieldValidator *nameClinicText;
 @property (strong, nonatomic) IBOutlet UITextView *descriptionText;
 @property (strong, nonatomic) IBOutlet UIImageView *imageClinic;
+@property (strong, nonatomic) NSData *imageData;
 @property (strong, nonatomic) IBOutlet TextFieldValidator *streetText;
 @property (strong, nonatomic) IBOutlet TextFieldValidator *numberText;
 @property (strong, nonatomic) IBOutlet TextFieldValidator *cityText;
@@ -33,6 +35,16 @@
         self.currentDoctor = doctor;
     }];
 
+    //load clinic values
+    self.nameClinicText.text = self.currentClinic.name;
+    self.descriptionText.text = [self.currentClinic objectForKey:@"description"];
+    self.imageClinic.image = [UIImage imageWithData:[self.currentClinic.photo getData]];
+    self.streetText.text = self.currentClinic.street;
+    self.numberText.text = self.currentClinic.number;
+    self.cityText.text = self.currentClinic.city;
+    self.stateText.text = self.currentClinic.state;
+    self.postalCodeText.text = self.currentClinic.zipCode;
+
     [self.numberText addRegx:@"[0-9]{1,}" withMsg:@"Only numeric characters are allowed"];
     [self.postalCodeText addRegx:@"[0-9]{1,5}" withMsg:@"Only 5 numeric characters are allowed"];
 }
@@ -46,8 +58,23 @@
     NSLog(@"Validations");
     if ([self.nameClinicText validate] & [self.streetText validate]  & [self.numberText validate] & [self.cityText validate] & [self.stateText validate] & [self.postalCodeText validate]) {
 
+        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         if (YES ) { //si el doctor guarda para la clinica el schedule y el marcador en mapa
-            //guardar datos de la clinica
+            //update clinic values
+            self.currentClinic.name = self.nameClinicText.text;
+            [self.currentClinic setObject:self.descriptionText.text forKey:@"description"];
+            self.imageData = UIImageJPEGRepresentation(self.imageClinic.image, 1.0f);
+            PFFile *image = [PFFile fileWithName:@"image.png" data:self.imageData];
+            self.currentClinic.photo = image;
+            self.currentClinic.street = self.streetText.text;
+            self.currentClinic.number = self.numberText.text;
+            self.currentClinic.city = self.cityText.text;
+            self.currentClinic.state = self.stateText.text;
+            self.currentClinic.zipCode = self.postalCodeText.text;
+            [self.currentClinic saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                [MBProgressHUD hideHUDForView:self.view animated:YES];
+                [self performSegueWithIdentifier:@"clinicAdded" sender:self];
+            }];
 
         }/*else{
           [[[UIAlertView alloc] initWithTitle:nil message:@"Please, add a schedule/mark in map." delegate:nil cancelButtonTitle:nil otherButtonTitles:@"Ok", nil] show];
@@ -105,14 +132,14 @@
 }
 
 
-/*
+
 #pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    if ([[segue identifier] isEqualToString:@"clinicAdded"]){
+        NSLog(@"updated data clinic");
+    }
 }
-*/
+
 
 @end
