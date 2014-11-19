@@ -29,6 +29,10 @@ class SearchDoctorViewController : UIViewController, UITableViewDataSource, UITa
         locationManager?.startUpdatingLocation()
     }
 
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        //TODO: - revisar que enviaremos para hacer el detalle
+    }
+
     //MARK: - class properties
     var doctors : Array<Doctor>?
     var dummyDocDB : Array<Doctor>?
