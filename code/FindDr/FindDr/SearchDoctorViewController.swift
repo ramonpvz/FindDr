@@ -8,68 +8,37 @@
 
 import UIKit
 
-class SearchDoctorViewController : UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, UISearchDisplayDelegate  {
+class SearchDoctorViewController : UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, UISearchDisplayDelegate, MKMapViewDelegate, CLLocationManagerDelegate  {
 
     //MARK: - overriden methods
     override func viewDidLoad() {
         super.viewDidLoad()
-        //TODO: quitar estos dummy
-        let doc1 = Doctor()
-        let doc2 = Doctor()
-        let doc3 = Doctor()
-
-        let s1 = Speciality()
-        let s2 = Speciality()
-        let s3 = Speciality()
-
-        s1.name = "podologo"
-        s1.name = "proctologo"
-        s1.name = "oncologo"
-
-        let specialties = [s1, s2, s3]
-
-
-        doc1.name = "house"
-        doc1.lastName = "britoni"
-        doc1.secondLastName = "unknown"
-        doc1.title = "Specialist"
-        doc1.email = "house@bbc.com"
-        doc1.licence = "876123"
-        //doc1.specialities = specialties
-
-        doc2.name = "Selene"
-        doc2.lastName = "Milpas"
-        doc2.secondLastName = "Diaz"
-        doc2.title = "Oncologist"
-        doc2.email = "pollo@gmail.com"
-        doc2.licence = "87623423"
-
-        doc3.name = "cachetes"
-        doc3.lastName = "detras"
-        doc3.secondLastName = "unknown"
-        doc3.title = "proctologo"
-        doc3.email = "cacheton@bbc.com"
-        doc3.licence = "87sad6123"
-
-        dummyDocDB = [doc1, doc2, doc3]
-        
+        //starting variables
+        locationManager = CLLocationManager()
+        //spinner to indicate waiting
+        self.indicator?.startAnimating()
+        self.indicator?.hidden = true
         //starting view
         searchMapView.hidden = false
         searchTable.hidden   = true
-
         searchBar.delegate = self
-
+        locationManager?.delegate = self
+        //locate user's position
+        locationManager?.requestWhenInUseAuthorization()
+        locationManager?.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager?.startUpdatingLocation()
     }
 
     //MARK: - class properties
     var doctors : Array<Doctor>?
     var dummyDocDB : Array<Doctor>?
-
+    var clinics : Array<Clinic>?
+    var locationManager : CLLocationManager?
     //MARK: - view properties
     @IBOutlet var searchMapView: MKMapView!
     @IBOutlet var searchBar: UISearchBar!
     @IBOutlet var searchTable: UITableView!
-
+    @IBOutlet var indicator: UIActivityIndicatorView!
     //MARK: - view actions
     @IBAction func changeView(sender: UISegmentedControl) {
         let MAP  = 0
@@ -85,58 +54,127 @@ class SearchDoctorViewController : UIViewController, UITableViewDataSource, UITa
         }
     }
 
-    //MARK: - SearchBar delegated methods
-    func filterContentForSearchText(searchText: String?) {
-        if searchText == nil || searchText!.isEmpty {
-            doctors?.removeAll(keepCapacity: false)
-        }
-        // Filter the array using the filter method
-        doctors = dummyDocDB?.filter({ (doctor : Doctor) -> Bool in
-            if doctor.name.lowercaseString.rangeOfString(searchText!.lowercaseString) != nil ||
-               doctor.lastName.lowercaseString.rangeOfString(searchText!.lowercaseString) != nil ||
-            doctor.secondLastName.lowercaseString.rangeOfString(searchText!.lowercaseString) != nil
-            {
-                return true
-            }
+    //MARK: - class methods
 
-            return false
+    func centerMapOnMyPosition(latitude : CDouble, longitude : CDouble) {
+        //center pin
+        let SPAN = 0.1
+        let span = MKCoordinateSpan(latitudeDelta: SPAN, longitudeDelta: SPAN)
+        let region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: latitude, longitude: longitude), span: span)
+
+        searchMapView.setRegion(region, animated: true)
+        //adding pin on my position
+        let location = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+        let annotation = MKPointAnnotation()
+
+        annotation.coordinate = location;
+        annotation.title = "Me"
+        annotation.subtitle = "This is where I am located"
+
+        searchMapView.addAnnotation(annotation)
+    }
+
+    func markMap() {
+        for clinic in clinics! {
+            let latitude = (clinic.latitude as NSString).doubleValue
+            let longitude = (clinic.longitude as NSString).doubleValue
+
+            let location = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+            let annotation = MKPointAnnotation()
+
+            annotation.coordinate = location;
+            annotation.title = clinic.name
+            searchMapView.addAnnotation(annotation)
+        }
+    }
+
+    //MARK: - MAP delegated methods
+    func mapView(mapView: MKMapView!, viewForAnnotation annotation: MKAnnotation!) -> MKAnnotationView! {
+        let pin = MKPinAnnotationView(annotation: annotation, reuseIdentifier: "MyPin")
+        //adding properties
+        pin.canShowCallout = true
+        pin.highlighted = true
+        pin.pinColor = MKPinAnnotationColor.Red
+
+        if annotation.title == "Me" {
+            pin.pinColor = MKPinAnnotationColor.Purple
+        }
+        else {
+            pin.rightCalloutAccessoryView = UIButton.buttonWithType(UIButtonType.DetailDisclosure) as UIView
+        }
+        return pin
+    }
+
+    func mapView(mapView: MKMapView!, annotationView view: MKAnnotationView!, calloutAccessoryControlTapped control: UIControl!) {
+        //TODO: - go to detail
+    }
+
+    //MARK: - Location delegated methods
+    func locationManager(manager: CLLocationManager!, didFailWithError error: NSError!) {
+        println("Error while updating location: " + error.localizedDescription)
+    }
+
+    func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
+        CLGeocoder().reverseGeocodeLocation(manager.location, completionHandler: {(placemarks, error)->Void in
+            if error != nil {
+                println("Reverse geocoder failed with error" + error.localizedDescription)
+                return
+            }
+            if placemarks.count > 0 {
+                let pm = placemarks[0] as CLPlacemark
+                self.locationManager?.stopUpdatingLocation()
+                self.centerMapOnMyPosition(pm.location.coordinate.latitude, longitude: pm.location.coordinate.longitude)
+            } else {
+                println("Problem with the data received from geocoder")
+            }
         })
     }
 
-    func searchBar(searchBar: UISearchBar, textDidChange searchText: String) { // called when text changes (including clear) {
-        filterContentForSearchText(searchText)
-        searchTable.reloadData()
+    //MARK: - search Bar delegated methods
+    func searchBarSearchButtonClicked(searchBar: UISearchBar) { // called when keyboard search button pressed
+        let search = Search()
+        //cleaning map and table
+        clinics?.removeAll(keepCapacity: false)
+        searchMapView.removeAnnotations(searchMapView.annotations)
+        locationManager?.startUpdatingLocation()
+        //showing wait image
+        self.indicator?.hidden = false
+        //searching by doctor name
+        search.getDoctorsByName(searchBar.text, apps: { (doctors : [AnyObject]!) -> Void in
+            for doc in doctors {
+                search.loadClinics(doc as Doctor, results: { (clinicas : [AnyObject]!) -> Void in
+                    self.clinics = Array<Clinic>()
+                    for clinic in clinicas {
+                        self.clinics?.append(clinic as Clinic)
+                    }
+                    //TODO: - add searching by clinic and specialty
+                    //hidding wait image
+                    self.indicator?.hidden = true
+                    self.searchTable.reloadData()//printing results in table view
+                    self.markMap()
+                })
+            }
+            if doctors == nil || doctors.count <= 0 {
+                //hidding wait image and cleaning table results
+                self.indicator?.hidden = true
+                self.searchTable.reloadData()//printing results in table view
+                self.markMap()
+            }
+        })
     }
 
     //MARK: - table delegated methods
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return doctors != nil ? doctors!.count : 0
+        return clinics != nil ? clinics!.count : 0
     }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("searchCell", forIndexPath: indexPath) as UITableViewCell
+        let clinic = clinics?[indexPath.row]
 
-        let doctor = doctors?[indexPath.row]
-
-        let name = doctor?.name != nil ? doctor!.name : ""
-        let lastName = doctor?.lastName != nil ? doctor!.lastName : ""
-        let secondLastName = doctor?.secondLastName != nil ? doctor!.secondLastName : ""
-        var specialtiesCad = "Specialties: "
-
-//TODO: 
-//        doctor?.getSpecialities({ (specialties : [AnyObject]!) -> Void in
-//            var sp : Speciality?
-//            var specialtiesCad = "Specialties: "
-//            for specialty in specialties {
-//                sp = (specialty as Speciality)
-//                specialtiesCad = "\(specialtiesCad) \(sp?.name),"
-//            }
-//        })
-
-        cell.textLabel.text = "\(name) \(lastName) \(secondLastName)"
-        cell.detailTextLabel?.text = specialtiesCad
+        cell.textLabel.textColor = UIColor.whiteColor()
+        cell.textLabel.text = clinic?.name
+        //cell.detailTextLabel?.text = specialtiesCad
         return cell
     }
-
-
 }

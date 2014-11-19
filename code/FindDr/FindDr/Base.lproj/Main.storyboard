@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="hI9-SR-S7C">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="hI9-SR-S7C">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -2282,6 +2283,9 @@
                             </segmentedControl>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="whX-zN-pjT">
                                 <rect key="frame" x="36" y="178" width="528" height="372"/>
+                                <connections>
+                                    <outlet property="delegate" destination="HFu-kA-LQC" id="6c1-BF-c3B"/>
+                                </connections>
                             </mapView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s7M-uf-GrW">
                                 <rect key="frame" x="36" y="488" width="103" height="28"/>
@@ -2299,14 +2303,22 @@
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="9rH-ai-M94">
                                 <rect key="frame" x="36" y="178" width="528" height="372"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="separatorColor" red="0.0039215686269999999" green="0.43529411759999997" blue="0.66274509800000003" alpha="1" colorSpace="deviceRGB"/>
+                                <color key="sectionIndexColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="searchCell" id="Y87-zz-tRf">
                                         <rect key="frame" x="0.0" y="0.0" width="528" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Y87-zz-tRf" id="21f-yI-HSN">
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -2314,9 +2326,14 @@
                                     <outlet property="delegate" destination="HFu-kA-LQC" id="bNy-eo-MDH"/>
                                 </connections>
                             </tableView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="Tj7-1A-9mM">
+                                <rect key="frame" x="281.5" y="250" width="37" height="37"/>
+                                <color key="color" red="0.99322341160220995" green="0.0" blue="0.14636495370379385" alpha="1" colorSpace="calibratedRGB"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="centerX" secondItem="Tj7-1A-9mM" secondAttribute="centerX" id="0wx-Ts-iUC"/>
                             <constraint firstAttribute="trailingMargin" secondItem="whX-zN-pjT" secondAttribute="trailing" constant="20" id="1jl-6O-eHM"/>
                             <constraint firstItem="E8I-sV-TgJ" firstAttribute="top" secondItem="9rH-ai-M94" secondAttribute="bottom" constant="50" id="2LZ-HL-GvW"/>
                             <constraint firstItem="2Td-5X-gze" firstAttribute="leading" secondItem="jCF-Nc-OTP" secondAttribute="leading" id="7Cl-Ph-pFk"/>
@@ -2324,6 +2341,7 @@
                             <constraint firstAttribute="trailing" secondItem="IJ2-Va-W7b" secondAttribute="trailing" id="HTw-zj-QRT"/>
                             <constraint firstItem="2Td-5X-gze" firstAttribute="top" secondItem="ssP-bb-kPW" secondAttribute="bottom" id="LXZ-UQ-D7B"/>
                             <constraint firstItem="E8I-sV-TgJ" firstAttribute="top" secondItem="s7M-uf-GrW" secondAttribute="bottom" constant="20" id="O1U-B7-goD"/>
+                            <constraint firstAttribute="centerY" secondItem="Tj7-1A-9mM" secondAttribute="centerY" constant="-0.5" id="U5D-uD-4Mm"/>
                             <constraint firstItem="IJ2-Va-W7b" firstAttribute="leading" secondItem="jCF-Nc-OTP" secondAttribute="leading" id="Zn2-Y7-rHY"/>
                             <constraint firstItem="9rH-ai-M94" firstAttribute="leading" secondItem="jCF-Nc-OTP" secondAttribute="leadingMargin" constant="20" id="b4H-Xe-A3s"/>
                             <constraint firstItem="E8I-sV-TgJ" firstAttribute="top" secondItem="whX-zN-pjT" secondAttribute="bottom" constant="50" id="cPf-J4-svP"/>
@@ -2348,6 +2366,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Search" id="fXs-Lb-SJP"/>
                     <connections>
+                        <outlet property="indicator" destination="Tj7-1A-9mM" id="0c2-fX-rCu"/>
                         <outlet property="searchBar" destination="2Td-5X-gze" id="U1o-0h-4il"/>
                         <outlet property="searchMapView" destination="whX-zN-pjT" id="yo8-MH-xHk"/>
                         <outlet property="searchTable" destination="9rH-ai-M94" id="sLX-ni-fXq"/>

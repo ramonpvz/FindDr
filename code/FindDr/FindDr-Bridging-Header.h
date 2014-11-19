@@ -5,6 +5,8 @@
 #import <UIKit/UIKit.h>
 #import "Schedule.h"
 #import "Doctor.h"
+#import "Search.h"
+#import "Clinic.h"
 #import <MapKit/MapKit.h>
 #import <CoreLocation/CoreLocation.h>
 #import "AZDraggableAnnotationView.h"
