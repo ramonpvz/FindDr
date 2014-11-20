@@ -157,30 +157,29 @@ class CallendarViewController: UIViewController, UICollectionViewDelegateFlowLay
 //--------------------------------------------
 //----------SAVE THE SCHEDULE-----------------
 //--------------------------------------------
+        let schedule = Schedule()
 
-//        let schedule = Schedule()
-        //TODO set the doctor
-//        let doc : Doctor?
-//
-//        if doc != nil {
-//            schedule.monday    = week[MONDAY].reverse()
-//            schedule.tuesday   = week[TUESDAY].reverse()
-//            schedule.wednesday = week[WEDNESDAY].reverse()
-//            schedule.thursday  = week[THURSDAY].reverse()
-//            schedule.friday    = week[FRIDAY].reverse()
-//            schedule.saturday  = week[SATURDAY].reverse()
-//            schedule.sunday    = week[SUNDAY].reverse()
-            //TODO Falta descomentar esta linea agregando la clinica que queramos
-            //a partir de un doctor
-            //schedule.clinic =
-
-            //schedule.save()
-            
+        if actualDoctor != nil {
+            schedule.monday    = week[MONDAY].reverse()
+            schedule.tuesday   = week[TUESDAY].reverse()
+            schedule.wednesday = week[WEDNESDAY].reverse()
+            schedule.thursday  = week[THURSDAY].reverse()
+            schedule.friday    = week[FRIDAY].reverse()
+            schedule.saturday  = week[SATURDAY].reverse()
+            schedule.sunday    = week[SUNDAY].reverse()
+            //setting clinic
+            schedule.clinic = actualClinic
+            //saving
+            schedule.save()
+            //printing schedule
             printSchedule(week)
-//        }
-//        else {
+        }
+        else {
             //TODO ver como trataremos el error
-//        }
+            println("Error al salvar calendario")
+        }
+        //returning to previous stage
+        self.navigationController?.popViewControllerAnimated(true)
     }
 
     //MARK: - Helper methods

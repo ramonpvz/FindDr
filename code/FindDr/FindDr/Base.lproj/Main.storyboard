@@ -1485,13 +1485,13 @@
                                 <exclude reference="NgI-ai-lPi"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="5oa-ud-atC"/>
                                 <exclude reference="69O-vv-as3"/>
                                 <exclude reference="SrZ-ZR-zoT"/>
                                 <exclude reference="rIj-M6-Edf"/>
                                 <exclude reference="KpR-tX-gb7"/>
                                 <exclude reference="RsD-9b-65i"/>
                                 <exclude reference="U4j-Pa-Nt1"/>
-                                <exclude reference="5oa-ud-atC"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
@@ -1500,13 +1500,13 @@
                                 <include reference="NgI-ai-lPi"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="5oa-ud-atC"/>
                                 <include reference="69O-vv-as3"/>
                                 <include reference="SrZ-ZR-zoT"/>
                                 <include reference="rIj-M6-Edf"/>
                                 <include reference="KpR-tX-gb7"/>
                                 <include reference="RsD-9b-65i"/>
                                 <include reference="U4j-Pa-Nt1"/>
-                                <include reference="5oa-ud-atC"/>
                             </mask>
                         </variation>
                     </view>
