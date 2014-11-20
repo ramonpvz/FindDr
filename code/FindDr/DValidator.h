@@ -15,5 +15,6 @@
 + (BOOL) validPassword : (NSString*) passString;
 + (NSString *) dateToString : (NSDate*) date;
 + (NSDate *) stringToDate : (NSString*) date;
++ (NSDate*) roundDateMinuteToZero:(NSDate *)date ;
 
 @end

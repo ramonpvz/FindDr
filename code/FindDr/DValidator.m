@@ -61,4 +61,15 @@
     return [dateFormatter2 dateFromString:date];
 }
 
++ (NSDate*) roundDateMinuteToZero:(NSDate *)date {
+    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    NSDateComponents *components = [calendar components:NSCalendarUnitYear|NSCalendarUnitMonth|NSCalendarUnitDay|NSCalendarUnitHour fromDate:date];
+    [components setMinute:0];
+
+    NSDate *newDate = [calendar dateFromComponents:components];
+
+    return newDate;
+    
+}
+
 @end
