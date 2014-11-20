@@ -70,9 +70,16 @@
     NSString *criteria = [NSString stringWithFormat:@".*%@.*", name];
     PFQuery *doctorQuery = [Doctor query];
     [doctorQuery whereKey:@"name" matchesRegex:criteria];
-    [doctorQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+
+    PFQuery *doctorApPatQuery = [Doctor query];
+    [doctorApPatQuery whereKey:@"lastName" matchesRegex:criteria];
+
+    PFQuery *query = [PFQuery orQueryWithSubqueries:@[doctorQuery, doctorApPatQuery]];
+
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         complete(objects);
     }];
+
 }
 
 - (void) getDoctorsByClinicId: (NSString *)id apps:(void (^)(NSArray *doctors))complete {
@@ -81,6 +88,27 @@
     [clinicQuery whereKey:@"objectId" equalTo:id];
     [doctorQuery whereKey:@"clinics" matchesQuery:clinicQuery];
     [doctorQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        complete(objects);
+    }];
+}
+
+- (void) getClinicsBySpecialityId: (NSString *)id clinics:(void (^)(NSArray *clinics))complete {
+    PFQuery *clinicQuery = [Clinic query];
+    PFQuery *specQuery = [Speciality query];
+    [specQuery whereKey:@"name" equalTo:id];
+    [clinicQuery whereKey:@"specialities" matchesQuery:specQuery];
+    [clinicQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        complete(objects);
+    }];
+}
+
+- (void) getClinicsBySpecialityName: (NSString *)name clinics:(void (^)(NSArray *clinics))complete {
+    NSString *criteria = [NSString stringWithFormat:@".*%@.*", name];
+    PFQuery *clinicQuery = [Clinic query];
+    PFQuery *specQuery = [Speciality query];
+    [specQuery whereKey:@"name" matchesRegex:criteria];
+    [clinicQuery whereKey:@"specialities" matchesQuery:specQuery];
+    [clinicQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         complete(objects);
     }];
 }

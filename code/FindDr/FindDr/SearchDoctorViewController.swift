@@ -92,6 +92,13 @@ class SearchDoctorViewController : UIViewController, UITableViewDataSource, UITa
         }
     }
 
+    func reloadUIData() {
+        //hidding wait image and cleaning table results
+        self.indicator?.hidden = true
+        self.searchTable.reloadData()//printing results in table view
+        self.markMap()
+    }
+
     //MARK: - MAP delegated methods
     func mapView(mapView: MKMapView!, viewForAnnotation annotation: MKAnnotation!) -> MKAnnotationView! {
         let pin = MKPinAnnotationView(annotation: annotation, reuseIdentifier: "MyPin")
@@ -138,33 +145,52 @@ class SearchDoctorViewController : UIViewController, UITableViewDataSource, UITa
     func searchBarSearchButtonClicked(searchBar: UISearchBar) { // called when keyboard search button pressed
         let search = Search()
         //cleaning map and table
-        clinics?.removeAll(keepCapacity: false)
+        clinics = Array<Clinic>()
         searchMapView.removeAnnotations(searchMapView.annotations)
         locationManager?.startUpdatingLocation()
-        //showing wait image
-        self.indicator?.hidden = false
+
         //searching by doctor name
         search.getDoctorsByName(searchBar.text, apps: { (doctors : [AnyObject]!) -> Void in
+            //showing wait image
+            self.indicator?.hidden = false
             for doc in doctors {
                 search.loadClinics(doc as Doctor, results: { (clinicas : [AnyObject]!) -> Void in
                     self.clinics = Array<Clinic>()
                     for clinic in clinicas {
                         self.clinics?.append(clinic as Clinic)
                     }
-                    //TODO: - add searching by clinic and specialty
-                    //hidding wait image
-                    self.indicator?.hidden = true
-                    self.searchTable.reloadData()//printing results in table view
-                    self.markMap()
+                    self.reloadUIData()
                 })
             }
-            if doctors == nil || doctors.count <= 0 {
-                //hidding wait image and cleaning table results
-                self.indicator?.hidden = true
-                self.searchTable.reloadData()//printing results in table view
-                self.markMap()
+            if doctors == nil || doctors.isEmpty {
+                self.reloadUIData()
             }
         })
+        //searching by specialty
+        search.getClinicsBySpecialityName(searchBar.text, clinics: { (clinics : [AnyObject]!) -> Void in
+            //showing wait image
+            self.indicator?.hidden = false
+            for cl in clinics {
+                self.clinics?.append(cl as Clinic)
+            }
+            self.reloadUIData()
+        })
+        //cleaning array
+        var arr = Array<Clinic>()
+        var existsInArray = false
+        for clinic in clinics! {
+            existsInArray = false
+            for c in arr {
+                if clinic.name == c.name {
+                    existsInArray = true
+                    break
+                }
+            }
+            if !existsInArray {
+                arr.append(clinic)
+            }
+        }
+        clinics = Array<Clinic>(arr)
     }
 
     //MARK: - table delegated methods

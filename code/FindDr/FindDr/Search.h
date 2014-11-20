@@ -19,4 +19,8 @@
 
 - (void) getDoctorsByClinicId: (NSString *)id apps:(void (^)(NSArray *doctors))complete;
 
+- (void) getClinicsBySpecialityId: (NSString *)id clinics:(void (^)(NSArray *clinics))complete;
+
+- (void) getClinicsBySpecialityName: (NSString *)name clinics:(void (^)(NSArray *clinics))complete;
+
 @end
