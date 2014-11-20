@@ -24,15 +24,35 @@
 }
 
 + (void) getCommentsByPatient:(Patient *)patient doc:(void (^)(NSArray *comments))complete {
-    //to do...
+    PFQuery *commentQuery = [Comment query];
+    [commentQuery whereKey:@"patient" equalTo:patient];
+    [commentQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        complete(objects);
+    }];
 }
 
 + (void) getCommentsByDoctor:(Doctor *)doctor doc:(void (^)(NSArray *comments))complete {
-    //to do...
+    PFQuery *commentQuery = [Comment query];
+    [commentQuery whereKey:@"doctor" equalTo:doctor];
+    [commentQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        complete(objects);
+    }];
 }
 
-+ (void) addCommentToDoctor: (NSString *) doctor : (Doctor *) doc {
-    //to do...
++ (void) addCommentToDoctor:(NSString *)description : (Doctor *)doc patient:(Patient *)patient {
+    Comment *comment = [Comment object];
+    comment.description = description;
+    comment.doctor = doc;
+    comment.patient = patient;
+    [comment saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        if (!error) {
+            NSLog(@"Comment added");
+        }
+        else
+        {
+            NSLog(@"Error: %@",error);
+        }
+    }];
 }
 
 @end

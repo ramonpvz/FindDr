@@ -23,9 +23,6 @@
 @property (strong, nonatomic) IBOutlet UIImageView *commentIcon;
 @property (strong, nonatomic) IBOutlet UIImageView *createAppIcon;
 @property NSDate *appointmentDate;
-@property Doctor *currentDoctor;
-@property Patient *currentPatient;
-@property Clinic *currentClinic;
 @property NSArray *comments;
 
 @end
@@ -37,25 +34,7 @@
     self.docPhoto.image = [UIImage imageNamed:@"juan.jpg"];
     self.commentIcon.image = [UIImage imageNamed:@"comment_add-128.png"];
     self.createAppIcon.image = [UIImage imageNamed:@"schedule_appointment_icon.png"];
-    [Patient getPatientByUser:[PFUser currentUser] pat:^(Patient *patient) {
-        self.currentPatient = patient;
-    }];
-    
-    PFQuery *docQuery = [Doctor query];
-    [docQuery whereKey:@"objectId" equalTo:@"0xyQXiANdm"];
-    [docQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        self.currentDoctor = [objects objectAtIndex:0];
-        Clinic *clinic = [[Clinic alloc] init];
-        clinic.name = @"Happy Ending Clinic...";
-        clinic.street = @"Test street";
-        clinic.latitude = @"1412.244019";
-        clinic.longitude = @"1412.239990";
-        self.currentClinic = clinic;
-        [self.currentDoctor addClinic:clinic];
-    }];
-
     //self.comments = [self.currentDoctor load]
-
 }
 
 - (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section

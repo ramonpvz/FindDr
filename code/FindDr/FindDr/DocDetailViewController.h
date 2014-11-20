@@ -7,7 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Doctor.h"
+#import "Patient.h"
+#import "Clinic.h"
 
 @interface DocDetailViewController : UIViewController
+
+@property Doctor *currentDoctor;
+@property Patient *currentPatient;
+@property Clinic *currentClinic;
 
 @end

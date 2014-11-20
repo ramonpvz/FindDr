@@ -20,6 +20,6 @@
 
 + (void) getCommentsByDoctor:(Doctor *)doctor doc:(void (^)(NSArray *comments))complete;
 
-+ (void) addCommentToDoctor: (NSString *) doctor : (Doctor *) doc;
++ (void) addCommentToDoctor:(NSString *)doctor : (Doctor *) doc patient:(Patient *)patient;
 
 @end
