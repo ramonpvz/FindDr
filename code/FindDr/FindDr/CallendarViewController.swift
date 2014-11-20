@@ -15,6 +15,15 @@ class CallendarViewController: UIViewController, UICollectionViewDelegateFlowLay
     let WIDTH_REDUCTION_PERCENTAGE = 0.97
     let HEIGHT_REDUCTION_PERCENTAGE = 0.93
 
+    //MARK: - calendar constants
+    let MONDAY    = 0
+    let TUESDAY   = 1
+    let WEDNESDAY = 2
+    let THURSDAY  = 3
+    let FRIDAY    = 4
+    let SATURDAY  = 5
+    let SUNDAY    = 6
+
     //MARK: - Instance properties
     var actualCell : CalendarCell?
     var actualDoctor : Doctor?
@@ -39,7 +48,11 @@ class CallendarViewController: UIViewController, UICollectionViewDelegateFlowLay
         let width = view.frame.width
         let height = view.frame.height
         calendarColView.frame = CGRectMake(0, 0, width, height * 0.99)
+    }
 
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        fillCalendarFromClinic()
     }
 
 
@@ -130,14 +143,6 @@ class CallendarViewController: UIViewController, UICollectionViewDelegateFlowLay
     //MARK: - Action View methods
     
     @IBAction func addSchedule(sender: AnyObject) {
-        let MONDAY    = 0
-        let TUESDAY   = 1
-        let WEDNESDAY = 2
-        let THURSDAY  = 3
-        let FRIDAY    = 4
-        let SATURDAY  = 5
-        let SUNDAY    = 6
-
         var hour : NSMutableArray?
         var week = Array<Array<Bool>>()
         //creating week array(each day has an Array fo 12 hours)
@@ -154,12 +159,10 @@ class CallendarViewController: UIViewController, UICollectionViewDelegateFlowLay
                 week[indexPath!.row - 1][indexPath!.section - 1] = true
             }
         }
-//--------------------------------------------
-//----------SAVE THE SCHEDULE-----------------
-//--------------------------------------------
+        //SAVING THE SCHEDULE
         let schedule = Schedule()
 
-        if actualDoctor != nil {
+        if actualClinic != nil {
             schedule.monday    = week[MONDAY].reverse()
             schedule.tuesday   = week[TUESDAY].reverse()
             schedule.wednesday = week[WEDNESDAY].reverse()
@@ -202,6 +205,33 @@ class CallendarViewController: UIViewController, UICollectionViewDelegateFlowLay
             }
             println("")
         }
+    }
+
+    func fillCalendarFromClinic() {
+        var week = Array<Array<Bool>>()
+        Schedule.getScheduleByClinic(actualClinic, sched: { (schedule : Schedule!) -> Void in
+            if schedule != nil {
+                week.append((schedule.monday as Array<Bool>).reverse())
+                week.append((schedule.tuesday as Array<Bool>).reverse())
+                week.append((schedule.wednesday as Array<Bool>).reverse())
+                week.append((schedule.thursday as Array<Bool>).reverse())
+                week.append((schedule.friday as Array<Bool>).reverse())
+                week.append((schedule.saturday as Array<Bool>).reverse())
+                week.append((schedule.sunday as Array<Bool>).reverse())
+            }
+//            for testing if u want
+//            println("****scheduled de BD****")
+//            self.printSchedule(week)
+            //formating cell background
+            for cell in self.calendarColView.visibleCells() {
+                var indexPath = self.calendarColView.indexPathForCell((cell as CalendarCell))
+                if indexPath!.row > 0 && indexPath!.row < self.CALENDAR_HEADER && indexPath!.section > 0 && indexPath!.section < self.CALENDAR_HOURS {
+                    if week[indexPath!.row - 1][indexPath!.section - 1] {
+                        (cell as CalendarCell).makeSelection()
+                    }
+                }
+            }
+        })
     }
 }
 
