@@ -9,7 +9,6 @@
 #import <Parse/Parse.h>
 #import "Speciality.h"
 #import "Clinic.h"
-#import "Comment.h"
 
 @interface Doctor : PFObject <PFSubclassing>
 
@@ -26,7 +25,6 @@
 @property PFRelation *clinics;
 @property PFFile *photo;
 @property PFUser *user;
-@property NSArray *comments;
 
 + (void) getDoctorByUser:(PFUser *)user doc:(void (^)(Doctor *doctor))complete;
 - (void) getSpecialities:(void (^)(NSArray *specialities))complete;
@@ -37,6 +35,7 @@
 - (void) addSpeciality: (Speciality *) speciality;
 - (void) addClinic: (Clinic *) clinic;
 - (void) removeClinic: (Clinic *) clinic;
-- (void) addComment: (Comment *) comment;
+- (void) loadImage: (void (^)(UIImage *image))complete;
+- (NSString *) getFullName;
 
 @end

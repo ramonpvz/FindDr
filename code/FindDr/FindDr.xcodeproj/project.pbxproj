@@ -23,6 +23,8 @@
 		A58F73A61A0966F800226385 /* FindDrTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A58F73A51A0966F800226385 /* FindDrTests.m */; };
 		A5BBA1DA1A16763800BDF698 /* SearchDoctorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BBA1D91A16763800BDF698 /* SearchDoctorViewController.swift */; };
 		C30AE7671A0D559500C61111 /* Login.m in Sources */ = {isa = PBXBuildFile; fileRef = C30AE7661A0D559500C61111 /* Login.m */; };
+		C30F87B61A1D08B30050C0D0 /* DocDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C30F87B51A1D08B30050C0D0 /* DocDetailViewController.m */; };
+		C30F87B81A1D0C230050C0D0 /* juan.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C30F87B71A1D0C230050C0D0 /* juan.jpg */; };
 		C31122271A0A7B39001A3FF7 /* Schedule.m in Sources */ = {isa = PBXBuildFile; fileRef = C31122261A0A7B39001A3FF7 /* Schedule.m */; };
 		C311222A1A0A7B92001A3FF7 /* Ranking.m in Sources */ = {isa = PBXBuildFile; fileRef = C31122291A0A7B92001A3FF7 /* Ranking.m */; };
 		C311222D1A0A7BA3001A3FF7 /* Comment.m in Sources */ = {isa = PBXBuildFile; fileRef = C311222C1A0A7BA3001A3FF7 /* Comment.m */; };
@@ -56,6 +58,14 @@
 		C3A592241A129C9000675FA6 /* DSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A592231A129C9000675FA6 /* DSettings.m */; };
 		C3A5922A1A12CDB500675FA6 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A592291A12CDB500675FA6 /* LoginViewController.m */; };
 		C3A592301A12ED6700675FA6 /* DrInboxViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A5922F1A12ED6700675FA6 /* DrInboxViewController.m */; };
+		C3B18F991A1BDBDC00ED61BC /* UserApptsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3B18F981A1BDBDC00ED61BC /* UserApptsViewController.m */; };
+		C3B18F9C1A1BF8BB00ED61BC /* UserApptDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3B18F9B1A1BF8BB00ED61BC /* UserApptDetailViewController.m */; };
+		C3EC5CB61A1C350B00DEE067 /* CustomAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = C3EC5CB51A1C350B00DEE067 /* CustomAnnotation.m */; };
+		C3FC066C1A1D47A400BB3969 /* comment_add-128.png in Resources */ = {isa = PBXBuildFile; fileRef = C3FC066B1A1D47A400BB3969 /* comment_add-128.png */; };
+		C3FC066E1A1D4ABE00BB3969 /* reqAppt.png in Resources */ = {isa = PBXBuildFile; fileRef = C3FC066D1A1D4ABE00BB3969 /* reqAppt.png */; };
+		C3FC06711A1D588200BB3969 /* CreateApptViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3FC06701A1D588200BB3969 /* CreateApptViewController.m */; };
+		C3FC06731A1D659200BB3969 /* schedule_appointment_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = C3FC06721A1D659200BB3969 /* schedule_appointment_icon.png */; };
+		C3FC06751A1D66D200BB3969 /* myit_icon_appointment.png in Resources */ = {isa = PBXBuildFile; fileRef = C3FC06741A1D66D200BB3969 /* myit_icon_appointment.png */; };
 		C3FFD8C11A13BB8100D30DED /* AppGenInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3FFD8C01A13BB8100D30DED /* AppGenInfoViewController.m */; };
 		E427928C1A1BC709002A630B /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = E427928B1A1BC709002A630B /* MBProgressHUD.m */; };
 		E42ECE691A099A0A005E320E /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E42ECE681A099A0A005E320E /* SignUpViewController.m */; };
@@ -123,6 +133,9 @@
 		A5BBA1D91A16763800BDF698 /* SearchDoctorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchDoctorViewController.swift; sourceTree = "<group>"; };
 		C30AE7651A0D559500C61111 /* Login.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Login.h; sourceTree = "<group>"; };
 		C30AE7661A0D559500C61111 /* Login.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Login.m; sourceTree = "<group>"; };
+		C30F87B41A1D08B30050C0D0 /* DocDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DocDetailViewController.h; sourceTree = "<group>"; };
+		C30F87B51A1D08B30050C0D0 /* DocDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DocDetailViewController.m; sourceTree = "<group>"; };
+		C30F87B71A1D0C230050C0D0 /* juan.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = juan.jpg; sourceTree = "<group>"; };
 		C31122251A0A7B39001A3FF7 /* Schedule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Schedule.h; sourceTree = "<group>"; };
 		C31122261A0A7B39001A3FF7 /* Schedule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Schedule.m; sourceTree = "<group>"; };
 		C31122281A0A7B92001A3FF7 /* Ranking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Ranking.h; sourceTree = "<group>"; };
@@ -166,6 +179,18 @@
 		C3A592291A12CDB500675FA6 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		C3A5922E1A12ED6700675FA6 /* DrInboxViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrInboxViewController.h; sourceTree = "<group>"; };
 		C3A5922F1A12ED6700675FA6 /* DrInboxViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrInboxViewController.m; sourceTree = "<group>"; };
+		C3B18F971A1BDBDC00ED61BC /* UserApptsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserApptsViewController.h; sourceTree = "<group>"; };
+		C3B18F981A1BDBDC00ED61BC /* UserApptsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserApptsViewController.m; sourceTree = "<group>"; };
+		C3B18F9A1A1BF8BB00ED61BC /* UserApptDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserApptDetailViewController.h; sourceTree = "<group>"; };
+		C3B18F9B1A1BF8BB00ED61BC /* UserApptDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserApptDetailViewController.m; sourceTree = "<group>"; };
+		C3EC5CB41A1C350B00DEE067 /* CustomAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomAnnotation.h; sourceTree = "<group>"; };
+		C3EC5CB51A1C350B00DEE067 /* CustomAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomAnnotation.m; sourceTree = "<group>"; };
+		C3FC066B1A1D47A400BB3969 /* comment_add-128.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "comment_add-128.png"; sourceTree = "<group>"; };
+		C3FC066D1A1D4ABE00BB3969 /* reqAppt.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = reqAppt.png; sourceTree = "<group>"; };
+		C3FC066F1A1D588200BB3969 /* CreateApptViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateApptViewController.h; sourceTree = "<group>"; };
+		C3FC06701A1D588200BB3969 /* CreateApptViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateApptViewController.m; sourceTree = "<group>"; };
+		C3FC06721A1D659200BB3969 /* schedule_appointment_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = schedule_appointment_icon.png; sourceTree = "<group>"; };
+		C3FC06741A1D66D200BB3969 /* myit_icon_appointment.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = myit_icon_appointment.png; sourceTree = "<group>"; };
 		C3FFD8BF1A13BB8100D30DED /* AppGenInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppGenInfoViewController.h; sourceTree = "<group>"; };
 		C3FFD8C01A13BB8100D30DED /* AppGenInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppGenInfoViewController.m; sourceTree = "<group>"; };
 		E427928A1A1BC709002A630B /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
@@ -265,6 +290,11 @@
 		A55566F41A0AB4A800B9CDAF /* images */ = {
 			isa = PBXGroup;
 			children = (
+				C3FC06741A1D66D200BB3969 /* myit_icon_appointment.png */,
+				C3FC06721A1D659200BB3969 /* schedule_appointment_icon.png */,
+				C3FC066D1A1D4ABE00BB3969 /* reqAppt.png */,
+				C3FC066B1A1D47A400BB3969 /* comment_add-128.png */,
+				C30F87B71A1D0C230050C0D0 /* juan.jpg */,
 				C34277791A15360D00AF9237 /* Logout-32.png */,
 				E44873B91A0B00700036CAFF /* user.png */,
 				E4DA5D2A1A0D7C1100C4FCAB /* error@2x.png */,
@@ -286,6 +316,8 @@
 				A55567261A0AE9BF00B9CDAF /* UIColorExtension.swift */,
 				C3A5921E1A1287DA00675FA6 /* DValidator.h */,
 				C3A5921F1A1287DA00675FA6 /* DValidator.m */,
+				C3EC5CB41A1C350B00DEE067 /* CustomAnnotation.h */,
+				C3EC5CB51A1C350B00DEE067 /* CustomAnnotation.m */,
 			);
 			name = utils;
 			sourceTree = "<group>";
@@ -349,6 +381,14 @@
 				A58F73861A0966F800226385 /* Supporting Files */,
 				C3FFD8BF1A13BB8100D30DED /* AppGenInfoViewController.h */,
 				C3FFD8C01A13BB8100D30DED /* AppGenInfoViewController.m */,
+				C3B18F971A1BDBDC00ED61BC /* UserApptsViewController.h */,
+				C3B18F981A1BDBDC00ED61BC /* UserApptsViewController.m */,
+				C3B18F9A1A1BF8BB00ED61BC /* UserApptDetailViewController.h */,
+				C3B18F9B1A1BF8BB00ED61BC /* UserApptDetailViewController.m */,
+				C30F87B41A1D08B30050C0D0 /* DocDetailViewController.h */,
+				C30F87B51A1D08B30050C0D0 /* DocDetailViewController.m */,
+				C3FC066F1A1D588200BB3969 /* CreateApptViewController.h */,
+				C3FC06701A1D588200BB3969 /* CreateApptViewController.m */,
 			);
 			path = FindDr;
 			sourceTree = "<group>";
@@ -597,15 +637,20 @@
 				E4DA5D2B1A0D7C1100C4FCAB /* error@2x.png in Resources */,
 				A55567151A0AD27400B9CDAF /* background3.png in Resources */,
 				E44873BA1A0B00700036CAFF /* user.png in Resources */,
+				C3FC06731A1D659200BB3969 /* schedule_appointment_icon.png in Resources */,
 				E4AF648B1A129887006C24B9 /* draggable_annotation_icon@2x.png in Resources */,
+				C30F87B81A1D0C230050C0D0 /* juan.jpg in Resources */,
 				A58F73951A0966F800226385 /* Main.storyboard in Resources */,
 				A55567041A0ABC7500B9CDAF /* lupa.png in Resources */,
 				C342777A1A15360D00AF9237 /* Logout-32.png in Resources */,
 				A555670D1A0ACBD100B9CDAF /* pacient.png in Resources */,
+				C3FC066C1A1D47A400BB3969 /* comment_add-128.png in Resources */,
+				C3FC066E1A1D4ABE00BB3969 /* reqAppt.png in Resources */,
 				A58F739A1A0966F800226385 /* LaunchScreen.xib in Resources */,
 				A58F73971A0966F800226385 /* Images.xcassets in Resources */,
 				E4AF648A1A129887006C24B9 /* draggable_annotation_icon.png in Resources */,
 				E44873B81A0B00640036CAFF /* clinic.png in Resources */,
+				C3FC06751A1D66D200BB3969 /* myit_icon_appointment.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -633,6 +678,7 @@
 				A51313F31A13F6500079FFFE /* CalendarCell.swift in Sources */,
 				E4AF64871A12975D006C24B9 /* AZDraggableAnnotationView.m in Sources */,
 				E4C2CEC31A0BEE8700120F70 /* UIScrollView+TPKeyboardAvoidingAdditions.m in Sources */,
+				C3B18F991A1BDBDC00ED61BC /* UserApptsViewController.m in Sources */,
 				C3A592201A1287DA00675FA6 /* DValidator.m in Sources */,
 				E4C2CEC01A0BEE8700120F70 /* TPKeyboardAvoidingCollectionView.m in Sources */,
 				C31122301A0A7C6A001A3FF7 /* Appointment.m in Sources */,
@@ -645,12 +691,14 @@
 				C3A592241A129C9000675FA6 /* DSettings.m in Sources */,
 				C3A592191A127DD200675FA6 /* AppDelegate.m in Sources */,
 				A51313F41A13F6500079FFFE /* CallendarViewController.swift in Sources */,
+				C3B18F9C1A1BF8BB00ED61BC /* UserApptDetailViewController.m in Sources */,
 				E42ECE691A099A0A005E320E /* SignUpViewController.m in Sources */,
 				E4C2CEC21A0BEE8700120F70 /* TPKeyboardAvoidingTableView.m in Sources */,
 				E4DA5D1E1A0D7BB700C4FCAB /* AbstractActionSheetPicker.m in Sources */,
 				A5BBA1DA1A16763800BDF698 /* SearchDoctorViewController.swift in Sources */,
 				E4DA5D201A0D7BB700C4FCAB /* ActionSheetDatePicker.m in Sources */,
 				E4BBD3431A0AAF2C00E8DDF7 /* MapViewViewController.m in Sources */,
+				C3FC06711A1D588200BB3969 /* CreateApptViewController.m in Sources */,
 				E42ECE6C1A09A381005E320E /* ShowClinicsViewController.m in Sources */,
 				E4BBD3401A0AAB9500E8DDF7 /* ClinicViewController.m in Sources */,
 				C342777D1A156A2700AF9237 /* User.m in Sources */,
@@ -662,8 +710,10 @@
 				C33861FF1A16B9A90060ADA7 /* Search.m in Sources */,
 				A58F738F1A0966F800226385 /* FindDr.xcdatamodeld in Sources */,
 				C311222A1A0A7B92001A3FF7 /* Ranking.m in Sources */,
+				C30F87B61A1D08B30050C0D0 /* DocDetailViewController.m in Sources */,
 				C31122331A0A7C97001A3FF7 /* Speciality.m in Sources */,
 				E4E79FFF1A1D6D47009C2993 /* SelectSpecialtiesViewController.m in Sources */,
+				C3EC5CB61A1C350B00DEE067 /* CustomAnnotation.m in Sources */,
 				C311222D1A0A7BA3001A3FF7 /* Comment.m in Sources */,
 				E4C2CEB61A0BDD5300120F70 /* main.m in Sources */,
 				E4C2CEC11A0BEE8700120F70 /* TPKeyboardAvoidingScrollView.m in Sources */,

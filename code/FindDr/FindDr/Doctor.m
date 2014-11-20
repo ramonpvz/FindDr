@@ -25,7 +25,6 @@
 @dynamic specialities;
 @dynamic clinics;
 @dynamic user;
-@dynamic comments;
 
 + (void) load
 {
@@ -71,6 +70,7 @@
     [appointmentsQuery whereKey:@"doctor" equalTo:self];
     [appointmentsQuery whereKey:@"status" equalTo:status];
     [appointmentsQuery includeKey:@"patient"];
+    [appointmentsQuery orderByAscending:@""];
     [appointmentsQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         complete(objects);
     }];
@@ -127,11 +127,12 @@
     }];
 }
 
-- (void) addComment: (Comment *) comment {
-    [self addObject:comment forKey:@"comments"];
-    [self saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-        NSLog(@"Comment added");
-    }];
+- (void) loadImage: (void (^)(UIImage *image))complete {
+    complete ([UIImage imageWithData:[NSData dataWithData:[self.photo getData]]]);
+}
+
+- (NSString *) getFullName {
+    return [NSString stringWithFormat:@"%@ %@ %@", self.name, self.lastName, self.secondLastName];
 }
 
 @end

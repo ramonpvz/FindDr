@@ -14,7 +14,9 @@
 + (BOOL) validEmail : (NSString*) emailString;
 + (BOOL) validPassword : (NSString*) passString;
 + (NSString *) dateToString : (NSDate*) date;
++ (NSString *) dateToLabel : (NSDate*) date;
 + (NSDate *) stringToDate : (NSString*) date;
 + (NSDate*) roundDateMinuteToZero:(NSDate *)date ;
++ (NSDate *) formatDate : (NSString*) date;
 
 @end

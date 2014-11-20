@@ -30,4 +30,6 @@
 
 - (void) removeSpeciality: (Speciality *) speciality;
 
+- (NSString *) getFullAddress;
+
 @end

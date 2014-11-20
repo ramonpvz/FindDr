@@ -44,12 +44,31 @@
     }
 }
 
++ (void) getPatientByUser:(PFUser *)user pat:(void (^)(Patient *patient))complete {
+    PFQuery *patientQuery = [Patient query];
+    [patientQuery whereKey:@"user" equalTo:user];
+    [patientQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        complete([objects objectAtIndex:0]);
+    }];
+}
+
 - (void) getAppointments:(void (^)(NSArray *appointments))complete {
     PFQuery *appointmentsQuery = [Appointment query];
     [appointmentsQuery whereKey:@"patient" equalTo:self];
     [appointmentsQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         complete(objects);
     } ];
+}
+
+- (void) getAppointmentsByStatus: (NSString *)status apps:(void (^)(NSArray *appointments))complete {
+    PFQuery *appointmentsQuery = [Appointment query];
+    [appointmentsQuery whereKey:@"patient" equalTo:self];
+    [appointmentsQuery whereKey:@"status" equalTo:status];
+    [appointmentsQuery includeKey:@"doctor"]; //God bless us this is a pointer...
+    [appointmentsQuery includeKey:@"clinic"]; //God bless us this is a pointer...
+    [appointmentsQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        complete(objects);
+    }];
 }
 
 - (NSString *) getFullName {

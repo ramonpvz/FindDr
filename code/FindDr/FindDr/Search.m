@@ -19,11 +19,8 @@
             for (Doctor *doc in doctors) {
                 [self loadClinics:doc results:^(NSArray *clinics) {
                     for (Clinic *clinic in clinics) {
-
                         //Draw current clinic on map...
-                        
                         NSLog(@"Clinica: %@",clinic);
-
                     }
                 }];
             }
@@ -31,27 +28,11 @@
         else
         {
             NSLog(@"Doctor(s) not found by name: %@. Searching by speciality." , searchString);
-            NSString *criteria = [NSString stringWithFormat:@".*%@.*", searchString];
-            PFQuery *specialityQuery = [Speciality query];
-            [specialityQuery whereKey:@"name" matchesRegex:criteria];
-            [specialityQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-                for (Speciality *_spec in objects) {
-                    PFQuery *clinicsQry = [Clinic query];
-                    [clinicsQry includeKey:@"specialities"];
-                    [clinicsQry findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-                        for (Clinic *clinic in objects) {
-                            NSPredicate *pred = [NSPredicate predicateWithFormat:@"objectId == %@",_spec.objectId];
-//                            NSArray *filteredSpecialities = [clinic.specialities filteredArrayUsingPredicate:pred];
-//                            if (filteredSpecialities != nil && filteredSpecialities.count > 0) {
-//                                
-//                                //Draw current clinic on map...
-//                                
-//                                [self getDoctorsByClinicId:clinic.objectId apps:^(NSArray *doctors) {
-//                                    NSLog(@"Doctors: %@",doctors);
-//                                }];
-//                                
-//                            }
-                        }
+            [self getClinicsBySpecialityName:searchString clinics:^(NSArray *clinics) {
+                for (Clinic *clinic in clinics) {
+                    [self getDoctorsByClinicId:clinic.objectId apps:^(NSArray *doctors) {
+                        NSString *log = [NSString stringWithFormat:@"Clinic %@ has %lul doctors",clinic.name,doctors.count];
+                        NSLog(@"%@",log);
                     }];
                 }
             }];
@@ -70,7 +51,7 @@
     NSString *criteria = [NSString stringWithFormat:@".*%@.*", name];
     PFQuery *doctorQuery = [Doctor query];
     [doctorQuery whereKey:@"name" matchesRegex:criteria];
-
+    
     PFQuery *doctorApPatQuery = [Doctor query];
     [doctorApPatQuery whereKey:@"lastName" matchesRegex:criteria];
 
@@ -79,7 +60,6 @@
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         complete(objects);
     }];
-
 }
 
 - (void) getDoctorsByClinicId: (NSString *)id apps:(void (^)(NSArray *doctors))complete {

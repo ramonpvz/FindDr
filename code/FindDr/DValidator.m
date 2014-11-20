@@ -69,7 +69,22 @@
     NSDate *newDate = [calendar dateFromComponents:components];
 
     return newDate;
-    
+}
+
++ (NSString *) dateToLabel : (NSDate*) date {
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setLocale:[NSLocale currentLocale]];
+    [dateFormatter setTimeZone:[NSTimeZone timeZoneWithName:@"GMT"]];
+    [dateFormatter setDateFormat:@"EEE, MMM dd - hh:00:00 a"];
+    return [dateFormatter stringFromDate:date];
+}
+
++ (NSDate *) formatDate : (NSString*) date {
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    //[dateFormatter2 setLocale:[NSLocale currentLocale]];
+    //[dateFormatter2 setTimeZone:[NSTimeZone timeZoneWithName:@"GMT"]];
+    [dateFormatter setDateFormat:@"dd-MM-yyyy HH:00 a"];
+    return [dateFormatter dateFromString:date];
 }
 
 @end

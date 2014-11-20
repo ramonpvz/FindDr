@@ -27,6 +27,10 @@
 
 - (void) loadImage: (void (^)(UIImage *image))complete;
 
+- (void) getAppointmentsByStatus: (NSString *)status apps:(void (^)(NSArray *appointments))complete;
+
 + (void) save: (Patient *) patient;
+
++ (void) getPatientByUser:(PFUser *)user pat:(void (^)(Patient *patient))complete;
 
 @end

@@ -12,6 +12,7 @@
 
 @dynamic description;
 @dynamic patient;
+@dynamic doctor;
 
 + (void) load
 {
@@ -20,6 +21,18 @@
 
 + (NSString *) parseClassName {
     return @"Comment";
+}
+
++ (void) getCommentsByPatient:(Patient *)patient doc:(void (^)(NSArray *comments))complete {
+    //to do...
+}
+
++ (void) getCommentsByDoctor:(Doctor *)doctor doc:(void (^)(NSArray *comments))complete {
+    //to do...
+}
+
++ (void) addCommentToDoctor: (NSString *) doctor : (Doctor *) doc {
+    //to do...
 }
 
 @end
