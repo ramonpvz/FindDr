@@ -50,4 +50,39 @@
     }
 }
 
+- (void) addSpeciality: (Speciality *) speciality {
+    PFRelation *specialityRelation = self.specialities;
+    [specialityRelation addObject:speciality];
+    [self saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        if (error) {
+            NSLog(@"Error: %@",error);
+        }
+        else
+        {
+            NSLog(@"Speciality added.");
+        }
+    }];
+}
+
+- (void) removeSpeciality: (Speciality *) speciality {
+    PFRelation *specialityRelation = self.specialities;
+    [specialityRelation removeObject:speciality];
+    [self saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        if (error) {
+            NSLog(@"Error: %@",error);
+        }
+        else
+        {
+            NSLog(@"Speciality removed.");
+        }
+    }];
+}
+
+- (void)getSpecialities:(void (^)(NSArray *specialities))complete {
+    PFQuery *specsQry = [self relationForKey:@"specialities"].query;
+    [specsQry findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        complete(objects);
+    }];
+}
+
 @end

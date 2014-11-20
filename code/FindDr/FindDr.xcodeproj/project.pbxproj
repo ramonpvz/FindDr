@@ -83,6 +83,7 @@
 		E4DA5D251A0D7BB700C4FCAB /* SWActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = E4DA5D1D1A0D7BB700C4FCAB /* SWActionSheet.m */; };
 		E4DA5D291A0D7BF200C4FCAB /* TextFieldValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = E4DA5D281A0D7BF200C4FCAB /* TextFieldValidator.m */; };
 		E4DA5D2B1A0D7C1100C4FCAB /* error@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E4DA5D2A1A0D7C1100C4FCAB /* error@2x.png */; };
+		E4E79FFF1A1D6D47009C2993 /* SelectSpecialtiesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4E79FFE1A1D6D47009C2993 /* SelectSpecialtiesViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -212,6 +213,8 @@
 		E4DA5D271A0D7BF200C4FCAB /* TextFieldValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextFieldValidator.h; sourceTree = "<group>"; };
 		E4DA5D281A0D7BF200C4FCAB /* TextFieldValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextFieldValidator.m; sourceTree = "<group>"; };
 		E4DA5D2A1A0D7C1100C4FCAB /* error@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "error@2x.png"; sourceTree = "<group>"; };
+		E4E79FFD1A1D6D47009C2993 /* SelectSpecialtiesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectSpecialtiesViewController.h; sourceTree = "<group>"; };
+		E4E79FFE1A1D6D47009C2993 /* SelectSpecialtiesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectSpecialtiesViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -332,6 +335,8 @@
 				E42ECE6B1A09A381005E320E /* ShowClinicsViewController.m */,
 				E42ECE671A099A0A005E320E /* SignUpViewController.h */,
 				E42ECE681A099A0A005E320E /* SignUpViewController.m */,
+				E4E79FFD1A1D6D47009C2993 /* SelectSpecialtiesViewController.h */,
+				E4E79FFE1A1D6D47009C2993 /* SelectSpecialtiesViewController.m */,
 				E42792891A1BC709002A630B /* MBProgressHUD */,
 				E4AF64841A129740006C24B9 /* AZDraggableAnnotationView */,
 				E4DA5D261A0D7BDC00C4FCAB /* TextFieldValidator */,
@@ -658,6 +663,7 @@
 				A58F738F1A0966F800226385 /* FindDr.xcdatamodeld in Sources */,
 				C311222A1A0A7B92001A3FF7 /* Ranking.m in Sources */,
 				C31122331A0A7C97001A3FF7 /* Speciality.m in Sources */,
+				E4E79FFF1A1D6D47009C2993 /* SelectSpecialtiesViewController.m in Sources */,
 				C311222D1A0A7BA3001A3FF7 /* Comment.m in Sources */,
 				E4C2CEB61A0BDD5300120F70 /* main.m in Sources */,
 				E4C2CEC11A0BEE8700120F70 /* TPKeyboardAvoidingScrollView.m in Sources */,

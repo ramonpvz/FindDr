@@ -13,6 +13,7 @@
 #import "MBProgressHUD.h"
 #import "MapViewViewController.h"
 #import "FindDr-Swift.h"
+#import "SelectSpecialtiesViewController.h"
 
 @interface ClinicViewController () <UIActionSheetDelegate>
 @property (strong, nonatomic) IBOutlet UIView *contentView;
@@ -26,6 +27,8 @@
 @property (strong, nonatomic) IBOutlet TextFieldValidator *stateText;
 @property (strong, nonatomic) IBOutlet TextFieldValidator *postalCodeText;
 @property (strong, nonatomic) Doctor *currentDoctor;
+@property (strong, nonatomic) NSArray *specialtiesDoctor;
+@property (strong, nonatomic) NSArray *specialties;
 
 @end
 
@@ -35,6 +38,9 @@
     [super viewDidLoad];
     [Doctor getDoctorByUser:[PFUser currentUser] doc:^(Doctor *doctor) {
         self.currentDoctor = doctor;
+        [self.currentDoctor getSpecialities:^(NSArray *specialities) {
+            self.specialtiesDoctor = specialities;
+        }];
     }];
 
     //load clinic values
@@ -46,6 +52,9 @@
     self.cityText.text = self.currentClinic.city;
     self.stateText.text = self.currentClinic.state;
     self.postalCodeText.text = self.currentClinic.zipCode;
+    [self.currentClinic getSpecialities:^(NSArray *specialities) {
+        self.specialties = specialities;
+    }];
 
     [self.postalCodeText addRegx:@"[0-9]{1,5}" withMsg:@"Only 5 numeric characters are allowed"];
 }
@@ -60,26 +69,36 @@
     if ([self.nameClinicText validate] & [self.streetText validate]  & [self.numberText validate] & [self.cityText validate] & [self.stateText validate] & [self.postalCodeText validate]) {
 
         [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-        if (YES ) { //si el doctor guarda para la clinica el schedule y el marcador en mapa
-            //update clinic values
-            self.currentClinic.name = self.nameClinicText.text;
-            [self.currentClinic setObject:self.descriptionText.text forKey:@"description"];
-            self.imageData = UIImageJPEGRepresentation(self.imageClinic.image, 1.0f);
-            PFFile *image = [PFFile fileWithName:@"image.png" data:self.imageData];
-            self.currentClinic.photo = image;
-            self.currentClinic.street = self.streetText.text;
-            self.currentClinic.number = self.numberText.text;
-            self.currentClinic.city = self.cityText.text;
-            self.currentClinic.state = self.stateText.text;
-            self.currentClinic.zipCode = self.postalCodeText.text;
-            [self.currentClinic saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-                [MBProgressHUD hideHUDForView:self.view animated:YES];
-                [self performSegueWithIdentifier:@"clinicAdded" sender:self];
-            }];
+        if (![self.currentClinic.latitude isEqualToString:@"0.0"]) { //search the address in map
+            if (self.specialties.count > 0 ) { //at least one specialty to this clinic
+                //update clinic values
+                self.currentClinic.name = self.nameClinicText.text;
+                [self.currentClinic setObject:self.descriptionText.text forKey:@"description"];
+                self.imageData = UIImageJPEGRepresentation(self.imageClinic.image, 1.0f);
+                PFFile *image = [PFFile fileWithName:@"image.png" data:self.imageData];
+                self.currentClinic.photo = image;
+                self.currentClinic.street = self.streetText.text;
+                self.currentClinic.number = self.numberText.text;
+                self.currentClinic.city = self.cityText.text;
+                self.currentClinic.state = self.stateText.text;
+                self.currentClinic.zipCode = self.postalCodeText.text;
+                [self.currentClinic saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                    for (Speciality *sp in self.specialties) {
+                        [self.currentClinic addSpeciality:sp];
+                    }
+                    [MBProgressHUD hideHUDForView:self.view animated:YES];
+                    [self performSegueWithIdentifier:@"clinicAdded" sender:self];
+                }];
 
-        }/*else{
-          [[[UIAlertView alloc] initWithTitle:nil message:@"Please, add a schedule/mark in map." delegate:nil cancelButtonTitle:nil otherButtonTitles:@"Ok", nil] show];
-          }*/
+            }else{
+                [MBProgressHUD hideHUDForView:self.view animated:YES];
+                [[[UIAlertView alloc] initWithTitle:nil message:@"Please, add at least one specialty to this clinic." delegate:nil cancelButtonTitle:nil otherButtonTitles:@"Ok", nil] show];
+            }
+        }else{
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+            [[[UIAlertView alloc] initWithTitle:nil message:@"Please, obtain address from map." delegate:nil cancelButtonTitle:nil otherButtonTitles:@"Ok", nil] show];
+        }
+
     }
 }
 
@@ -131,6 +150,7 @@
 }
 
 - (IBAction)selectSpecialtiesTapped:(UIButton *)sender {
+    [self performSegueWithIdentifier:@"selectSpecialties" sender:self];
 }
 
 
@@ -152,7 +172,11 @@
         CallendarViewController *cvc = [segue destinationViewController];
         cvc.actualDoctor = self.currentDoctor;
         cvc.actualClinic = self.currentClinic;
-        cvc.navigationItem.hidesBackButton = YES;
+    }
+    else if ([[segue identifier] isEqualToString:@"selectSpecialties"]){
+        SelectSpecialtiesViewController *selectSpecialties = [segue destinationViewController];
+        selectSpecialties.specialtiesDoctor = self.specialtiesDoctor;
+        selectSpecialties.specialtiesClinic = [[NSMutableArray alloc] initWithArray: self.specialties];
     }
 }
 
@@ -169,6 +193,16 @@
     self.currentClinic.latitude = [NSString stringWithFormat:@"%f",mapView.currentLocation.location.coordinate.latitude];
     self.currentClinic.longitude = [NSString stringWithFormat:@"%f",mapView.currentLocation.location.coordinate.longitude];
     //NSLog(@"updated latitude: %@ longitude: %@",self.currentClinic.latitude, self.currentClinic.longitude);
+}
+
+-(IBAction)unwindFromSelectSpecialtiesViewController:(UIStoryboardSegue*)segue{
+    SelectSpecialtiesViewController *selectSpecialties = [segue sourceViewController];
+
+    //update specialties for this clinic
+    self.specialties = selectSpecialties.specialtiesClinic;
+    for (Speciality *sp in self.specialtiesDoctor) {
+        [self.currentClinic removeSpeciality:sp];
+    }
 }
 
 

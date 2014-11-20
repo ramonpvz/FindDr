@@ -41,16 +41,16 @@
                     [clinicsQry findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
                         for (Clinic *clinic in objects) {
                             NSPredicate *pred = [NSPredicate predicateWithFormat:@"objectId == %@",_spec.objectId];
-                            NSArray *filteredSpecialities = [clinic.specialities filteredArrayUsingPredicate:pred];
-                            if (filteredSpecialities != nil && filteredSpecialities.count > 0) {
-                                
-                                //Draw current clinic on map...
-                                
-                                [self getDoctorsByClinicId:clinic.objectId apps:^(NSArray *doctors) {
-                                    NSLog(@"Doctors: %@",doctors);
-                                }];
-                                
-                            }
+//                            NSArray *filteredSpecialities = [clinic.specialities filteredArrayUsingPredicate:pred];
+//                            if (filteredSpecialities != nil && filteredSpecialities.count > 0) {
+//                                
+//                                //Draw current clinic on map...
+//                                
+//                                [self getDoctorsByClinicId:clinic.objectId apps:^(NSArray *doctors) {
+//                                    NSLog(@"Doctors: %@",doctors);
+//                                }];
+//                                
+//                            }
                         }
                     }];
                 }

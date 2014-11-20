@@ -53,7 +53,6 @@
 
 - (void)getClinics:(void (^)(NSArray *clinics))complete {
     PFQuery *clinicsQry = [self relationForKey:@"clinics"].query;
-    [clinicsQry includeKey:@"specialities"];
     [clinicsQry findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         complete(objects);
     }];

@@ -7,6 +7,7 @@
 //
 
 #import <Parse/Parse.h>
+#import "Speciality.h"
 
 @interface Clinic : PFObject <PFSubclassing>
 
@@ -18,9 +19,15 @@
 @property NSString *zipCode;
 @property NSString *latitude;
 @property NSString *longitude;
-@property NSArray *specialities;
+@property PFRelation *specialities;
 @property PFFile *photo;
 
 + (void) save: (Clinic *) clinic;
+
+- (void) getSpecialities:(void (^)(NSArray *specialities))complete;
+
+- (void) addSpeciality: (Speciality *) speciality;
+
+- (void) removeSpeciality: (Speciality *) speciality;
 
 @end
