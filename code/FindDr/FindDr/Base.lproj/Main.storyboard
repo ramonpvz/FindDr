@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="hI9-SR-S7C">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="hI9-SR-S7C">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
@@ -1030,7 +1030,7 @@
                                                         <variation key="widthClass=compact" constant="134"/>
                                                     </constraint>
                                                 </constraints>
-                                                <state key="normal" title="Select specialties &gt;">
+                                                <state key="normal" title="Select specialties >">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
@@ -1055,7 +1055,7 @@
                                                         <variation key="widthClass=compact" constant="189"/>
                                                     </constraint>
                                                 </constraints>
-                                                <state key="normal" title="Obtain address from map &gt;">
+                                                <state key="normal" title="Obtain address from map >">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
@@ -1080,7 +1080,7 @@
                                                         <variation key="widthClass=compact" constant="161"/>
                                                     </constraint>
                                                 </constraints>
-                                                <state key="normal" title="Select work schedule &gt;">
+                                                <state key="normal" title="Select work schedule >">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>

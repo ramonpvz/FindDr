@@ -83,6 +83,7 @@
     [specsQry findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         complete(objects);
     }];
+}
 
 - (NSString *) getFullAddress {
     NSMutableString *address = [NSMutableString string];
