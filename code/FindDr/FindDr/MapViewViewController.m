@@ -100,7 +100,7 @@
                              self.subLocality,
                              self.locality,
                              self.postalCode];
-        NSLog(@"Found you at: %@",address);
+        //NSLog(@"Found you at: %@",address);
         self.currentAddress.text = address;
         [self zoomIn];
     }];
@@ -160,7 +160,7 @@
 
         self.annotation.coordinate = coordinate;
 
-        NSLog(@"Moved annotation to %f,%f", coordinate.latitude, coordinate.longitude);
+        //NSLog(@"Moved annotation to %f,%f", coordinate.latitude, coordinate.longitude);
         CLLocation *newlocation = [[CLLocation alloc] initWithLatitude:coordinate.latitude
                                                              longitude:coordinate.longitude];
         [self searchAddress:newlocation];
@@ -197,7 +197,7 @@
 #pragma mark Draggable-AnnotationView
 
 - (void)movedAnnotation:(MKPointAnnotation *)anno{
-    NSLog(@"Dragged annotation to %f,%f", anno.coordinate.latitude, anno.coordinate.longitude);
+    //NSLog(@"Dragged annotation to %f,%f", anno.coordinate.latitude, anno.coordinate.longitude);
     CLLocation *newlocation = [[CLLocation alloc] initWithLatitude:anno.coordinate.latitude
                                                          longitude:anno.coordinate.longitude];
     [self searchAddress:newlocation];

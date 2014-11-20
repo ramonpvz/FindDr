@@ -65,40 +65,44 @@
 }
 
 - (IBAction)saveButtonTapped:(UIBarButtonItem *)sender {
-    NSLog(@"Validations");
+    //NSLog(@"Validations");
     if ([self.nameClinicText validate] & [self.streetText validate]  & [self.numberText validate] & [self.cityText validate] & [self.stateText validate] & [self.postalCodeText validate]) {
 
         [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-        if (![self.currentClinic.latitude isEqualToString:@"0.0"]) { //search the address in map
-            if (self.specialties.count > 0 ) { //at least one specialty to this clinic
-                //update clinic values
-                self.currentClinic.name = self.nameClinicText.text;
-                [self.currentClinic setObject:self.descriptionText.text forKey:@"description"];
-                self.imageData = UIImageJPEGRepresentation(self.imageClinic.image, 1.0f);
-                PFFile *image = [PFFile fileWithName:@"image.png" data:self.imageData];
-                self.currentClinic.photo = image;
-                self.currentClinic.street = self.streetText.text;
-                self.currentClinic.number = self.numberText.text;
-                self.currentClinic.city = self.cityText.text;
-                self.currentClinic.state = self.stateText.text;
-                self.currentClinic.zipCode = self.postalCodeText.text;
-                [self.currentClinic saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-                    for (Speciality *sp in self.specialties) {
-                        [self.currentClinic addSpeciality:sp];
-                    }
-                    [MBProgressHUD hideHUDForView:self.view animated:YES];
-                    [self performSegueWithIdentifier:@"clinicAdded" sender:self];
-                }];
+        if (self.hasSchedule) {
+            if (![self.currentClinic.latitude isEqualToString:@"0.0"]) { //search the address in map
+                if (self.specialties.count > 0 ) { //at least one specialty to this clinic
+                    //update clinic values
+                    self.currentClinic.name = self.nameClinicText.text;
+                    [self.currentClinic setObject:self.descriptionText.text forKey:@"description"];
+                    self.imageData = UIImageJPEGRepresentation(self.imageClinic.image, 1.0f);
+                    PFFile *image = [PFFile fileWithName:@"image.png" data:self.imageData];
+                    self.currentClinic.photo = image;
+                    self.currentClinic.street = self.streetText.text;
+                    self.currentClinic.number = self.numberText.text;
+                    self.currentClinic.city = self.cityText.text;
+                    self.currentClinic.state = self.stateText.text;
+                    self.currentClinic.zipCode = self.postalCodeText.text;
+                    [self.currentClinic saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                        for (Speciality *sp in self.specialties) {
+                            [self.currentClinic addSpeciality:sp];
+                        }
+                        [MBProgressHUD hideHUDForView:self.view animated:YES];
+                        [self performSegueWithIdentifier:@"clinicAdded" sender:self];
+                    }];
 
+                }else{
+                    [MBProgressHUD hideHUDForView:self.view animated:YES];
+                    [[[UIAlertView alloc] initWithTitle:nil message:@"Please, add at least one specialty to this clinic." delegate:nil cancelButtonTitle:nil otherButtonTitles:@"Ok", nil] show];
+                }
             }else{
                 [MBProgressHUD hideHUDForView:self.view animated:YES];
-                [[[UIAlertView alloc] initWithTitle:nil message:@"Please, add at least one specialty to this clinic." delegate:nil cancelButtonTitle:nil otherButtonTitles:@"Ok", nil] show];
+                [[[UIAlertView alloc] initWithTitle:nil message:@"Please, obtain address from map." delegate:nil cancelButtonTitle:nil otherButtonTitles:@"Ok", nil] show];
             }
         }else{
             [MBProgressHUD hideHUDForView:self.view animated:YES];
-            [[[UIAlertView alloc] initWithTitle:nil message:@"Please, obtain address from map." delegate:nil cancelButtonTitle:nil otherButtonTitles:@"Ok", nil] show];
+            [[[UIAlertView alloc] initWithTitle:nil message:@"Please, add the schedule for this clinic." delegate:nil cancelButtonTitle:nil otherButtonTitles:@"Ok", nil] show];
         }
-
     }
 }
 
@@ -159,7 +163,7 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([[segue identifier] isEqualToString:@"clinicAdded"]){
-        NSLog(@"updated data clinic");
+        //NSLog(@"updated data clinic");
     }else if ([[segue identifier] isEqualToString:@"showMap"]){
         if (![self.currentClinic.latitude isEqualToString:@"0.0"]) {
             //NSLog(@"latitude: %@ longitude: %@",self.currentClinic.latitude, self.currentClinic.longitude);
@@ -172,6 +176,8 @@
         CallendarViewController *cvc = [segue destinationViewController];
         cvc.actualDoctor = self.currentDoctor;
         cvc.actualClinic = self.currentClinic;
+        cvc.navigationItem.hidesBackButton = YES;
+        [self setHasSchedule:YES];
     }
     else if ([[segue identifier] isEqualToString:@"selectSpecialties"]){
         SelectSpecialtiesViewController *selectSpecialties = [segue destinationViewController];
@@ -188,6 +194,14 @@
     self.cityText.text = mapView.subLocality;
     self.stateText.text = mapView.locality;
     self.postalCodeText.text = mapView.postalCode;
+
+    //update validations
+    [self.nameClinicText validate];
+    [self.streetText validate];
+    [self.numberText validate];
+    [self.cityText validate];
+    [self.stateText validate];
+    [self.postalCodeText validate];
 
     //update position
     self.currentClinic.latitude = [NSString stringWithFormat:@"%f",mapView.currentLocation.location.coordinate.latitude];

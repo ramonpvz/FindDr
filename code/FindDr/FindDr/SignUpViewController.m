@@ -97,7 +97,7 @@
 #pragma mark - Actions
 
 - (IBAction)nextButtonTapped:(UIBarButtonItem *)sender {
-    NSLog(@"Validations");
+    //NSLog(@"Validations");
     if ([self.emailText validate] & [self.passwordText validate]  & [self.titleText validate] & [self.genderText validate] & [self.birthdayText validate] & [self.firstNameText validate] & [self.lastNameText validate] & [self.secondLastNameText validate] & [self.phoneNumberText validate]) {
 
         [MBProgressHUD showHUDAddedTo:self.view animated:YES];
@@ -105,7 +105,7 @@
         if ((self.switchUser.on == YES) & [self.licenseText validate]) {
             if (self.specialties.count > 0) { //the doctor has at least one specialty
                 [login signUp:self.emailText.text pass:self.passwordText.text user:^(User *pfUser) {
-                    NSLog(@"User: %@",pfUser);
+                    //NSLog(@"User: %@",pfUser);
                     if (pfUser.message == nil) { //if logins is successful
                         pfUser.profile = @"doctor";
                         [pfUser saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) { //create the doctor
@@ -158,7 +158,7 @@
         }else {
             Login *login = [[Login alloc]init];
             [login signUp:self.emailText.text pass:self.passwordText.text user:^(User *pfUser) {
-                NSLog(@"User: %@",pfUser);
+                //NSLog(@"User: %@",pfUser);
                 if (pfUser.message == nil) { //if logins is successful
                     pfUser.profile = @"patient";
                     [pfUser saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) { //create the patient

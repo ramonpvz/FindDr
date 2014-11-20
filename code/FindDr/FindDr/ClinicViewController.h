@@ -12,5 +12,6 @@
 @interface ClinicViewController : UIViewController <UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 
 @property (strong, nonatomic) Clinic *currentClinic;
+@property (nonatomic, assign) BOOL hasSchedule;
 
 @end

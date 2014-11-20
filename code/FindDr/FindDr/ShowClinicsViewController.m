@@ -115,10 +115,12 @@
         //send new clinic
         ClinicViewController *cvc = [segue destinationViewController];
         [cvc setCurrentClinic:self.clinicSelected];
+        [cvc setHasSchedule:NO];
         cvc.navigationItem.hidesBackButton = YES;
     }else if ([[segue identifier] isEqualToString:@"showClinic"]){
         //send clinic selected
         ClinicViewController *cvc = [segue destinationViewController];
+        [cvc setHasSchedule:YES];
         [cvc setCurrentClinic:self.clinicSelected];
     }
     if ([[segue identifier] isEqualToString:@"goHome"]){
