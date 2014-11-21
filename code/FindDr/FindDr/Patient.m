@@ -64,8 +64,9 @@
     PFQuery *appointmentsQuery = [Appointment query];
     [appointmentsQuery whereKey:@"patient" equalTo:self];
     [appointmentsQuery whereKey:@"status" equalTo:status];
-    [appointmentsQuery includeKey:@"doctor"]; //God bless us this is a pointer...
-    [appointmentsQuery includeKey:@"clinic"]; //God bless us this is a pointer...
+    [appointmentsQuery includeKey:@"doctor"]; //God bless us this is a pointer!
+    [appointmentsQuery includeKey:@"clinic"]; //God bless us this is a pointer!!
+    [appointmentsQuery includeKey:@"patient"]; //God bless us this is a pointer!!!
     [appointmentsQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         complete(objects);
     }];

@@ -2913,6 +2913,31 @@
                                     <action selector="cancelAppointment:" destination="aQU-5E-F5g" eventType="touchUpInside" id="7ts-xZ-O3h"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cXG-wE-M25">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="129" id="4Uf-3V-Dxz"/>
+                                    <constraint firstAttribute="height" constant="30" id="DVc-M7-lWc"/>
+                                </constraints>
+                                <state key="normal" title="Make appointment">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="4Uf-3V-Dxz"/>
+                                        <exclude reference="DVc-M7-lWc"/>
+                                    </mask>
+                                </variation>
+                                <variation key="widthClass=compact">
+                                    <mask key="constraints">
+                                        <include reference="4Uf-3V-Dxz"/>
+                                        <include reference="DVc-M7-lWc"/>
+                                    </mask>
+                                </variation>
+                                <connections>
+                                    <action selector="makeAppointment:" destination="aQU-5E-F5g" eventType="touchUpInside" id="Uxg-g2-HIM"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -2927,12 +2952,15 @@
                             <constraint firstItem="wzA-i8-yVo" firstAttribute="top" secondItem="9Ee-VY-ZjC" secondAttribute="bottom" constant="30" id="RZs-fr-1Yq"/>
                             <constraint firstAttribute="trailing" secondItem="NkD-d0-stW" secondAttribute="trailing" constant="12" id="Sng-tQ-8zC"/>
                             <constraint firstItem="LPK-5v-zjc" firstAttribute="leading" secondItem="9Ee-VY-ZjC" secondAttribute="trailing" constant="10" id="VV9-ji-UZI"/>
+                            <constraint firstAttribute="trailing" secondItem="cXG-wE-M25" secondAttribute="trailing" constant="23" id="VoO-U3-sgc"/>
                             <constraint firstItem="wzA-i8-yVo" firstAttribute="leading" secondItem="NA6-cQ-NiS" secondAttribute="leading" constant="11" id="VwO-MY-Kw8"/>
                             <constraint firstItem="NkD-d0-stW" firstAttribute="top" secondItem="Di3-zq-Lxm" secondAttribute="bottom" constant="32" id="WK9-2m-Hos"/>
                             <constraint firstItem="TGb-UY-lv1" firstAttribute="top" secondItem="wzA-i8-yVo" secondAttribute="bottom" constant="126" id="XBm-gS-SPh"/>
                             <constraint firstAttribute="trailing" secondItem="wzA-i8-yVo" secondAttribute="trailing" constant="12" id="auG-go-8D0"/>
                             <constraint firstItem="9Ee-VY-ZjC" firstAttribute="leading" secondItem="NA6-cQ-NiS" secondAttribute="leading" constant="12" id="b9R-7n-IaE"/>
+                            <constraint firstItem="TGb-UY-lv1" firstAttribute="top" secondItem="cXG-wE-M25" secondAttribute="bottom" constant="25" id="eEh-sg-MnL"/>
                             <constraint firstItem="aB4-ua-p22" firstAttribute="leading" secondItem="9Ee-VY-ZjC" secondAttribute="trailing" constant="10" id="h3X-sl-a3g"/>
+                            <constraint firstItem="cXG-wE-M25" firstAttribute="top" secondItem="Di3-zq-Lxm" secondAttribute="bottom" constant="50" id="hH4-jC-gs8"/>
                             <constraint firstItem="TGb-UY-lv1" firstAttribute="top" secondItem="Di3-zq-Lxm" secondAttribute="bottom" constant="105" id="hld-ky-xSU"/>
                             <constraint firstItem="9Ee-VY-ZjC" firstAttribute="top" secondItem="KFH-l7-wep" secondAttribute="bottom" constant="74" id="lMO-0g-27x"/>
                             <constraint firstItem="8kD-yd-uNH" firstAttribute="top" secondItem="yGZ-3T-Aqq" secondAttribute="bottom" constant="27.5" id="o6W-yE-gs1"/>
@@ -2940,15 +2968,37 @@
                             <constraint firstItem="Cd0-ch-fVb" firstAttribute="top" secondItem="yGZ-3T-Aqq" secondAttribute="bottom" constant="27.5" id="qe4-ko-vAO"/>
                             <constraint firstItem="yGZ-3T-Aqq" firstAttribute="top" secondItem="KFH-l7-wep" secondAttribute="bottom" constant="29" id="wSA-uc-CsJ"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="cXG-wE-M25"/>
+                            </mask>
+                            <mask key="constraints">
+                                <exclude reference="eEh-sg-MnL"/>
+                                <exclude reference="VoO-U3-sgc"/>
+                                <exclude reference="hH4-jC-gs8"/>
+                            </mask>
+                        </variation>
+                        <variation key="widthClass=compact">
+                            <mask key="subviews">
+                                <include reference="cXG-wE-M25"/>
+                            </mask>
+                            <mask key="constraints">
+                                <include reference="eEh-sg-MnL"/>
+                                <include reference="VoO-U3-sgc"/>
+                                <include reference="hH4-jC-gs8"/>
+                            </mask>
+                        </variation>
                     </view>
                     <connections>
                         <outlet property="addressLabel" destination="Di3-zq-Lxm" id="Txw-wX-Knr"/>
                         <outlet property="appDate" destination="aB4-ua-p22" id="YaG-yq-dWW"/>
+                        <outlet property="cancelAppButton" destination="NkD-d0-stW" id="cr0-Y3-5Xd"/>
                         <outlet property="docClinic" destination="LPK-5v-zjc" id="BIO-xT-sqU"/>
                         <outlet property="docClinicSpecs" destination="vDU-lK-B4f" id="dL9-6k-FAA"/>
                         <outlet property="docImg" destination="9Ee-VY-ZjC" id="baL-hF-HOa"/>
                         <outlet property="docName" destination="8kD-yd-uNH" id="y3f-Tb-uaZ"/>
                         <outlet property="docTitle" destination="Cd0-ch-fVb" id="jVb-sf-MoE"/>
+                        <outlet property="makeAppointmentButton" destination="cXG-wE-M25" id="nhO-xY-RVc"/>
                         <outlet property="mapView" destination="wzA-i8-yVo" id="OmD-OK-XtU"/>
                     </connections>
                 </viewController>

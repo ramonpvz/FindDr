@@ -11,6 +11,7 @@
 #import <MapKit/MapKit.h>
 #import "CustomAnnotation.h"
 #import <QuartzCore/QuartzCore.h>
+#import "ActionSheetDatePicker.h"
 
 @interface UserApptDetailViewController () <MKMapViewDelegate, CLLocationManagerDelegate, UIGestureRecognizerDelegate>
 
@@ -23,6 +24,8 @@
 @property (strong, nonatomic) IBOutlet UILabel *appDate;
 @property (strong, nonatomic) IBOutlet MKMapView *mapView;
 @property (strong, nonatomic) IBOutlet UILabel *addressLabel;
+@property (strong, nonatomic) IBOutlet UIButton *cancelAppButton;
+@property (strong, nonatomic) IBOutlet UIButton *makeAppointmentButton;
 
 @end
 
@@ -58,6 +61,14 @@
     self.mapView.layer.borderWidth = 1.0;
     self.addressLabel.backgroundColor = [UIColor colorWithRed:0.93 green:0.80 blue:0.80 alpha:1.0];
     self.addressLabel.text = [self.appointment.clinic getFullAddress];
+    if ([self.appointment.status isEqualToString:@"declined"]) {
+        self.cancelAppButton.hidden = YES;
+        self.makeAppointmentButton.hidden = NO;
+    }
+    else {
+        self.makeAppointmentButton.hidden = YES;
+        self.cancelAppButton.hidden = NO;
+    }
 }
 
 - (void) coordinate {
@@ -106,6 +117,66 @@
             [self.navigationController popViewControllerAnimated:YES];
         }];
     }
+}
+
+//Create appointment
+
+- (IBAction)makeAppointment:(id)sender {
+    ActionSheetDatePicker *picker = [[ActionSheetDatePicker alloc]initWithTitle:@"Select:" datePickerMode:UIDatePickerModeDateAndTime selectedDate:[NSDate date] target:self action:@selector(action:forEvent:) origin:sender];
+    [picker setCancelButton:[[UIBarButtonItem alloc] initWithTitle:@"Not sure" style:UIBarButtonItemStylePlain target:self action:@selector(action:cancelEvent:)]];
+    [picker showActionSheetPicker];
+}
+
+- (void) action: (id) sender forEvent: (UIEvent *) event {
+    NSDateComponents *dateComponents = [[NSDateComponents alloc] init];
+    [dateComponents setDay:-1];
+    NSDate *yesterday = [[NSCalendar currentCalendar] dateByAddingComponents:dateComponents toDate:[NSDate date] options:0];
+    
+    if ([yesterday timeIntervalSince1970] > [sender timeIntervalSince1970]) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Message" message:@"Selected date should be in future" delegate:self cancelButtonTitle:@"Accept" otherButtonTitles:nil, nil];
+        [alert setTag:1];
+        [alert show];
+    }
+    else
+    {
+        
+        NSDate *edDate = [DValidator roundDateMinuteToZero:sender];
+        
+        [self.appointment.doctor getAppointmentsByStatusAndDate:edDate status:@"scheduled" apps:^(NSArray *appointments) {
+            if (appointments.count > 0) {
+                [self.appointment.doctor getAppointmentsByStatus:@"scheduled" apps:^(NSArray *appointments) {
+                    if (appointments.count > 0) {
+                        Appointment *latestApp = [appointments objectAtIndex:0];
+                        NSTimeInterval oneHour = 1 * 60 * 60;
+                        NSDate *oneHourAhead = [latestApp.date dateByAddingTimeInterval:oneHour];
+                        NSString *message  = [NSString stringWithFormat:@"There is no availability at this time. Please book after: %@",[DValidator dateToString:oneHourAhead]];
+                        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Message" message:message delegate:self cancelButtonTitle:@"Accept" otherButtonTitles:nil, nil];
+                        [alert setTag:1];
+                        [alert show];
+                    }
+                }];
+            }
+            else
+            {
+                NSString *desc = [NSString stringWithFormat:@"Booking at: %@ for doctor %@, patient: %@",[DValidator dateToString:sender], self.appointment.doctor.name, self.appointment.patient.name];
+                NSLog(@"%@",desc);
+                Appointment *appointment = [Appointment object];
+                appointment.description = desc;
+                appointment.doctor = self.appointment.doctor;
+                appointment.patient = self.appointment.patient;
+                appointment.clinic = self.appointment.clinic;
+                appointment.status =  @"pending";
+                appointment.date = edDate;
+                [Appointment save:appointment];
+            }
+        }];
+        
+    }
+    
+}
+
+- (void) action: (id) sender cancelEvent: (UIEvent *) event {
+    NSLog(@"Canceled");
 }
 
 @end

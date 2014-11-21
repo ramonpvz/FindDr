@@ -34,29 +34,36 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.docPhoto.image = [UIImage imageNamed:@"juan.jpg"];
+    self.docPhoto.image = [UIImage imageWithData:[self.currentDoctor.photo getData]];
     self.commentIcon.image = [UIImage imageNamed:@"comment_add-128.png"];
     self.createAppIcon.image = [UIImage imageNamed:@"schedule_appointment_icon.png"];
-    //self.comments = [self.currentDoctor load]
-    
-    [Patient getPatientByUser:[PFUser currentUser] pat:^(Patient *patient) {
-        self.currentPatient = patient;
+    self.docTitle.text = self.currentDoctor.title;
+    self.docFullName.text = [self.currentDoctor getFullName];
+    self.docClinicName.text = self.currentClinic.name;
+
+    [Speciality lisSpecialities:^(NSArray *specialities) {
+        NSMutableString *specsLabel = [NSMutableString string];
+        [self.currentClinic getSpecialities:^(NSArray *_specialities) {
+            if (_specialities.count > 0) {
+                for (Speciality *clinicSpec in _specialities) {
+                    for (Speciality *spec in specialities) {
+                        if ([spec.objectId isEqualToString:clinicSpec.objectId]) {
+                            [specsLabel appendString:spec.name];
+                            [specsLabel appendString:@" | "];
+                        }
+                    }
+                }
+                self.docClinicSpecs.text = specsLabel;
+            }
+            else
+            {
+                self.docClinicSpecs.text = @"Without specialities";
+            }
+        }];
     }];
-    
-    PFQuery *docQuery = [Doctor query];
-    [docQuery whereKey:@"objectId" equalTo:@"0xyQXiANdm"];
-    [docQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        self.currentDoctor = [objects objectAtIndex:0];
-        Clinic *clinic = [[Clinic alloc] init];
-        clinic.name = @"Happy Ending Clinic...";
-        clinic.street = @"Test street";
-        clinic.latitude = @"1412.244019";
-        clinic.longitude = @"1412.239990";
-        self.currentClinic = clinic;
-        [self.currentDoctor addClinic:clinic];
-        NSLog(@"carga comentarios");
-        [self loadComments];
-    }];
+
+    [self loadComments];
+
 }
 
 -(void)loadComments{
