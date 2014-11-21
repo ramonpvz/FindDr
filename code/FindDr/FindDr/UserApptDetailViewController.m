@@ -24,7 +24,6 @@
 @property (strong, nonatomic) IBOutlet MKMapView *mapView;
 @property (strong, nonatomic) IBOutlet UILabel *addressLabel;
 
-
 @end
 
 @implementation UserApptDetailViewController
@@ -42,15 +41,17 @@
     self.docClinic.text = self.appointment.clinic.name;
     [Speciality lisSpecialities:^(NSArray *specialities) {
         NSMutableString *specsLabel = [NSMutableString string];
-        for (Speciality *clinicSpec in self.appointment.clinic.specialities) {
-            for (Speciality *spec in specialities) {
-                if ([spec.objectId isEqualToString:clinicSpec.objectId]) {
-                    [specsLabel appendString:spec.name];
-                    [specsLabel appendString:@" | "];
+        [self.appointment.clinic getSpecialities:^(NSArray *_specialities) {
+            for (Speciality *clinicSpec in _specialities) {
+                for (Speciality *spec in specialities) {
+                    if ([spec.objectId isEqualToString:clinicSpec.objectId]) {
+                        [specsLabel appendString:spec.name];
+                        [specsLabel appendString:@" | "];
+                    }
                 }
             }
-        }
-        self.docClinicSpecs.text = specsLabel;
+            self.docClinicSpecs.text = specsLabel;
+        }];
     }];
     [self coordinate];
     self.mapView.layer.borderColor = [[UIColor grayColor] CGColor];

@@ -35,6 +35,24 @@
     self.commentIcon.image = [UIImage imageNamed:@"comment_add-128.png"];
     self.createAppIcon.image = [UIImage imageNamed:@"schedule_appointment_icon.png"];
     //self.comments = [self.currentDoctor load]
+    
+    [Patient getPatientByUser:[PFUser currentUser] pat:^(Patient *patient) {
+        self.currentPatient = patient;
+    }];
+    
+    PFQuery *docQuery = [Doctor query];
+    [docQuery whereKey:@"objectId" equalTo:@"0xyQXiANdm"];
+    [docQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        self.currentDoctor = [objects objectAtIndex:0];
+        Clinic *clinic = [[Clinic alloc] init];
+        clinic.name = @"Happy Ending Clinic...";
+        clinic.street = @"Test street";
+        clinic.latitude = @"1412.244019";
+        clinic.longitude = @"1412.239990";
+        self.currentClinic = clinic;
+        [self.currentDoctor addClinic:clinic];
+    }];
+
 }
 
 - (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -75,20 +93,16 @@
     else
     {
         
-        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-        [dateFormatter setLocale:[NSLocale currentLocale]];
-        [dateFormatter setTimeZone:[NSTimeZone localTimeZone]];
-        [dateFormatter setDateFormat:@"dd-MM-yyyy HH:00 a"];
-        NSString *dateStr = [dateFormatter stringFromDate:sender];
-        NSDate *dateDate = [dateFormatter dateFromString:dateStr];
+        NSDate *edDate = [DValidator roundDateMinuteToZero:sender];
         
-        [self.currentDoctor getAppointmentsByStatusAndDate:dateDate status:@"scheduled" apps:^(NSArray *appointments) {
+        [self.currentDoctor getAppointmentsByStatusAndDate:edDate status:@"scheduled" apps:^(NSArray *appointments) {
             if (appointments.count > 0) {
                 [self.currentDoctor getAppointmentsByStatus:@"scheduled" apps:^(NSArray *appointments) {
                     if (appointments.count > 0) {
                         Appointment *latestApp = [appointments objectAtIndex:0];
-                        NSString *suggestedDate = [DValidator dateToLabel:latestApp.date];
-                        NSString *message  = [NSString stringWithFormat:@"There is no availability at this time. Please book after: %@",suggestedDate];
+                        NSTimeInterval oneHour = 1 * 60 * 60;
+                        NSDate *oneHourAhead = [latestApp.date dateByAddingTimeInterval:oneHour];
+                        NSString *message  = [NSString stringWithFormat:@"There is no availability at this time. Please book after: %@",[DValidator dateToString:oneHourAhead]];
                         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Message" message:message delegate:self cancelButtonTitle:@"Accept" otherButtonTitles:nil, nil];
                         [alert setTag:1];
                         [alert show];
@@ -97,7 +111,7 @@
             }
             else
             {
-                NSString *desc = [NSString stringWithFormat:@"Booking at: %@",sender];
+                NSString *desc = [NSString stringWithFormat:@"Booking at: %@ for doctor %@, patient: %@",[DValidator dateToString:sender], self.currentDoctor.name, self.currentPatient.name];
                 NSLog(@"%@",desc);
                 Appointment *appointment = [Appointment object];
                 appointment.description = desc;
@@ -105,7 +119,7 @@
                 appointment.patient = self.currentPatient;
                 appointment.clinic = self.currentClinic;
                 appointment.status =  @"pending";
-                appointment.date = dateDate;
+                appointment.date = edDate;
                 [Appointment save:appointment];
             }
         }];

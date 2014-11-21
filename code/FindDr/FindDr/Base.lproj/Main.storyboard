@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="hI9-SR-S7C">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="hI9-SR-S7C">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
-        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -892,7 +891,7 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
                                                 <variation key="widthClass=compact" ambiguous="YES" misplaced="YES">
-                                                    <rect key="frame" x="0.0" y="-30" width="97" height="30.5"/>
+                                                    <rect key="frame" x="0.0" y="-30" width="97" height="30"/>
                                                 </variation>
                                                 <connections>
                                                     <outlet property="delegate" destination="HDe-A5-Gp2" id="zAa-tx-c38"/>
@@ -1034,7 +1033,7 @@
                                                         <variation key="widthClass=compact" constant="134"/>
                                                     </constraint>
                                                 </constraints>
-                                                <state key="normal" title="Select specialties &gt;">
+                                                <state key="normal" title="Select specialties >">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
@@ -1059,7 +1058,7 @@
                                                         <variation key="widthClass=compact" constant="189"/>
                                                     </constraint>
                                                 </constraints>
-                                                <state key="normal" title="Obtain address from map &gt;">
+                                                <state key="normal" title="Obtain address from map >">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
@@ -1084,7 +1083,7 @@
                                                         <variation key="widthClass=compact" constant="161"/>
                                                     </constraint>
                                                 </constraints>
-                                                <state key="normal" title="Select work schedule &gt;">
+                                                <state key="normal" title="Select work schedule >">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
@@ -2718,6 +2717,7 @@
                                 <segments>
                                     <segment title="Pending"/>
                                     <segment title="Scheduled"/>
+                                    <segment title="Declined"/>
                                 </segments>
                                 <connections>
                                     <action selector="refreshAppts:" destination="IXT-My-nm3" eventType="valueChanged" id="nzK-df-GxF"/>

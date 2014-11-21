@@ -35,10 +35,19 @@
     {
         [self loadAppointmentsByStatus:@"pending"];
     }
-    else
+    else if (self.segmentCtrl.selectedSegmentIndex == 1)
     {
         [self loadAppointmentsByStatus:@"scheduled"];
     }
+    else if (self.segmentCtrl.selectedSegmentIndex == 2)
+    {
+        [self loadAppointmentsByStatus:@"declined"];
+    }
+    else
+    {
+        NSLog(@"Segment not defined.");
+    }
+    
 }
 
 - (void) loadAppointmentsByStatus: (NSString *) status {
@@ -47,9 +56,17 @@
         if ([status isEqualToString:@"pending"]) {
             self.segmentCtrl.selectedSegmentIndex = 0;
         }
-        else
+        else if ([status isEqualToString:@"scheduled"])
         {
             self.segmentCtrl.selectedSegmentIndex = 1;
+        }
+        else if ([status isEqualToString:@"declined"])
+        {
+            self.segmentCtrl.selectedSegmentIndex = 2;
+        }
+        else
+        {
+            NSLog(@"Segment not defined.");
         }
         [self.tableView reloadData];
     }];
@@ -58,12 +75,21 @@
 -(void) viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     if (!self._loaded) {
-        if (self.segmentCtrl.selectedSegmentIndex == 0) {
+        if (self.segmentCtrl.selectedSegmentIndex == 0)
+        {
             [self loadAppointmentsByStatus:@"pending"];
+        }
+        else if (self.segmentCtrl.selectedSegmentIndex == 1)
+        {
+            [self loadAppointmentsByStatus:@"scheduled"];
+        }
+        else if (self.segmentCtrl.selectedSegmentIndex == 2)
+        {
+            [self loadAppointmentsByStatus:@"declined"];
         }
         else
         {
-            [self loadAppointmentsByStatus:@"scheduled"];
+            NSLog(@"Segment not defined.");
         }
         self._loaded = YES;
     }

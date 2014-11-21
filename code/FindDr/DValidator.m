@@ -48,7 +48,7 @@
 {
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setLocale:[NSLocale currentLocale]];
-    [dateFormatter setTimeZone:[NSTimeZone timeZoneWithName:@"GMT"]];
+    [dateFormatter setTimeZone:[NSTimeZone localTimeZone]];
     [dateFormatter setDateFormat:@"MM/dd/yyyy hh:00 a"];
     return [dateFormatter stringFromDate:date];
 }

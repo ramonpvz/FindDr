@@ -87,15 +87,15 @@
 
 - (NSString *) getFullAddress {
     NSMutableString *address = [NSMutableString string];
-    [address appendString:self.number];
+    [address appendString:self.number == nil? @"n/a":self.number];
     [address appendString:@" "];
-    [address appendString:self.street];
+    [address appendString:self.street == nil? @"n/a":self.street];
     [address appendString:@" "];
-    [address appendString:self.city];
+    [address appendString:self.city == nil? @"n/a": self.city];
     [address appendString:@" "];
-    [address appendString:self.state];
+    [address appendString:self.state == nil? @"n/a": self.state];
     [address appendString:@" "];
-    [address appendString:self.zipCode];
+    [address appendString:self.zipCode == nil? @"n/a": self.zipCode];
     return address;
 }
 
