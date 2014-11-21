@@ -22,6 +22,7 @@
 		A58F739A1A0966F800226385 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = A58F73981A0966F800226385 /* LaunchScreen.xib */; };
 		A58F73A61A0966F800226385 /* FindDrTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A58F73A51A0966F800226385 /* FindDrTests.m */; };
 		A5BBA1DA1A16763800BDF698 /* SearchDoctorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BBA1D91A16763800BDF698 /* SearchDoctorViewController.swift */; };
+		A5E2FFF31A1EB109000B8421 /* SearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E2FFF21A1EB109000B8421 /* SearchResult.swift */; };
 		C30AE7671A0D559500C61111 /* Login.m in Sources */ = {isa = PBXBuildFile; fileRef = C30AE7661A0D559500C61111 /* Login.m */; };
 		C30F87B61A1D08B30050C0D0 /* DocDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C30F87B51A1D08B30050C0D0 /* DocDetailViewController.m */; };
 		C30F87B81A1D0C230050C0D0 /* juan.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C30F87B71A1D0C230050C0D0 /* juan.jpg */; };
@@ -131,6 +132,7 @@
 		A58F73A41A0966F800226385 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A58F73A51A0966F800226385 /* FindDrTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FindDrTests.m; sourceTree = "<group>"; };
 		A5BBA1D91A16763800BDF698 /* SearchDoctorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchDoctorViewController.swift; sourceTree = "<group>"; };
+		A5E2FFF21A1EB109000B8421 /* SearchResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResult.swift; sourceTree = "<group>"; };
 		C30AE7651A0D559500C61111 /* Login.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Login.h; sourceTree = "<group>"; };
 		C30AE7661A0D559500C61111 /* Login.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Login.m; sourceTree = "<group>"; };
 		C30F87B41A1D08B30050C0D0 /* DocDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DocDetailViewController.h; sourceTree = "<group>"; };
@@ -437,6 +439,7 @@
 		A5BBA1D81A16761B00BDF698 /* search */ = {
 			isa = PBXGroup;
 			children = (
+				A5E2FFF21A1EB109000B8421 /* SearchResult.swift */,
 				A5BBA1D91A16763800BDF698 /* SearchDoctorViewController.swift */,
 				C33861FD1A16B9A90060ADA7 /* Search.h */,
 				C33861FE1A16B9A90060ADA7 /* Search.m */,
@@ -684,6 +687,7 @@
 				C31122301A0A7C6A001A3FF7 /* Appointment.m in Sources */,
 				E4DA5D291A0D7BF200C4FCAB /* TextFieldValidator.m in Sources */,
 				A55567251A0AE93D00B9CDAF /* TextField.swift in Sources */,
+				A5E2FFF31A1EB109000B8421 /* SearchResult.swift in Sources */,
 				E427928C1A1BC709002A630B /* MBProgressHUD.m in Sources */,
 				E4DA5D1F1A0D7BB700C4FCAB /* ActionSheetCustomPicker.m in Sources */,
 				A55567271A0AE9BF00B9CDAF /* UIColorExtension.swift in Sources */,

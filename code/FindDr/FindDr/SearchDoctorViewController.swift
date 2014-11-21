@@ -27,17 +27,37 @@ class SearchDoctorViewController : UIViewController, UITableViewDataSource, UITa
         locationManager?.requestWhenInUseAuthorization()
         locationManager?.desiredAccuracy = kCLLocationAccuracyBest
         locationManager?.startUpdatingLocation()
+        //set pacient logged
+        Patient.getPatientByUser(PFUser.currentUser(), pat: { (patient : Patient!) -> Void in
+            self.currentPatient = patient
+        })
     }
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        //TODO: - revisar que enviaremos para hacer el detalle
+        println("prepareForSegue")
+        if segue.identifier == "detail" {
+            let docDetailVC = (segue.destinationViewController as DocDetailViewController)
+
+            docDetailVC.currentClinic = currentSearchResult!.clinic
+            docDetailVC.currentDoctor = currentSearchResult!.doctor
+            docDetailVC.currentPatient = currentPatient
+        }
+        else {
+            println("Go to another place")
+        }
     }
+
+
 
     //MARK: - class properties
     var doctors : Array<Doctor>?
-    var dummyDocDB : Array<Doctor>?
     var clinics : Array<Clinic>?
     var locationManager : CLLocationManager?
+    var searchResults = Array<SearchResult>()
+    var currentDoctor : Doctor?
+    var currentClinic : Clinic?
+    var currentPatient : Patient?
+    var currentSearchResult : SearchResult?
     //MARK: - view properties
     @IBOutlet var searchMapView: MKMapView!
     @IBOutlet var searchBar: UISearchBar!
@@ -79,15 +99,17 @@ class SearchDoctorViewController : UIViewController, UITableViewDataSource, UITa
     }
 
     func markMap() {
-        for clinic in clinics! {
-            let latitude = (clinic.latitude as NSString).doubleValue
-            let longitude = (clinic.longitude as NSString).doubleValue
+        for searchResult in searchResults {
+            let latitude = (searchResult.clinic!.latitude as NSString).doubleValue
+            let longitude = (searchResult.clinic!.longitude as NSString).doubleValue
 
             let location = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
             let annotation = MKPointAnnotation()
 
             annotation.coordinate = location;
-            annotation.title = clinic.name
+            annotation.title = searchResult.doctor!.name
+            annotation.subtitle = searchResult.clinic!.name
+
             searchMapView.addAnnotation(annotation)
         }
     }
@@ -117,7 +139,18 @@ class SearchDoctorViewController : UIViewController, UITableViewDataSource, UITa
     }
 
     func mapView(mapView: MKMapView!, annotationView view: MKAnnotationView!, calloutAccessoryControlTapped control: UIControl!) {
-        //TODO: - go to detail
+        for searchResult in searchResults {
+//            println("\(searchResult.doctor!.name) == \(view.annotation.title) && \(searchResult.clinic!.name) == \(view.annotation.subtitle)")
+            if searchResult.doctor!.name == view.annotation.title && searchResult.clinic!.name == view.annotation.subtitle {
+                currentSearchResult = searchResult
+
+                performSegueWithIdentifier("detail", sender: self)
+                break
+            }
+            else {
+                println("Error on segue to detail appointment")
+            }
+        }
     }
 
     //MARK: - Location delegated methods
@@ -157,7 +190,11 @@ class SearchDoctorViewController : UIViewController, UITableViewDataSource, UITa
                 search.loadClinics(doc as Doctor, results: { (clinicas : [AnyObject]!) -> Void in
                     self.clinics = Array<Clinic>()
                     for clinic in clinicas {
-                        self.clinics?.append(clinic as Clinic)
+                        var searchResult = SearchResult()
+                        searchResult.clinic = (clinic as Clinic)
+                        searchResult.doctor = (doc as Doctor)
+
+                        self.searchResults.append(searchResult)
                     }
                     self.reloadUIData()
                 })
@@ -194,17 +231,33 @@ class SearchDoctorViewController : UIViewController, UITableViewDataSource, UITa
     }
 
     //MARK: - table delegated methods
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        for searchResult in searchResults {
+            let selectedCell = searchTable.cellForRowAtIndexPath(indexPath)
+
+            if searchResult.doctor!.name == selectedCell?.textLabel.text && searchResult.clinic!.name == selectedCell?.detailTextLabel?.text {
+                currentSearchResult = searchResult
+
+                performSegueWithIdentifier("detail", sender: self)
+                break
+            }
+            else {
+                println("Error on segue to detail appointment for table")
+            }
+        }
+    }
+
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return clinics != nil ? clinics!.count : 0
+        return searchResults.count
     }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("searchCell", forIndexPath: indexPath) as UITableViewCell
-        let clinic = clinics?[indexPath.row]
-
+        let searchResult = searchResults[indexPath.row]
+        
         cell.textLabel.textColor = UIColor.whiteColor()
-        cell.textLabel.text = clinic?.name
-        //cell.detailTextLabel?.text = specialtiesCad
+        cell.textLabel.text = searchResult.doctor?.name
+        cell.detailTextLabel?.text = searchResult.clinic?.name
         return cell
     }
 }
