@@ -223,7 +223,7 @@ class SearchDoctorViewController : UIViewController, UITableViewDataSource, UITa
     func searchBarSearchButtonClicked(searchBar: UISearchBar) { // called when keyboard search button pressed
         let search = Search()
         //cleaning map and table
-        clinics = Array<Clinic>()
+        searchResults = Array<SearchResult>()
         searchMapView.removeAnnotations(searchMapView.annotations)
         locationManager?.startUpdatingLocation()
 
@@ -258,9 +258,9 @@ class SearchDoctorViewController : UIViewController, UITableViewDataSource, UITa
                         var searchResult = SearchResult()
                         searchResult.clinic = (cl as Clinic)
                         searchResult.doctor = (doctors[0] as Doctor)//correct this for multiple doctors in 1 clinic
+                        self.searchResults.append(searchResult)
                     }
                 })
-                //self.clinics?.append(cl as Clinic)
             }
             self.reloadUIData()
         })
