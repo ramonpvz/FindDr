@@ -73,8 +73,8 @@
 
 - (void) coordinate {
     
-    CLLocationDegrees lat = 19.412032;
-    CLLocationDegrees lon = -99.176066;
+    CLLocationDegrees lat = [self.appointment.clinic.latitude doubleValue];
+    CLLocationDegrees lon = [self.appointment.clinic.longitude doubleValue];
     CLLocation *location = [[CLLocation alloc] initWithLatitude:lat longitude:lon];
     
     CLLocationCoordinate2D zoom;
@@ -95,8 +95,8 @@
 
 - (void) pingPoint {
     CLLocationCoordinate2D coord;
-    coord.latitude = 19.412032;
-    coord.longitude = -99.176066;
+    coord.latitude = [self.appointment.clinic.latitude doubleValue];
+    coord.longitude = [self.appointment.clinic.longitude doubleValue];
     NSString *title = self.appointment.clinic.name;
     NSString *subtitle = [self.appointment.clinic getFullAddress];
     CustomAnnotation *clinicAnnotation = [[CustomAnnotation alloc] initWithTitle:title Location:coord subtitle:subtitle];
