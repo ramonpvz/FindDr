@@ -42,8 +42,28 @@ class SearchDoctorViewController : UIViewController, UITableViewDataSource, UITa
             docDetailVC.currentDoctor = currentSearchResult!.doctor
             docDetailVC.currentPatient = currentPatient
         }
+        else if segue.identifier == "tableDetailSegue" {
+
+            for searchResult in searchResults {
+                let selectedCell = searchTable.cellForRowAtIndexPath(searchTable.indexPathForSelectedRow()!)
+                println("\(searchResult.doctor!.name) == \(selectedCell?.textLabel.text) && \(searchResult.clinic!.name) == \(selectedCell?.detailTextLabel?.text)")
+                if searchResult.doctor!.name == selectedCell?.textLabel.text && searchResult.clinic!.name == selectedCell?.detailTextLabel?.text {
+                    currentSearchResult = searchResult
+                    let docDetailVC = (segue.destinationViewController as DocDetailViewController)
+
+                    docDetailVC.currentClinic = searchResult.clinic
+                    docDetailVC.currentDoctor = searchResult.doctor
+                    docDetailVC.currentPatient = currentPatient
+
+                    break
+                }
+                else {
+                    println("Error on segue to detail appointment for table")
+                }
+            }
+        }
         else {
-            println("Go to another place")
+            println("Go to another place: \(segue.identifier)")
         }
     }
 
@@ -115,6 +135,22 @@ class SearchDoctorViewController : UIViewController, UITableViewDataSource, UITa
     }
 
     func reloadUIData() {
+        //cleaning array
+        var arr = Array<SearchResult>()
+        var existsInArray = false
+        for searchResult in searchResults {
+            existsInArray = false
+            for c in arr {
+                if searchResult.clinic?.name == c.clinic?.name && searchResult.doctor?.name == c.doctor?.name {
+                    existsInArray = true
+                    break
+                }
+            }
+            if !existsInArray {
+                arr.append(searchResult)
+            }
+        }
+        searchResults = Array<SearchResult>(arr)
         //hidding wait image and cleaning table results
         self.indicator?.hidden = true
         self.searchTable.reloadData()//printing results in table view
@@ -140,7 +176,7 @@ class SearchDoctorViewController : UIViewController, UITableViewDataSource, UITa
 
     func mapView(mapView: MKMapView!, annotationView view: MKAnnotationView!, calloutAccessoryControlTapped control: UIControl!) {
         for searchResult in searchResults {
-//            println("\(searchResult.doctor!.name) == \(view.annotation.title) && \(searchResult.clinic!.name) == \(view.annotation.subtitle)")
+            //            println("\(searchResult.doctor!.name) == \(view.annotation.title) && \(searchResult.clinic!.name) == \(view.annotation.subtitle)")
             if searchResult.doctor!.name == view.annotation.title && searchResult.clinic!.name == view.annotation.subtitle {
                 currentSearchResult = searchResult
 
@@ -208,45 +244,20 @@ class SearchDoctorViewController : UIViewController, UITableViewDataSource, UITa
             //showing wait image
             self.indicator?.hidden = false
             for cl in clinics {
-                self.clinics?.append(cl as Clinic)
+                search.getDoctorsByClinicId((cl as Clinic).objectId, apps: { (doctors : [AnyObject]!) -> Void in
+                    if !doctors.isEmpty {
+                        var searchResult = SearchResult()
+                        searchResult.clinic = (cl as Clinic)
+                        searchResult.doctor = (doctors[0] as Doctor)//correct this for multiple doctors in 1 clinic
+                    }
+                })
+                //self.clinics?.append(cl as Clinic)
             }
             self.reloadUIData()
         })
-        //cleaning array
-        var arr = Array<Clinic>()
-        var existsInArray = false
-        for clinic in clinics! {
-            existsInArray = false
-            for c in arr {
-                if clinic.name == c.name {
-                    existsInArray = true
-                    break
-                }
-            }
-            if !existsInArray {
-                arr.append(clinic)
-            }
-        }
-        clinics = Array<Clinic>(arr)
     }
 
     //MARK: - table delegated methods
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        for searchResult in searchResults {
-            let selectedCell = searchTable.cellForRowAtIndexPath(indexPath)
-
-            if searchResult.doctor!.name == selectedCell?.textLabel.text && searchResult.clinic!.name == selectedCell?.detailTextLabel?.text {
-                currentSearchResult = searchResult
-
-                performSegueWithIdentifier("detail", sender: self)
-                break
-            }
-            else {
-                println("Error on segue to detail appointment for table")
-            }
-        }
-    }
-
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return searchResults.count
     }
@@ -254,8 +265,10 @@ class SearchDoctorViewController : UIViewController, UITableViewDataSource, UITa
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("searchCell", forIndexPath: indexPath) as UITableViewCell
         let searchResult = searchResults[indexPath.row]
-        
+
         cell.textLabel.textColor = UIColor.whiteColor()
+        cell.detailTextLabel?.textColor = UIColor.whiteColor()
+        
         cell.textLabel.text = searchResult.doctor?.name
         cell.detailTextLabel?.text = searchResult.clinic?.name
         return cell
