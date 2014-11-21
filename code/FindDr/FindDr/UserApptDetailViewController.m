@@ -106,16 +106,32 @@
 - (IBAction)cancelAppointment:(id)sender {
     NSString *msg = @"Are you sure you want to cancel this appointment?";
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Confirm" message:msg delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Accept", nil];
+    [alert setTag:3];
     [alert show];
 }
 
 - (void) alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
-    if (buttonIndex == 1)
+    if (alertView.tag == 1)
     {
-        [self.appointment updateToStatus:@"canceled" result:^(NSNumber *result) {
-            NSLog(@"Canceling appointment...");
-            [self.navigationController popViewControllerAnimated:YES];
-        }];
+        if (buttonIndex == 1)
+        {
+            NSLog(@"Validate date agains doctor appointments & schedule");
+        }
+    }
+    else if (alertView.tag == 2) {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+    else if (alertView.tag == 3) {
+        if (buttonIndex == 1)
+        {
+            [self.appointment updateToStatus:@"canceled" result:^(NSNumber *result) {
+                NSLog(@"Appointment canceled");
+                [self.navigationController popViewControllerAnimated:YES];
+            }];
+        }
+    }
+    else {
+        NSLog(@"Tag not recognized.");
     }
 }
 
@@ -167,7 +183,18 @@
                 appointment.clinic = self.appointment.clinic;
                 appointment.status =  @"pending";
                 appointment.date = edDate;
-                [Appointment save:appointment];
+                [Appointment save:appointment result:^(BOOL error) {
+                    if(!error)
+                    {
+                        self.appointment.status = @"deleted";
+                        [self.appointment saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                            NSString *message = @"The new appointment has been requested.";
+                            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Message" message:message delegate:self cancelButtonTitle:@"Accept" otherButtonTitles:nil, nil];
+                            [alert setTag:2];
+                            [alert show];
+                        }];
+                    }
+                }];
             }
         }];
         

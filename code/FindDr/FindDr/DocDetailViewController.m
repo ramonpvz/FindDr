@@ -103,6 +103,11 @@
             NSLog(@"Validate date agains doctor appointments & schedule");
         }
     }
+    else if (alertView.tag == 2) {
+        [self.navigationController popViewControllerAnimated:YES];
+    } else {
+        NSLog(@"Tag not recognized.");
+    }
 }
 
 - (void) action: (id) sender forEvent: (UIEvent *) event {
@@ -145,7 +150,15 @@
                 appointment.clinic = self.currentClinic;
                 appointment.status =  @"pending";
                 appointment.date = edDate;
-                [Appointment save:appointment];
+                [Appointment save:appointment result:^(BOOL error) {
+                    if(!error)
+                    {
+                        NSString *message = @"The appointment has been requested.";
+                        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Message" message:message delegate:self cancelButtonTitle:@"Accept" otherButtonTitles:nil, nil];
+                        [alert setTag:2];
+                        [alert show];
+                    }
+                }];
             }
         }];
 
@@ -156,7 +169,6 @@
 - (void) action: (id) sender cancelEvent: (UIEvent *) event {
     NSLog(@"Canceled");
 }
-
 
 - (IBAction)makeComment:(UITapGestureRecognizer *)sender {
     if (![self.commentText.text isEqualToString:@""]) {

@@ -38,11 +38,17 @@
     }];
 }
 
-+ (void) save: (Appointment *) appointment {
++ (void) save: (Appointment *) appointment result:(void (^) (BOOL error))conditionalBlock {
     if (appointment.doctor != nil && appointment.patient != nil && appointment.clinic != nil)
     {
         [appointment saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-            NSLog(@"Appointment saved.");
+            if (!error) {
+                conditionalBlock(NO);
+            }
+            else
+            {
+                conditionalBlock(YES);
+            }
         }];
     } else
     {

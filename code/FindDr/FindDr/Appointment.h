@@ -22,8 +22,8 @@
 
 //+ (void) getDoctorByUser:(PFUser *)user doc:(void (^)(Doctor *doctor))complete;
 
-- (void) updateToStatus: (NSString *) status result:(void (^)(NSNumber *result))complete;;
+- (void) updateToStatus: (NSString *) status result:(void (^)(NSNumber *result))complete;
 
-+ (void) save: (Appointment *) appointment;
++ (void) save: (Appointment *) appointment result:(void (^) (BOOL error))conditionalBlock;
 
 @end
