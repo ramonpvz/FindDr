@@ -80,4 +80,17 @@
     [self.login logOut];
 }
 
+- (IBAction)unwindFromSearchDoctorViewController:(UIStoryboardSegue*)segue{
+    [self.login logOut];
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    if (textField == self.passwordField) {
+        [textField resignFirstResponder];
+        [self login:nil];
+        return NO;
+    }
+    return YES;
+}
+
 @end

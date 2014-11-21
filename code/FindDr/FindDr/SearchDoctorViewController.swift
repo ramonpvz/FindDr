@@ -31,6 +31,15 @@ class SearchDoctorViewController : UIViewController, UITableViewDataSource, UITa
         Patient.getPatientByUser(PFUser.currentUser(), pat: { (patient : Patient!) -> Void in
             self.currentPatient = patient
         })
+
+        let imageLogout = UIImage(named: "Logout-32")
+        let logoutButton = UIBarButtonItem(image: imageLogout, style: .Plain, target: self, action: "doLogout")
+        self.navigationItem.rightBarButtonItem = logoutButton;
+        self.navigationItem.hidesBackButton = true;
+    }
+
+    func doLogout() {
+        performSegueWithIdentifier("logout", sender:nil)
     }
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

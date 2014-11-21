@@ -12,6 +12,7 @@
 #import "ActionSheetDatePicker.h"
 #import "DValidator.h"
 #import "Appointment.h"
+#import "Comment.h"
 
 @interface DocDetailViewController () <UITableViewDataSource , UITableViewDelegate>
 @property (strong, nonatomic) IBOutlet UIImageView *docPhoto;
@@ -24,6 +25,8 @@
 @property (strong, nonatomic) IBOutlet UIImageView *createAppIcon;
 @property NSDate *appointmentDate;
 @property NSArray *comments;
+@property (strong, nonatomic) IBOutlet UITableView *commentsTable;
+@property (strong, nonatomic) IBOutlet UITextField *commentText;
 
 @end
 
@@ -51,8 +54,16 @@
         clinic.longitude = @"1412.239990";
         self.currentClinic = clinic;
         [self.currentDoctor addClinic:clinic];
+        NSLog(@"carga comentarios");
+        [self loadComments];
     }];
+}
 
+-(void)loadComments{
+    [Comment getCommentsByDoctor:self.currentDoctor doc:^(NSArray *comments) {
+        self.comments = comments;
+        [self.commentsTable reloadData];
+    }];
 }
 
 - (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -61,7 +72,14 @@
 }
 
 - (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return nil;
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"commentCell" forIndexPath:indexPath];
+
+    Comment *comment = [self.comments objectAtIndex:indexPath.row];
+    cell.textLabel.text = comment.patient.name;
+    cell.detailTextLabel.text = [comment objectForKey:@"description"];
+    cell.detailTextLabel.numberOfLines = 2;
+
+    return cell;
 }
 
 - (IBAction)makeAppointment:(id)sender {
@@ -130,6 +148,30 @@
 
 - (void) action: (id) sender cancelEvent: (UIEvent *) event {
     NSLog(@"Canceled");
+}
+
+
+- (IBAction)makeComment:(UITapGestureRecognizer *)sender {
+    if (![self.commentText.text isEqualToString:@""]) {
+        Comment *comment = [Comment object];
+        comment.description = self.commentText.text;
+        comment.doctor = self.currentDoctor;
+        comment.patient = self.currentPatient;
+        [comment saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+            NSLog(@"comment saved");
+            [self loadComments];
+        }];
+        self.commentText.text = @"";
+    }
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    if (textField == self.commentText) {
+        [textField resignFirstResponder];
+        [self makeComment:nil];
+        return NO;
+    }
+    return YES;
 }
 
 @end

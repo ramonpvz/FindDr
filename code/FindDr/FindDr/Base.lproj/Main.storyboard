@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="hI9-SR-S7C">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="hI9-SR-S7C">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
-        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -892,7 +891,7 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
                                                 <variation key="widthClass=compact" ambiguous="YES" misplaced="YES">
-                                                    <rect key="frame" x="0.0" y="-30" width="97" height="30"/>
+                                                    <rect key="frame" x="0.0" y="-30" width="97" height="30.5"/>
                                                 </variation>
                                                 <connections>
                                                     <outlet property="delegate" destination="HDe-A5-Gp2" id="zAa-tx-c38"/>
@@ -2437,17 +2436,50 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="195" id="xCA-l7-Stv"/>
                                 </constraints>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="commentCell" textLabel="4uU-yD-4Ou" detailTextLabel="5ua-JG-Mc0" style="IBUITableViewCellStyleSubtitle" id="6jb-du-6GU">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="6jb-du-6GU" id="2Mg-rD-g4d">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="4uU-yD-4Ou">
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                    <variation key="widthClass=compact">
+                                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    </variation>
+                                                </label>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="5ua-JG-Mc0">
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                    <variation key="widthClass=compact">
+                                                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                                    </variation>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
                                 <connections>
                                     <outlet property="dataSource" destination="0kn-pD-tiA" id="HfF-5K-UD7"/>
                                     <outlet property="delegate" destination="0kn-pD-tiA" id="Lyn-OZ-bnZ"/>
                                 </connections>
                             </tableView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="D6k-Jv-hsJ">
+                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="D6k-Jv-hsJ">
                                 <rect key="frame" x="564" y="150" width="20" height="20"/>
+                                <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="20" id="CQL-VH-BPK"/>
                                     <constraint firstAttribute="height" constant="20" id="nzd-jT-5fI"/>
                                 </constraints>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="clB-sk-ZSQ" appends="YES" id="53w-wQ-iZY"/>
+                                </connections>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VwV-YV-xll">
                                 <rect key="frame" x="235" y="437" width="130" height="30"/>
@@ -2486,6 +2518,9 @@
                                         <include reference="iUs-To-QYP"/>
                                     </mask>
                                 </variation>
+                                <connections>
+                                    <outlet property="delegate" destination="0kn-pD-tiA" id="W96-3P-dv4"/>
+                                </connections>
                             </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -2554,6 +2589,8 @@
                     </view>
                     <connections>
                         <outlet property="commentIcon" destination="D6k-Jv-hsJ" id="0Z4-X1-BJb"/>
+                        <outlet property="commentText" destination="Cp2-6l-VHv" id="NhS-hQ-0Lj"/>
+                        <outlet property="commentsTable" destination="w0z-8Y-Vdl" id="2xG-Fo-CQL"/>
                         <outlet property="docClinicName" destination="6ok-4O-Mir" id="8V0-rD-WDP"/>
                         <outlet property="docClinicSpecs" destination="0vn-QZ-GIU" id="To8-xS-adh"/>
                         <outlet property="docFullName" destination="Njp-u5-DN7" id="SKr-37-ZoV"/>
@@ -2562,7 +2599,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4TZ-Cn-tpM" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="NKQ-sq-BSS"/>
+                <tapGestureRecognizer id="clB-sk-ZSQ">
+                    <connections>
+                        <action selector="makeComment:" destination="0kn-pD-tiA" id="Szb-kZ-fMF"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="-552" y="915"/>
         </scene>
@@ -2712,9 +2753,11 @@
                         <outlet property="searchMapView" destination="whX-zN-pjT" id="yo8-MH-xHk"/>
                         <outlet property="searchTable" destination="9rH-ai-M94" id="sLX-ni-fXq"/>
                         <segue destination="0kn-pD-tiA" kind="show" identifier="detail" id="aa5-5m-ODN"/>
+                        <segue destination="38j-as-sgr" kind="unwind" identifier="logout" unwindAction="unwindFromSearchDoctorViewController:" id="Mnj-49-Ozp"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dF6-cm-Qct" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="38j-as-sgr" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="124" y="183"/>
         </scene>
@@ -2923,8 +2966,8 @@
         <image name="user.png" width="600" height="557"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="J4X-re-tcI"/>
         <segue reference="d8v-Sz-oeK"/>
+        <segue reference="byB-AP-3yo"/>
         <segue reference="6IX-UW-gso"/>
         <segue reference="H10-8P-nWh"/>
     </inferredMetricsTieBreakers>
