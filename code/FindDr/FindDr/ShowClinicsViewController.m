@@ -132,4 +132,11 @@
     [self loadData];
 }
 
+-(IBAction)cancelFromClinicViewController:(UIStoryboardSegue*)segue{
+    [self.currentDoctor removeClinic:self.clinicSelected];
+    [self.currentDoctor saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        [self loadData];
+    }];
+}
+
 @end

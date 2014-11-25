@@ -47,9 +47,9 @@
     [self switchUserTapped:self.switchUser];
 
     //Validations
-    [self.emailText addRegx:@"[A-Z0-9a-z._%+-]{3,}+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}" withMsg:@"Enter valid email"];
+    [self.emailText addRegx:@"[A-Z0-9a-z._%+-]{3,}+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}" withMsg:@"Enter a valid email"];
 
-    [self.passwordText addRegx:@"^.{6,32}$" withMsg:@"Password charaters limit should be come between 6-32"];
+    [self.passwordText addRegx:@"^.{6,32}$" withMsg:@"Password should be between 6-32 characters in length and include letters and numbers"];
 
     self.secondLastNameText.isMandatory = NO;
     self.birthdayText.isMandatory = NO;
@@ -74,7 +74,7 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellSpecialty" forIndexPath:indexPath];
 
     Speciality *especiality = self.specialties[indexPath.row];
-    cell.textLabel.text = especiality.name;
+    cell.textLabel.text = [especiality.name capitalizedString];
     cell.detailTextLabel.text = [especiality objectForKey:@"description"];
 
     return cell;
@@ -102,58 +102,62 @@
 
         [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         Login *login = [[Login alloc]init];
-        if ((self.switchUser.on == YES) & [self.licenseText validate]) {
-            if (self.specialties.count > 0) { //the doctor has at least one specialty
-                [login signUp:self.emailText.text pass:self.passwordText.text user:^(User *pfUser) {
-                    //NSLog(@"User: %@",pfUser);
-                    if (pfUser.message == nil) { //if logins is successful
-                        pfUser.profile = @"doctor";
-                        [pfUser saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) { //create the doctor
-                            if (pfUser.username != nil) {
-                                //save doctor data
-                                Doctor *doc = [Doctor object];
+        if (self.switchUser.on == YES) {
+            if([self.licenseText validate]){
+                if (self.specialties.count > 0) { //the doctor has at least one specialty
+                    [login signUp:self.emailText.text pass:self.passwordText.text user:^(User *pfUser) {
+                        //NSLog(@"User: %@",pfUser);
+                        if (pfUser.message == nil) { //if logins is successful
+                            pfUser.profile = @"doctor";
+                            [pfUser saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) { //create the doctor
+                                if (pfUser.username != nil) {
+                                    //save doctor data
+                                    Doctor *doc = [Doctor object];
 
-                                doc.user = [login getCurrentUser];
-                                self.imageData = UIImageJPEGRepresentation(self.userImage.image, 1.0f);
-                                PFFile *image = [PFFile fileWithName:@"image.png" data:self.imageData];
-                                doc.photo = image;
-                                doc.licence = self.licenseText.text;
-                                doc.title = self.titleText.text;
-                                doc.gender = self.genderText.text;
-                                doc.email = self.emailText.text;
-                                doc.phone = self.phoneNumberText.text;
+                                    doc.user = [login getCurrentUser];
+                                    self.imageData = UIImageJPEGRepresentation(self.userImage.image, 1.0f);
+                                    PFFile *image = [PFFile fileWithName:@"image.png" data:self.imageData];
+                                    doc.photo = image;
+                                    doc.licence = self.licenseText.text;
+                                    doc.title = self.titleText.text;
+                                    doc.gender = self.genderText.text;
+                                    doc.email = self.emailText.text;
+                                    doc.phone = self.phoneNumberText.text;
 
-                                NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
-                                [formatter setDateFormat:@"dd/MM/yyyy"];
-                                NSDate *date = [formatter dateFromString:self.birthdayText.text];
-                                doc.birthday = date;
+                                    NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
+                                    [formatter setDateFormat:@"dd/MM/yyyy"];
+                                    NSDate *date = [formatter dateFromString:self.birthdayText.text];
+                                    doc.birthday = date;
 
-                                doc.name = self.firstNameText.text;
-                                doc.lastName = self.lastNameText.text;
-                                doc.secondLastName = self.secondLastNameText.text;
+                                    doc.name = self.firstNameText.text;
+                                    doc.lastName = self.lastNameText.text;
+                                    doc.secondLastName = self.secondLastNameText.text;
 
 
-                                [doc saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-                                    for (Speciality *speciality in self.specialties){
-                                        [doc addSpeciality:speciality];
-                                    }
+                                    [doc saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                                        for (Speciality *speciality in self.specialties){
+                                            [doc addSpeciality:speciality];
+                                        }
 
+                                        [MBProgressHUD hideHUDForView:self.view animated:YES];
+                                        [self performSegueWithIdentifier:@"showClinics" sender:self];
+                                    }];
+                                }else{
                                     [MBProgressHUD hideHUDForView:self.view animated:YES];
-                                    [self performSegueWithIdentifier:@"showClinics" sender:self];
-                                }];
-                            }else{
-                                [MBProgressHUD hideHUDForView:self.view animated:YES];
-                                [[[UIAlertView alloc] initWithTitle:nil message:pfUser.message delegate:nil cancelButtonTitle:nil otherButtonTitles:@"Ok", nil] show];
-                            }
-                        }];
-                    }else{
-                        [MBProgressHUD hideHUDForView:self.view animated:YES];
-                        [[[UIAlertView alloc] initWithTitle:nil message:pfUser.message delegate:nil cancelButtonTitle:nil otherButtonTitles:@"Ok", nil] show];
-                    }
-                }];
+                                    [[[UIAlertView alloc] initWithTitle:nil message:pfUser.message delegate:nil cancelButtonTitle:nil otherButtonTitles:@"Ok", nil] show];
+                                }
+                            }];
+                        }else{
+                            [MBProgressHUD hideHUDForView:self.view animated:YES];
+                            [[[UIAlertView alloc] initWithTitle:nil message:pfUser.message delegate:nil cancelButtonTitle:nil otherButtonTitles:@"Ok", nil] show];
+                        }
+                    }];
+                }else{
+                    [MBProgressHUD hideHUDForView:self.view animated:YES];
+                    [[[UIAlertView alloc] initWithTitle:nil message:@"Please, add at least one specialty." delegate:nil cancelButtonTitle:nil otherButtonTitles:@"Ok", nil] show];
+                }
             }else{
-                [MBProgressHUD hideHUDForView:self.view animated:YES];
-                [[[UIAlertView alloc] initWithTitle:nil message:@"Please, add at least one specialty." delegate:nil cancelButtonTitle:nil otherButtonTitles:@"Ok", nil] show];
+                [MBProgressHUD hideHUDForView:self.view animated:YES]; //license text not valid
             }
         }else {
             Login *login = [[Login alloc]init];
@@ -330,7 +334,7 @@
         self.specialtiesCatalog = specialities;
 
         for (Speciality *speciality in self.specialtiesCatalog){
-            [nameSpecialities addObject:speciality.name];
+            [nameSpecialities addObject:[speciality.name capitalizedString]];
         }
         [ActionSheetStringPicker showPickerWithTitle:@"Select:"
                                                 rows:nameSpecialities

@@ -56,7 +56,7 @@
         self.specialties = specialities;
     }];
 
-    [self.postalCodeText addRegx:@"[0-9]{1,5}" withMsg:@"Only 5 numeric characters are allowed"];
+    [self.postalCodeText addRegx:@"[0-9]{1,5}" withMsg:@"Postal Code should be 5 characters in length and include only numbers"];
 }
 
 - (void)didReceiveMemoryWarning {
