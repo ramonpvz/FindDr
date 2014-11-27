@@ -128,7 +128,9 @@
 }
 
 - (void) loadImage: (void (^)(UIImage *image))complete {
-    complete ([UIImage imageWithData:[NSData dataWithData:[self.photo getData]]]);
+    [self.photo getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
+        complete ([UIImage imageWithData:[NSData dataWithData:data]]);
+    }];
 }
 
 - (NSString *) getFullName {

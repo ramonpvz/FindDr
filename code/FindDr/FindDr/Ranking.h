@@ -15,7 +15,15 @@
 @property Patient *patient;
 @property Doctor *doctor;
 @property NSNumber *ranking;
+@property NSNumber *average;
+@property NSNumber *reviews;
 
 + (void) save: (Ranking *) ranking;
+
++ (void) rate: (NSInteger*) value;
+
+- (void) getRankingByDoc: (Doctor *) doctor result: (void (^) (Ranking* ranking)) complete;
+
++ (void) countReviews: (Doctor *) doctor pat: (Patient *) patient result: (void (^) (NSNumber* reviews)) complete;
 
 @end

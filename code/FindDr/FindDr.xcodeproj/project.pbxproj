@@ -31,6 +31,10 @@
 		C311222D1A0A7BA3001A3FF7 /* Comment.m in Sources */ = {isa = PBXBuildFile; fileRef = C311222C1A0A7BA3001A3FF7 /* Comment.m */; };
 		C31122301A0A7C6A001A3FF7 /* Appointment.m in Sources */ = {isa = PBXBuildFile; fileRef = C311222F1A0A7C6A001A3FF7 /* Appointment.m */; };
 		C31122331A0A7C97001A3FF7 /* Speciality.m in Sources */ = {isa = PBXBuildFile; fileRef = C31122321A0A7C97001A3FF7 /* Speciality.m */; };
+		C334AB591A26394F00D1A573 /* RateView.m in Sources */ = {isa = PBXBuildFile; fileRef = C334AB581A26394F00D1A573 /* RateView.m */; };
+		C334AB631A263CD600D1A573 /* kermit_empty.png in Resources */ = {isa = PBXBuildFile; fileRef = C334AB601A263CD600D1A573 /* kermit_empty.png */; };
+		C334AB641A263CD600D1A573 /* kermit_full.png in Resources */ = {isa = PBXBuildFile; fileRef = C334AB611A263CD600D1A573 /* kermit_full.png */; };
+		C334AB651A263CD600D1A573 /* kermit_half.png in Resources */ = {isa = PBXBuildFile; fileRef = C334AB621A263CD600D1A573 /* kermit_half.png */; };
 		C33861FF1A16B9A90060ADA7 /* Search.m in Sources */ = {isa = PBXBuildFile; fileRef = C33861FE1A16B9A90060ADA7 /* Search.m */; };
 		C342777A1A15360D00AF9237 /* Logout-32.png in Resources */ = {isa = PBXBuildFile; fileRef = C34277791A15360D00AF9237 /* Logout-32.png */; };
 		C342777D1A156A2700AF9237 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = C342777C1A156A2700AF9237 /* User.m */; };
@@ -148,6 +152,11 @@
 		C311222F1A0A7C6A001A3FF7 /* Appointment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Appointment.m; sourceTree = "<group>"; };
 		C31122311A0A7C97001A3FF7 /* Speciality.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Speciality.h; sourceTree = "<group>"; };
 		C31122321A0A7C97001A3FF7 /* Speciality.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Speciality.m; sourceTree = "<group>"; };
+		C334AB571A26394F00D1A573 /* RateView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RateView.h; sourceTree = "<group>"; };
+		C334AB581A26394F00D1A573 /* RateView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RateView.m; sourceTree = "<group>"; };
+		C334AB601A263CD600D1A573 /* kermit_empty.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = kermit_empty.png; sourceTree = "<group>"; };
+		C334AB611A263CD600D1A573 /* kermit_full.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = kermit_full.png; sourceTree = "<group>"; };
+		C334AB621A263CD600D1A573 /* kermit_half.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = kermit_half.png; sourceTree = "<group>"; };
 		C33861FD1A16B9A90060ADA7 /* Search.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Search.h; sourceTree = "<group>"; };
 		C33861FE1A16B9A90060ADA7 /* Search.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Search.m; sourceTree = "<group>"; };
 		C34277791A15360D00AF9237 /* Logout-32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Logout-32.png"; sourceTree = "<group>"; };
@@ -292,6 +301,9 @@
 		A55566F41A0AB4A800B9CDAF /* images */ = {
 			isa = PBXGroup;
 			children = (
+				C334AB601A263CD600D1A573 /* kermit_empty.png */,
+				C334AB611A263CD600D1A573 /* kermit_full.png */,
+				C334AB621A263CD600D1A573 /* kermit_half.png */,
 				C3FC06741A1D66D200BB3969 /* myit_icon_appointment.png */,
 				C3FC06721A1D659200BB3969 /* schedule_appointment_icon.png */,
 				C3FC066D1A1D4ABE00BB3969 /* reqAppt.png */,
@@ -314,6 +326,8 @@
 		A55567051A0AC44A00B9CDAF /* utils */ = {
 			isa = PBXGroup;
 			children = (
+				C334AB571A26394F00D1A573 /* RateView.h */,
+				C334AB581A26394F00D1A573 /* RateView.m */,
 				A55567241A0AE93D00B9CDAF /* TextField.swift */,
 				A55567261A0AE9BF00B9CDAF /* UIColorExtension.swift */,
 				C3A5921E1A1287DA00675FA6 /* DValidator.h */,
@@ -639,6 +653,7 @@
 				A555670C1A0ACBD100B9CDAF /* doc.png in Resources */,
 				E4DA5D2B1A0D7C1100C4FCAB /* error@2x.png in Resources */,
 				A55567151A0AD27400B9CDAF /* background3.png in Resources */,
+				C334AB631A263CD600D1A573 /* kermit_empty.png in Resources */,
 				E44873BA1A0B00700036CAFF /* user.png in Resources */,
 				C3FC06731A1D659200BB3969 /* schedule_appointment_icon.png in Resources */,
 				E4AF648B1A129887006C24B9 /* draggable_annotation_icon@2x.png in Resources */,
@@ -647,7 +662,9 @@
 				A55567041A0ABC7500B9CDAF /* lupa.png in Resources */,
 				C342777A1A15360D00AF9237 /* Logout-32.png in Resources */,
 				A555670D1A0ACBD100B9CDAF /* pacient.png in Resources */,
+				C334AB641A263CD600D1A573 /* kermit_full.png in Resources */,
 				C3FC066C1A1D47A400BB3969 /* comment_add-128.png in Resources */,
+				C334AB651A263CD600D1A573 /* kermit_half.png in Resources */,
 				C3FC066E1A1D4ABE00BB3969 /* reqAppt.png in Resources */,
 				A58F739A1A0966F800226385 /* LaunchScreen.xib in Resources */,
 				A58F73971A0966F800226385 /* Images.xcassets in Resources */,
@@ -691,6 +708,7 @@
 				E427928C1A1BC709002A630B /* MBProgressHUD.m in Sources */,
 				E4DA5D1F1A0D7BB700C4FCAB /* ActionSheetCustomPicker.m in Sources */,
 				A55567271A0AE9BF00B9CDAF /* UIColorExtension.swift in Sources */,
+				C334AB591A26394F00D1A573 /* RateView.m in Sources */,
 				C39A98871A0C67B000E43C57 /* Patient.m in Sources */,
 				C3A592241A129C9000675FA6 /* DSettings.m in Sources */,
 				C3A592191A127DD200675FA6 /* AppDelegate.m in Sources */,

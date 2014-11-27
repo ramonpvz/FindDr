@@ -13,6 +13,9 @@
 #import "DValidator.h"
 #import "Appointment.h"
 #import "Comment.h"
+#import "Clinic.h"
+#import "Schedule.h"
+#import "Ranking.h"
 
 @interface DocDetailViewController () <UITableViewDataSource , UITableViewDelegate>
 @property (strong, nonatomic) IBOutlet UIImageView *docPhoto;
@@ -27,6 +30,7 @@
 @property NSArray *comments;
 @property (strong, nonatomic) IBOutlet UITableView *commentsTable;
 @property (strong, nonatomic) IBOutlet UITextField *commentText;
+@property BOOL editable;
 
 @end
 
@@ -34,13 +38,14 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.docPhoto.image = [UIImage imageWithData:[self.currentDoctor.photo getData]];
+    [self.currentDoctor.photo getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
+        self.docPhoto.image = [UIImage imageWithData:data];
+    }];
     self.commentIcon.image = [UIImage imageNamed:@"comment_add-128.png"];
     self.createAppIcon.image = [UIImage imageNamed:@"schedule_appointment_icon.png"];
     self.docTitle.text = self.currentDoctor.title;
     self.docFullName.text = [self.currentDoctor getFullName];
     self.docClinicName.text = self.currentClinic.name;
-
     [Speciality lisSpecialities:^(NSArray *specialities) {
         NSMutableString *specsLabel = [NSMutableString string];
         [self.currentClinic getSpecialities:^(NSArray *_specialities) {
@@ -53,7 +58,9 @@
                         }
                     }
                 }
-                self.docClinicSpecs.text = specsLabel;
+                NSRange range = [specsLabel rangeOfString:@" | " options:NSBackwardsSearch];
+                NSRange createRange = NSMakeRange(0 , range.location);
+                self.docClinicSpecs.text = [specsLabel substringWithRange:createRange];
             }
             else
             {
@@ -61,9 +68,45 @@
             }
         }];
     }];
-
+    [Ranking countReviews:self.currentDoctor pat:self.currentPatient result:^(NSNumber *reviews) {
+        self.rateView.notSelectedImage = [UIImage imageNamed:@"kermit_empty.png"];
+        self.rateView.halfSelectedImage = [UIImage imageNamed:@"kermit_half.png"];
+        self.rateView.fullSelectedImage = [UIImage imageNamed:@"kermit_full.png"];
+        if (reviews.intValue > 0) {
+            [self loadRanking];
+            self.rateView.editable = NO;
+            self.editable = NO;
+        }
+        else
+        {
+            self.rateView.rating = 0;
+            self.rateView.editable =YES;
+            self.editable = YES;
+        }
+        self.rateView.maxRating = 5;
+        self.rateView.delegate = self;
+    }];
     [self loadComments];
+}
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+}
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
 }
 
 -(void)loadComments{
@@ -105,6 +148,9 @@
     }
     else if (alertView.tag == 2) {
         [self.navigationController popViewControllerAnimated:YES];
+    }
+    else if (alertView.tag == 3) {
+        //Stay on page...
     } else {
         NSLog(@"Tag not recognized.");
     }
@@ -122,41 +168,51 @@
     }
     else
     {
-        
+
         NSDate *edDate = [DValidator roundDateMinuteToZero:sender];
         
-        [self.currentDoctor getAppointmentsByStatusAndDate:edDate status:@"scheduled" apps:^(NSArray *appointments) {
-            if (appointments.count > 0) {
-                [self.currentDoctor getAppointmentsByStatus:@"scheduled" apps:^(NSArray *appointments) {
-                    if (appointments.count > 0) {
-                        Appointment *latestApp = [appointments objectAtIndex:0];
-                        NSTimeInterval oneHour = 1 * 60 * 60;
-                        NSDate *oneHourAhead = [latestApp.date dateByAddingTimeInterval:oneHour];
-                        NSString *message  = [NSString stringWithFormat:@"There is no availability at this time. Please book after: %@",[DValidator dateToString:oneHourAhead]];
-                        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Message" message:message delegate:self cancelButtonTitle:@"Accept" otherButtonTitles:nil, nil];
-                        [alert setTag:1];
-                        [alert show];
-                    }
-                }];
+        [Schedule getScheduleByClinic:self.currentClinic sched:^(Schedule *schedule) {
+            if (![DValidator validateTimeSchedule:edDate sched:schedule]) {
+                NSString *message = @"There is no availability on the doctor's schedule.";
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Message" message:message delegate:self cancelButtonTitle:@"Accept" otherButtonTitles:nil, nil];
+                [alert setTag:3];
+                [alert show];
             }
             else
             {
-                NSString *desc = [NSString stringWithFormat:@"Booking at: %@ for doctor %@, patient: %@",[DValidator dateToString:sender], self.currentDoctor.name, self.currentPatient.name];
-                NSLog(@"%@",desc);
-                Appointment *appointment = [Appointment object];
-                appointment.description = desc;
-                appointment.doctor = self.currentDoctor;
-                appointment.patient = self.currentPatient;
-                appointment.clinic = self.currentClinic;
-                appointment.status =  @"pending";
-                appointment.date = edDate;
-                [Appointment save:appointment result:^(BOOL error) {
-                    if(!error)
+                [self.currentDoctor getAppointmentsByStatusAndDate:edDate status:@"scheduled" apps:^(NSArray *appointments) {
+                    if (appointments.count > 0) {
+                        [self.currentDoctor getAppointmentsByStatus:@"scheduled" apps:^(NSArray *appointments) {
+                            if (appointments.count > 0) {
+                                Appointment *latestApp = [appointments objectAtIndex:0];
+                                NSTimeInterval oneHour = 1 * 60 * 60;
+                                NSDate *oneHourAhead = [latestApp.date dateByAddingTimeInterval:oneHour];
+                                NSString *message  = [NSString stringWithFormat:@"There is no availability at this time. Please book after: %@",[DValidator dateToString:oneHourAhead]];
+                                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Message" message:message delegate:self cancelButtonTitle:@"Accept" otherButtonTitles:nil, nil];
+                                [alert setTag:1];
+                                [alert show];
+                            }
+                        }];
+                    }
+                    else
                     {
-                        NSString *message = @"The appointment has been requested.";
-                        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Message" message:message delegate:self cancelButtonTitle:@"Accept" otherButtonTitles:nil, nil];
-                        [alert setTag:2];
-                        [alert show];
+                        NSString *desc = [NSString stringWithFormat:@"Booking at: %@ for doctor %@, patient: %@",[DValidator dateToString:sender], self.currentDoctor.name, self.currentPatient.name];
+                        Appointment *appointment = [Appointment object];
+                        appointment.description = desc;
+                        appointment.doctor = self.currentDoctor;
+                        appointment.patient = self.currentPatient;
+                        appointment.clinic = self.currentClinic;
+                        appointment.status =  @"pending";
+                        appointment.date = edDate;
+                        [Appointment save:appointment result:^(BOOL error) {
+                            if(!error)
+                            {
+                                NSString *message = @"The appointment has been requested.";
+                                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Message" message:message delegate:self cancelButtonTitle:@"Accept" otherButtonTitles:nil, nil];
+                                [alert setTag:2];
+                                [alert show];
+                            }
+                        }];
                     }
                 }];
             }
@@ -191,6 +247,28 @@
         return NO;
     }
     return YES;
+}
+
+- (void)rateView:(RateView *)rateView ratingDidChange:(float)rating {
+    if(self.editable) {
+        Ranking *ranking = [Ranking object];
+        ranking.doctor = self.currentDoctor;
+        ranking.patient = self.currentPatient;
+        ranking.ranking = [NSNumber numberWithFloat:rating];
+        [ranking saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+            [self loadRanking];
+            self.rateView.editable = NO;
+            self.editable = NO;
+        }];
+    }
+}
+
+-(void) loadRanking {
+    Ranking *myRanking = [[Ranking alloc] init];
+    [myRanking getRankingByDoc:self.currentDoctor result:^(Ranking *ranking) {
+        self.statusLabel.text = [NSString stringWithFormat:@"%@ out of 5 stars | %@ reviews", ranking.average, ranking.reviews];
+        self.rateView.rating = [ranking.average floatValue];
+    }];
 }
 
 @end

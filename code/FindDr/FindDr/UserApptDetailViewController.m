@@ -12,6 +12,7 @@
 #import "CustomAnnotation.h"
 #import <QuartzCore/QuartzCore.h>
 #import "ActionSheetDatePicker.h"
+#import "Schedule.h"
 
 @interface UserApptDetailViewController () <MKMapViewDelegate, CLLocationManagerDelegate, UIGestureRecognizerDelegate>
 
@@ -44,16 +45,18 @@
     self.docClinic.text = self.appointment.clinic.name;
     [Speciality lisSpecialities:^(NSArray *specialities) {
         NSMutableString *specsLabel = [NSMutableString string];
-        [self.appointment.clinic getSpecialities:^(NSArray *_specialities) {
+        [self.appointment.doctor getSpecialities:^(NSArray *_specialities) {
             for (Speciality *clinicSpec in _specialities) {
                 for (Speciality *spec in specialities) {
                     if ([spec.objectId isEqualToString:clinicSpec.objectId]) {
-                        [specsLabel appendString:spec.name];
+                        [specsLabel appendString:[spec.name capitalizedString]];
                         [specsLabel appendString:@" | "];
                     }
                 }
             }
-            self.docClinicSpecs.text = specsLabel;
+            NSRange range = [specsLabel rangeOfString:@" | " options:NSBackwardsSearch];
+            NSRange createRange = NSMakeRange(0 , range.location);
+            self.docClinicSpecs.text = [specsLabel substringWithRange:createRange];
         }];
     }];
     [self coordinate];
@@ -130,6 +133,9 @@
             }];
         }
     }
+    else if (alertView.tag == 3) {
+        //Stay on page...
+    }
     else {
         NSLog(@"Tag not recognized.");
     }
@@ -158,40 +164,51 @@
         
         NSDate *edDate = [DValidator roundDateMinuteToZero:sender];
         
-        [self.appointment.doctor getAppointmentsByStatusAndDate:edDate status:@"scheduled" apps:^(NSArray *appointments) {
-            if (appointments.count > 0) {
-                [self.appointment.doctor getAppointmentsByStatus:@"scheduled" apps:^(NSArray *appointments) {
-                    if (appointments.count > 0) {
-                        Appointment *latestApp = [appointments objectAtIndex:0];
-                        NSTimeInterval oneHour = 1 * 60 * 60;
-                        NSDate *oneHourAhead = [latestApp.date dateByAddingTimeInterval:oneHour];
-                        NSString *message  = [NSString stringWithFormat:@"There is no availability at this time. Please book after: %@",[DValidator dateToString:oneHourAhead]];
-                        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Message" message:message delegate:self cancelButtonTitle:@"Accept" otherButtonTitles:nil, nil];
-                        [alert setTag:1];
-                        [alert show];
-                    }
-                }];
+        [Schedule getScheduleByClinic:self.appointment.clinic sched:^(Schedule *schedule) {
+            if (![DValidator validateTimeSchedule:edDate sched:schedule]) {
+                NSString *message = @"There is no availability on the doctor's schedule.";
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Message" message:message delegate:self cancelButtonTitle:@"Accept" otherButtonTitles:nil, nil];
+                [alert setTag:4];
+                [alert show];
             }
             else
             {
-                NSString *desc = [NSString stringWithFormat:@"Booking at: %@ for doctor %@, patient: %@",[DValidator dateToString:sender], self.appointment.doctor.name, self.appointment.patient.name];
-                NSLog(@"%@",desc);
-                Appointment *appointment = [Appointment object];
-                appointment.description = desc;
-                appointment.doctor = self.appointment.doctor;
-                appointment.patient = self.appointment.patient;
-                appointment.clinic = self.appointment.clinic;
-                appointment.status =  @"pending";
-                appointment.date = edDate;
-                [Appointment save:appointment result:^(BOOL error) {
-                    if(!error)
+                [self.appointment.doctor getAppointmentsByStatusAndDate:edDate status:@"scheduled" apps:^(NSArray *appointments) {
+                    if (appointments.count > 0) {
+                        [self.appointment.doctor getAppointmentsByStatus:@"scheduled" apps:^(NSArray *appointments) {
+                            if (appointments.count > 0) {
+                                Appointment *latestApp = [appointments objectAtIndex:0];
+                                NSTimeInterval oneHour = 1 * 60 * 60;
+                                NSDate *oneHourAhead = [latestApp.date dateByAddingTimeInterval:oneHour];
+                                NSString *message  = [NSString stringWithFormat:@"There is no availability at this time. Please book after: %@",[DValidator dateToString:oneHourAhead]];
+                                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Message" message:message delegate:self cancelButtonTitle:@"Accept" otherButtonTitles:nil, nil];
+                                [alert setTag:1];
+                                [alert show];
+                            }
+                        }];
+                    }
+                    else
                     {
-                        self.appointment.status = @"deleted";
-                        [self.appointment saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-                            NSString *message = @"The new appointment has been requested.";
-                            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Message" message:message delegate:self cancelButtonTitle:@"Accept" otherButtonTitles:nil, nil];
-                            [alert setTag:2];
-                            [alert show];
+                        NSString *desc = [NSString stringWithFormat:@"Booking at: %@ for doctor %@, patient: %@",[DValidator dateToString:sender], self.appointment.doctor.name, self.appointment.patient.name];
+                        NSLog(@"%@",desc);
+                        Appointment *appointment = [Appointment object];
+                        appointment.description = desc;
+                        appointment.doctor = self.appointment.doctor;
+                        appointment.patient = self.appointment.patient;
+                        appointment.clinic = self.appointment.clinic;
+                        appointment.status =  @"pending";
+                        appointment.date = edDate;
+                        [Appointment save:appointment result:^(BOOL error) {
+                            if(!error)
+                            {
+                                self.appointment.status = @"deleted";
+                                [self.appointment saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                                    NSString *message = @"The new appointment has been requested.";
+                                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Message" message:message delegate:self cancelButtonTitle:@"Accept" otherButtonTitles:nil, nil];
+                                    [alert setTag:2];
+                                    [alert show];
+                                }];
+                            }
                         }];
                     }
                 }];

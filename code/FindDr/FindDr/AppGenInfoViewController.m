@@ -31,6 +31,7 @@
         self.photo.image = image;
     }];
     self.patientName.text = [self.appointment.patient getFullName];
+    self.patientAge.text = [NSString stringWithFormat:@"%ld", (long) [DValidator calculateAge:self.appointment.patient.birthday]];
     self.patientDateApp.text = [DValidator dateToString:self.appointment.date];
     self.patientDescription.text = [self.appointment objectForKey:@"description"];
     if ([self.appointment.status isEqualToString:@"scheduled"]) {

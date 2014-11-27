@@ -10,8 +10,12 @@
 #import "Doctor.h"
 #import "Patient.h"
 #import "Clinic.h"
+#import "RateView.h"
 
-@interface DocDetailViewController : UIViewController
+@interface DocDetailViewController : UIViewController <RateViewDelegate>
+
+@property (weak, nonatomic) IBOutlet RateView *rateView;
+@property (weak, nonatomic) IBOutlet UILabel *statusLabel;
 
 @property Doctor *currentDoctor;
 @property Patient *currentPatient;

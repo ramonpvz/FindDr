@@ -87,4 +87,41 @@
     return [dateFormatter dateFromString:date];
 }
 
++ (NSInteger) calculateAge : (NSDate*) birthday {
+    NSDate *today = [[NSDate alloc] init];
+    NSDateComponents *ageComponents = [[NSCalendar currentCalendar] components:NSYearCalendarUnit fromDate:birthday toDate:today options:0];
+    return [ageComponents year];
+}
+
++ (BOOL) validateTimeSchedule: (NSDate*) date sched : (Schedule*) schedule {
+    NSDateComponents *components = [[NSCalendar currentCalendar] components: NSWeekdayCalendarUnit | NSHourCalendarUnit fromDate:date];
+    NSArray *dayTime;
+    switch ([components weekday]) {
+        case 1:
+            dayTime = schedule.sunday;
+            break;
+        case 2:
+            dayTime = schedule.monday;
+            break;
+        case 3:
+            dayTime = schedule.tuesday;
+            break;
+        case 4:
+            dayTime = schedule.wednesday;
+            break;
+        case 5:
+            dayTime = schedule.thursday;
+            break;
+        case 6:
+            dayTime = schedule.friday;
+            break;
+        case 7:
+            dayTime = schedule.saturday;
+            break;
+        default:
+            break;
+    }
+    return [[dayTime objectAtIndex:[components hour]-1] boolValue];
+}
+
 @end
