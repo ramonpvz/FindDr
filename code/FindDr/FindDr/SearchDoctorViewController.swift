@@ -226,7 +226,6 @@ class SearchDoctorViewController : UIViewController, UITableViewDataSource, UITa
         searchResults = Array<SearchResult>()
         searchMapView.removeAnnotations(searchMapView.annotations)
         locationManager?.startUpdatingLocation()
-
         //searching by doctor name
         search.getDoctorsByName(searchBar.text, apps: { (doctors : [AnyObject]!) -> Void in
             //showing wait image
@@ -241,28 +240,29 @@ class SearchDoctorViewController : UIViewController, UITableViewDataSource, UITa
 
                         self.searchResults.append(searchResult)
                     }
+                })
+            }
+            //searching by specialty
+            search.getClinicsBySpecialityName(searchBar.text, clinics: { (clinics : [AnyObject]!) -> Void in
+                for cl in clinics {
+                    search.getDoctorsByClinicId((cl as Clinic).objectId, apps: { (doctors : [AnyObject]!) -> Void in
+                        if !doctors.isEmpty {
+                            var searchResult = SearchResult()
+                            searchResult.clinic = (cl as Clinic)
+                            searchResult.doctor = (doctors[0] as Doctor)//correct this for multiple doctors in 1 clinic
+                            self.searchResults.append(searchResult)
+
+                            self.reloadUIData()
+                        }
+                        else {
+                            self.reloadUIData()
+                        }
+                    })
+                }
+                if(clinics == nil || clinics.isEmpty) {
                     self.reloadUIData()
-                })
-            }
-            if doctors == nil || doctors.isEmpty {
-                self.reloadUIData()
-            }
-        })
-        //searching by specialty
-        search.getClinicsBySpecialityName(searchBar.text, clinics: { (clinics : [AnyObject]!) -> Void in
-            //showing wait image
-            self.indicator?.hidden = false
-            for cl in clinics {
-                search.getDoctorsByClinicId((cl as Clinic).objectId, apps: { (doctors : [AnyObject]!) -> Void in
-                    if !doctors.isEmpty {
-                        var searchResult = SearchResult()
-                        searchResult.clinic = (cl as Clinic)
-                        searchResult.doctor = (doctors[0] as Doctor)//correct this for multiple doctors in 1 clinic
-                        self.searchResults.append(searchResult)
-                    }
-                })
-            }
-            self.reloadUIData()
+                }
+            })
         })
     }
 
