@@ -83,7 +83,7 @@
 }
 
 - (void) getClinicsBySpecialityName: (NSString *)name clinics:(void (^)(NSArray *clinics))complete {
-    NSString *criteria = [NSString stringWithFormat:@".*%@.*", name];
+    NSString *criteria = [NSString stringWithFormat:@".*%@.*", [name lowercaseString]];
     PFQuery *clinicQuery = [Clinic query];
     PFQuery *specQuery = [Speciality query];
     [specQuery whereKey:@"name" matchesRegex:criteria];
