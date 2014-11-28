@@ -37,13 +37,13 @@ class CalendarCell : UICollectionViewCell {
 
     func dayCellFormat(reg : Int) {
         switch reg {
-        case 1: setLabelText("Lun")
-        case 2: setLabelText("Mar")
-        case 3: setLabelText("Mie")
-        case 4: setLabelText("Jue")
-        case 5: setLabelText("Vie")
-        case 6: setLabelText("Sab")
-        case 7: setLabelText("Dom")
+        case 1: setLabelText("Mon")
+        case 2: setLabelText("Tue")
+        case 3: setLabelText("Wed")
+        case 4: setLabelText("Thu")
+        case 5: setLabelText("Fry")
+        case 6: setLabelText("Sat")
+        case 7: setLabelText("Sun")
         default: setLabelText("WTF")
         }
 
@@ -58,7 +58,7 @@ class CalendarCell : UICollectionViewCell {
     }
 
     func cruisedCellFormat() {
-        setLabelText("Horas")
+        setLabelText("Hours")
         
         contentView.backgroundColor = UIColor(red: 58/255, green: 58/255, blue: 58/255, alpha: 1)
         setLabelfontcolor()
