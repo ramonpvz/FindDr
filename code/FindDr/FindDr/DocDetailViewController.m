@@ -53,7 +53,7 @@
                 for (Speciality *clinicSpec in _specialities) {
                     for (Speciality *spec in specialities) {
                         if ([spec.objectId isEqualToString:clinicSpec.objectId]) {
-                            [specsLabel appendString:spec.name];
+                            [specsLabel appendString:[spec.name capitalizedString]];
                             [specsLabel appendString:@" | "];
                         }
                     }

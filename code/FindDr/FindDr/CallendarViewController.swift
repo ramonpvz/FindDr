@@ -226,7 +226,7 @@ class CallendarViewController: UIViewController, UICollectionViewDelegateFlowLay
             for cell in self.calendarColView.visibleCells() {
                 var indexPath = self.calendarColView.indexPathForCell((cell as CalendarCell))
                 if indexPath!.row > 0 && indexPath!.row < self.CALENDAR_HEADER && indexPath!.section > 0 && indexPath!.section < self.CALENDAR_HOURS {
-                    if week[indexPath!.row - 1][indexPath!.section - 1] {
+                    if week.count > 0 && week[indexPath!.row - 1][indexPath!.section - 1] {
                         (cell as CalendarCell).makeSelection()
                     }
                 }

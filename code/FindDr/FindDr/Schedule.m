@@ -32,7 +32,13 @@
     PFQuery *scheduleQuery = [Schedule query];
     [scheduleQuery whereKey:@"clinic" equalTo:clinic];
     [scheduleQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        complete([objects objectAtIndex:0]);
+        if (objects.count > 0) {
+            complete([objects objectAtIndex:0]);
+        }
+        else
+        {
+            complete(nil);
+        }
     }];
 }
 

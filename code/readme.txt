@@ -1,1 +1,5 @@
-Codigo del proyecto final de mobile makers
+FindDr V1.0
+
+Application that allow doctors to publish their professional information such as name, licence, specialities, clinics and schedule. The doctor is also able to flag the days and time for availability. Having opened an account, the doctor can start to accept or decline appointments through the Inbox section. Once the doctor accepts an appointment, the appointment will be moved to the Scheduled section. If the appointment is declined, the appointment is removed from the Inbox and the patient is notified.
+
+On the other hand, the user can get registered as patient, providing a little of information. Having got registered, the patient is able to make a search either by “Doctor name” or by “Speciality”. Once the patient finds the suitable doctor (in a Map&List), he/she can see the details like name, specialities, ranking, etc… and then make an appointment. Either the doctor declines or accepts an appointment, the user is notified.
